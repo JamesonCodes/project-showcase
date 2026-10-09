@@ -9,7 +9,7 @@ An internal semantic visual search tool that helps Sock Club’s design and sale
 | Documentation status | Documentation draft |
 | Project status | Reported as live and part of the daily internal workflow in the portfolio; current operating state not independently checked |
 | My role | Defined requirements with designers and sales; built the search system and asset flagging workflow |
-| Timeline | {{Provide actual build and launch dates; article publication dates are not project dates}} |
+| Timeline | Sales feature functionality: 2 weeks. Design feature functionality: 1 month. Both developed part-time. |
 | Tools | Next.js / React, TypeScript, FastAPI, Vercel, Vertex AI, Pinecone, AWS S3, AWS Cognito, HubSpot API, PostHog |
 
 This draft is adapted from my [portfolio case study](https://jamesoncodes.github.io/articles/semantic-search-engine.html) and its existing screenshots. It documents the published account, rather than an inspection of the underlying application's source or production systems. See [source notes](evaluations/source-notes.md) for provenance and evidence gaps.
@@ -25,7 +25,6 @@ This draft is adapted from my [portfolio case study](https://jamesoncodes.github
 - **Users:** Sock Club designers, sales teammates, and new hires looking for past creative work.
 - **Previous workflow:** Browse nested Dropbox folders, guess filenames, or ask colleagues who remembered where a file lived.
 - **Friction:** Designers recreated hard-to-find assets; sales interrupted designers for examples; new hires relied on tribal knowledge.
-- **Baseline:** The portfolio describes the workflow but does not supply a dated time study or baseline dataset. {{Add baseline task timings and methodology}}
 
 Dropbox Dash was evaluated, but the published account says it did not provide the nuanced visual discovery the team needed.
 
@@ -33,7 +32,7 @@ Dropbox Dash was evaluated, but the published account says it did not provide th
 
 - **Personal responsibilities:** Worked with design and sales to define requirements; built the end-to-end search system, resilient ingestion pipeline, and asset flagging workflow described in the case study.
 - **Collaborators:** Designers and sales informed requirements. The article credits Baylor Meche and Rachal Berry for the logo. {{Describe other collaborators and distinguish their implementation responsibilities}}
-- **AI assistance:** Vertex AI provides runtime multimodal embeddings. {{Describe AI assistance during development separately from AI used by the product}}
+- **AI assistance:** Used Codex and Claude for AI-assisted development, research, learning, and understanding the technologies and implementation. Vertex AI provides the product’s runtime multimodal embeddings.
 - **What I validated:** The article reports ingestion reliability, search performance, and organic adoption. {{Describe my specific validation procedures, acceptance criteria, and test artifacts}}
 
 ## The solution
