@@ -1,3 +1,5 @@
 # Videos and hosted demos
 
-Prefer hosted demo links rather than large committed recordings. Add links here with a short description, the demonstrated scenario, and any access requirements. Label sanitized or synthetic examples and ensure viewers can access the intended demo without exposing private information. Use screenshots as a fallback when helpful.
+- [Sample Hub demo](https://github.com/user-attachments/assets/0ba51a46-5c15-485b-acac-8deba9de258b): video hosted as a GitHub attachment and displayed in the case study’s [Demo section](../README.md#demo).
+
+Keep recordings hosted rather than committing large video files. Label real, sanitized, or synthetic examples when adding descriptions of future demos.

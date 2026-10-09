@@ -46,9 +46,13 @@ These responsibilities are confirmed in the project notes; the original applicat
 
 ## Demo
 
+### Video walkthrough
+
 https://github.com/user-attachments/assets/0ba51a46-5c15-485b-acac-8deba9de258b
 
-**Synthetic example illustrating the implemented workflow.** No real customer information is used.
+### Example workflow
+
+**Synthetic example:** The written walkthrough below uses fictional customer details.
 
 > Please send a standard sample pack to Jordan Lee at Example Company.
 >
@@ -60,7 +64,7 @@ https://github.com/user-attachments/assets/0ba51a46-5c15-485b-acac-8deba9de258b
 2. **Review and submission:** Review the suggested values, complete missing fields, and choose the pack, requester, and shipping options. Submit the form; the backend searches HubSpot for `jordan@example.com`.
 3. **Outcome:** If the contact exists and HubSpot accepts the request, the sample record is created and associated with the contact. The interface confirms creation and attempts to add a Front comment with the record ID.
 
-If the contact is missing, the backend returns an error instead of creating an unassociated sample. This is an illustrative walkthrough, not a recorded end-to-end demo.
+If the contact is missing, the backend returns an error instead of creating an unassociated sample.
 
 ## How it works
 
@@ -118,4 +122,4 @@ The estimate does not establish a before-and-after improvement or confirm physic
 - [Evaluations](evaluations/README.md)
 - [Videos and hosted demos](videos/README.md)
 
-Supporting assets and source-repository links have not yet been supplied. The folders above are placeholders for future material.
+The demo video is linked above. Screenshots, diagrams, evaluation material, and source-repository links have not yet been supplied.
