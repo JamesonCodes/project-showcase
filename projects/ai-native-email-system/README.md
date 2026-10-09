@@ -115,5 +115,6 @@ The published state keeps New Design Requests at Tier 1. Tier 2 for that job is 
 - [Diagrams](diagrams/README.md)
 - [Evaluations and evidence register](evaluations/README.md)
 - [Videos and hosted demos](videos/README.md)
+- [Portal+ Assist case study draft](../portal-plus-assist/README.md)
 - [Original build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html)
 - **Source repository:** {{Add shareable application or workflow repository links; do not duplicate internal code here}}
