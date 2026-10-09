@@ -4,7 +4,7 @@ Sample Hub is a Front sidebar plugin for creating HubSpot sample requests direct
 
 ## Metadata
 
-| Field | Detail |
+| Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
 | Project status | Core workflow implemented; historical usage reported; current deployment status unconfirmed |
@@ -21,119 +21,57 @@ Sample Hub is a Front sidebar plugin for creating HubSpot sample requests direct
 
 ## The problem
 
-The workflow starts with a customer conversation in Front, while sample requests are stored as structured records in HubSpot.
+- **Users:** Teammates creating sample requests from customer conversations in Front.
+- **Workflow:** Identify the recipient, capture shipping details, choose samples and quantities, and associate the request with the correct HubSpot contact.
+- **Friction:** Conversation details need to become structured HubSpot fields. A shipping address in the message body may differ from the sender's signature.
+- **Previous workflow:** Exact steps, processing time, and error rate were not recorded.
 
-Users need to identify the recipient, capture the shipping address, choose samples and quantities, and associate the request with the correct contact. Information in a message also needs interpretation: a shipping address in the body may differ from an address in the sender's signature.
-
-Sample Hub brings those steps into the conversation sidebar. Its purpose is to support sample-request creation without requiring users to leave Front to enter the request.
-
-The previous workflow's exact steps, processing time, and error rate are not recorded.
+Sample Hub brings request creation into the conversation sidebar so users can complete the intake without leaving Front.
 
 ## My contribution
 
-I directed the project requirements and subsequent changes, including the product selections and their HubSpot mappings. I manually tested a product-option change and confirmed that it worked before requesting publication.
+- **Personal responsibilities:** Directed requirements and subsequent changes, including product selections and HubSpot mappings. Reviewed changes and directed publication.
+- **AI assistance:** Used Codex for implementation and maintenance, including inspecting form and submission logic, editing mappings, running build checks, and committing and publishing changes.
+- **Manual validation:** Tested an added product option and confirmed it worked before requesting publication.
 
-### AI assistance
-
-I used Codex for implementation and maintenance assistance. Recorded work includes inspecting the form and submission logic, editing mappings, running build checks, and committing and publishing changes.
-
-My confirmed responsibilities include requirements, review, manual validation, and directing publication. The available history does not establish a complete division of authorship for the original application.
+These responsibilities are confirmed in the project notes; the original application's full division of authorship is not recorded.
 
 ## The solution
 
-The user opens Sample Hub beside a single Front conversation.
-
-They can enter customer details manually or click Smart-fill to extract contact and address information from a message. They then review the fields, choose a standard sample pack or a custom selection, set the requester and shipping options, and submit.
-
-The backend validates the supplied Front context, checks required fields, and searches HubSpot for an existing contact by email. It creates a sample record associated with that contact and includes the Front conversation ID.
-
-The interface confirms successful creation. When the Front SDK supports it, the application also adds a comment to the conversation containing the HubSpot record ID.
-
-### Human judgment
-
-Smart-fill is optional and runs only when the user clicks it. It fills an editable form rather than submitting a request automatically.
-
-The user remains responsible for reviewing the recipient and shipping details, choosing the samples, and submitting the request.
+- **Trigger:** Open Sample Hub beside a single Front conversation.
+- **Workflow:** Enter customer details manually or use Smart-fill, review the fields, choose a standard pack or custom samples, set the requester and shipping options, and submit.
+- **Validation:** The backend checks Front context and required fields, then searches HubSpot for an existing contact by email.
+- **Output:** A HubSpot sample record associated with that contact and the Front conversation ID. The interface confirms creation and, when supported by the Front SDK, adds a conversation comment with the record ID.
+- **Human judgment:** Smart-fill runs only when clicked and fills editable fields. The user reviews the recipient, address, and selections before submitting.
 
 ## Demo
 
 **Synthetic example illustrating the implemented workflow.** No real customer information is used.
 
-A customer writes:
-
 > Please send a standard sample pack to Jordan Lee at Example Company.
+>
 > Ship to: 123 Example Street, Austin, TX 78701.
-> Contact email: [jordan@example.com](mailto:jordan@example.com).
+>
+> Contact email: jordan@example.com.
 
-1. The user opens Sample Hub in that Front conversation.
-2. They click Smart-fill.
-3. The application requests structured contact and address fields from OpenAI.
-4. The user reviews the suggested values, completes any missing fields, and selects the pack, requester, and shipping options.
-5. On submission, the backend searches HubSpot for `jordan@example.com`.
-6. If a matching contact exists and HubSpot accepts the request, a sample record is created and associated with that contact.
-7. The interface displays confirmation and attempts to add a Front comment with the new record ID.
+1. **Input:** Open Sample Hub in the conversation and click Smart-fill. OpenAI extracts structured contact and address fields from the message.
+2. **Review and submission:** Review the suggested values, complete missing fields, and choose the pack, requester, and shipping options. Submit the form; the backend searches HubSpot for `jordan@example.com`.
+3. **Outcome:** If the contact exists and HubSpot accepts the request, the sample record is created and associated with the contact. The interface confirms creation and attempts to add a Front comment with the record ID.
 
-If the contact does not exist, the backend returns an error instead of creating an unassociated sample.
-
-This walkthrough is based on the implementation. It is not a recorded end-to-end demo.
+If the contact is missing, the backend returns an error instead of creating an unassociated sample. This is an illustrative walkthrough, not a recorded end-to-end demo.
 
 ## How it works
 
-### Front sidebar and conversation context
+- **Components:** One Next.js project configured for Vercel contains the sidebar UI and server API routes. The UI runs in Front's iframe and subscribes to conversation updates through the Front Plugin SDK.
+- **Conversation context:** The application distinguishes no conversation, one conversation, and multiple selected conversations. Submission requires a single conversation.
+- **Request form:** Collects client, company, email, shipping details, requester, and shipping options. Users choose a standard pack or custom socks with quantities. Standard-pack quantities come from the pack; custom quantities are calculated from item counts.
+- **Smart-fill:** Sends message text to OpenAI for structured extraction. Explicit recipient and shipping details in the body take priority over signatures and footers. Advanced options accept a specific message ID; an unusable message can fall back to the latest eligible one with a notice. Manual entry remains available if extraction fails.
+- **HubSpot integration:** A server route finds an existing contact by email. A payload builder maps form fields to HubSpot properties and option labels, omits empty values, generates an order number, and adds shipping method and shipper details to notes. The creation route associates the sample with the contact and includes the Front conversation ID.
+- **Credentials and context checks:** Front, HubSpot, and OpenAI credentials stay server-side. Both API routes check conversation and teammate identifiers through the Front Core API, an approach documented in response to iframe cookie-authentication difficulties. These checks do not constitute a completed security assessment.
+- **Error handling:** Handles missing fields, invalid Front context, missing contacts, upstream API failures, and failed extraction. A failed Front confirmation comment is logged without undoing the HubSpot record.
+- **Diagnostics:** An optional debug panel shows context and operation logs. Operational monitoring and alerting are not established in the available evidence.
 
-The application runs inside Front's sidebar iframe and subscribes to conversation-context updates through the Front Plugin SDK.
-
-It distinguishes between no conversation, one conversation, and multiple selected conversations. Submission requires a single-conversation context.
-
-### Request form
-
-The form supports:
-
-- Client, company, email, and shipping details.
-- Standard sample packs.
-- Custom sock selections with quantities.
-- Requester and shipping options.
-- Required-field validation and submission feedback.
-
-Standard-pack quantities are assigned from the selected pack. Custom-selection quantities are calculated from the selected item counts.
-
-### Optional Smart-fill
-
-Smart-fill uses conversation message text to request structured fields from OpenAI. The extraction instructions prioritize explicit shipping and recipient details in the message body over signatures and footers.
-
-Users can supply a specific Front message ID through advanced options. If that message cannot be used, the application can fall back to the latest eligible message and display a notice.
-
-Extraction failures leave manual entry available.
-
-### HubSpot integration
-
-A Next.js server route searches HubSpot contacts by the submitted email address. A matching contact is required before sample creation.
-
-A separate payload builder:
-
-- Maps form fields to HubSpot properties.
-- Translates selectable product values into HubSpot option labels.
-- Omits empty values.
-- Generates a sample order number.
-- Formats shipping method and shipper information into notes.
-
-The creation route associates the sample with the matching contact and adds the Front conversation ID.
-
-The integration creates sample records. It does not implement sample-record editing or physical fulfillment.
-
-### Server-side credentials and context checks
-
-HubSpot, Front, and OpenAI credentials are used server-side.
-
-Both API routes check the supplied conversation and teammate identifiers through the Front Core API. The repository documents this approach in response to cookie-authentication difficulties inside iframes.
-
-These checks are implemented behavior, not evidence of a completed security assessment.
-
-### Error handling and diagnostics
-
-The application handles missing fields, invalid Front context, missing HubSpot contacts, upstream API failures, and unsuccessful AI extraction.
-
-An optional debug panel exposes context and operation logs for troubleshooting. A failed Front confirmation comment is logged without undoing an already-created HubSpot sample.
+The integration creates sample records; record editing and physical fulfillment are outside its implemented scope.
 
 ## Results and evidence
 
@@ -153,45 +91,21 @@ The estimate does not establish a before-and-after improvement or confirm physic
 
 ## Decisions and tradeoffs
 
-### Keep request creation beside the conversation
-
-The Front sidebar puts the form next to the source information. This supports a workflow within Front, although time savings were not measured.
-
-### Use AI for extraction with manual submission
-
-Smart-fill assists with interpreting message text while leaving the fields editable. The user controls when extraction runs and reviews the result before creating a record.
-
-### Require an existing HubSpot contact
-
-The historical plan considered optional contact association and proceeding without it. The current implementation requires a matching contact.
-
-This preserves the contact association but prevents submission until the contact exists in HubSpot.
-
-### Centralize field and option mappings
-
-The payload mapping separates UI labels from HubSpot property values. Product options can be maintained without changing the overall submission workflow.
-
-### Keep the application in one Next.js project
-
-The sidebar UI and API routes share one project configured for Vercel. External-service credentials remain on the server.
-
-### Treat the Front comment as a secondary action
-
-The HubSpot record is created before the confirmation comment is attempted. Comment failure does not turn successful record creation into a failed request.
+- **Stay beside the conversation:** The sidebar keeps the form next to the source information. Time savings were not measured.
+- **AI extraction, human submission:** Smart-fill assists with interpreting message text while keeping fields editable and submission under user control.
+- **Require an existing contact:** The historical plan allowed optional association; the implementation requires a HubSpot match. This preserves the association but blocks requests until the contact exists.
+- **Centralize mappings:** Separate UI labels from HubSpot values so product options can change without changing the submission workflow.
+- **Use one Next.js project:** Keep the UI and API routes together, with external-service credentials on the server.
+- **Make the Front comment secondary:** Create the HubSpot record first. Comment failure does not turn successful record creation into a failed request.
 
 ## Limitations and lessons
 
-Smart-fill depends on the available message content and the model's extraction. Its prompt focuses on US addresses, so broader address coverage should not be assumed.
-
-Requests require an existing HubSpot contact. The application does not create missing contacts as part of submission.
-
-The confirmed scope ends at creating a sample record. Shipping execution and fulfillment outcomes are outside the demonstrated implementation.
-
-Debug tools support troubleshooting, but operational monitoring and alerting are not established by the available evidence. The README recommends Vercel rate limiting; configuration in a deployed environment was not verified.
-
-Historical lint checks were blocked by the repository's Next.js and ESLint configuration. Historical builds also required network access for Google Fonts.
-
-The project plan is historical documentation, not a reliable completion checklist. Current behavior differs from parts of that plan, particularly contact association.
+- **Extraction coverage:** Smart-fill depends on message content and model output. Its prompt focuses on US addresses; broader address coverage is not established.
+- **Contact requirement:** Requests need an existing HubSpot contact. Submission does not create missing contacts.
+- **Fulfillment scope:** The workflow ends at sample-record creation. Shipping execution and fulfillment outcomes are outside the demonstrated implementation.
+- **Operations:** Deployed rate limiting was not verified. The source README recommends Vercel rate limiting; operational monitoring and alerting are not established.
+- **Development checks:** Historical lint checks were blocked by the Next.js and ESLint configuration. Builds required network access for Google Fonts.
+- **Documentation:** The historical project plan is not a completion checklist. Current behavior differs from it, particularly contact association.
 
 ## Supporting-material links
 
