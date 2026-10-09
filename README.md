@@ -1,6 +1,6 @@
 # Project Showcase
 
-This library holds deeper case studies, demos, diagrams, and evidence from my GTM engineering and applied AI projects for future employers. My [portfolio](https://jamesoncodes.github.io/) provides the highlights; this repository documents the work behind them.
+This library holds deeper case studies, demos, diagrams, and evidence from my GTM engineering and applied AI projects, for prospective employers and teams looking to hire me to build a specific project. My [portfolio](https://jamesoncodes.github.io/) provides the highlights; this repository documents the work behind them.
 
 ## Project directory
 
