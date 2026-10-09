@@ -46,6 +46,8 @@ These responsibilities are confirmed in the project notes; the original applicat
 
 ## Demo
 
+https://github.com/user-attachments/assets/0ba51a46-5c15-485b-acac-8deba9de258b
+
 **Synthetic example illustrating the implemented workflow.** No real customer information is used.
 
 > Please send a standard sample pack to Jordan Lee at Example Company.
