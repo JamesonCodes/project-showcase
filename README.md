@@ -4,12 +4,12 @@ This library holds deeper case studies, demos, diagrams, and evidence from my GT
 
 ## Project directory
 
-The case studies below are documentation drafts. Documentation status describes the write-up; each project's actual development status is recorded separately in its metadata. Project focus is awaiting author input.
+The case studies below are documentation drafts. Documentation status describes the write-up; each project's actual development status is recorded separately in its metadata. Sock Scout and the email-system drafts include material adapted from the portfolio, with source notes and evidence gaps. Sample Hub is awaiting author input.
 
 | Project | Focus | Documentation status | Case study |
 | --- | --- | --- | --- |
-| Sock Scout | {{Describe Sock Scout's focus}} | Documentation draft | [README](projects/sock-scout/README.md) |
-| AI Native Email System | {{Describe AI Native Email System's focus}} | Documentation draft | [README](projects/ai-native-email-system/README.md) |
+| Sock Scout | Semantic visual search for creative assets | Documentation draft | [README](projects/sock-scout/README.md) |
+| AI Native Email System | Job-based inbox workflows, human review, and earned autonomy | Documentation draft | [README](projects/ai-native-email-system/README.md) |
 | Sample Hub | {{Describe Sample Hub's focus}} | Documentation draft | [README](projects/sample-hub/README.md) |
 
 ## Add a project
