@@ -1,5 +1,7 @@
 # Sock Scout
 
+![Sock Scout dark logo](screenshots/logo-dark.png)
+
 An internal semantic visual search tool that helps Sock Club’s design and sales teams find relevant work across a creative archive of 100k+ assets.
 
 ## Metadata
