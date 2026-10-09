@@ -39,7 +39,7 @@ project-showcase/
     └── sample-hub/
 ```
 
-Every project folder has this structure:
+The template provides this starting structure. Supporting folders can be omitted when they do not apply, as in Sock Scout:
 
 ```text
 <project-slug>/

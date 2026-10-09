@@ -14,7 +14,7 @@ An internal semantic visual search tool that helps Sock Club’s design and sale
 | Timeline | Sales feature functionality: 2 weeks. Design feature functionality: 1 month. Both developed part-time. |
 | Tools | Next.js / React, TypeScript, FastAPI, Vercel, Vertex AI, Pinecone, AWS S3, AWS Cognito, HubSpot API, PostHog |
 
-See my [portfolio article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) for the original write-up and the [evidence register](evaluations/source-notes.md) for sources and measurement gaps.
+See my [portfolio article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) for the original write-up.
 
 ## At a glance
 
@@ -83,7 +83,7 @@ The [diagram notes](diagrams/README.md) record the source and snapshot limitatio
 
 ## Results and evidence
 
-The figures below were previously published in my portfolio. Baselines for search speed and lost-asset time were not recorded, and raw measurement data is not included here. See the [evidence register](evaluations/source-notes.md) for sources and missing measurement details.
+The figures below were previously published in my portfolio. Baselines for search speed and lost-asset time were not recorded, and raw measurement data is not included here.
 
 | Metric or observation | Before | After | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
@@ -112,6 +112,4 @@ Designer feedback supports the usefulness of the tool.
 
 - [Screenshots](screenshots/README.md)
 - [Diagrams](diagrams/README.md)
-- [Evaluations and evidence register](evaluations/README.md)
-- [Videos and hosted demos](videos/README.md)
 - [Original portfolio case study](https://jamesoncodes.github.io/articles/semantic-search-engine.html)
