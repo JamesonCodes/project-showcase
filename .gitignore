@@ -1,0 +1,13 @@
+# Common OS files
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# Local secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
