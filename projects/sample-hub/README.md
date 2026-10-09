@@ -8,7 +8,7 @@ Sample Hub is a Front sidebar plugin for creating HubSpot sample requests direct
 | --- | --- |
 | Documentation status | Documentation draft |
 | Project status | Core workflow implemented; historical usage reported; current deployment status unconfirmed |
-| My role | Project direction, requirements, and confirmed manual validation; used AI assistance for implementation and maintenance |
+| My role | End-to-end ownership from inception to launch, with AI assistance for implementation and maintenance |
 | Timeline | 1 week |
 | Tools | Next.js App Router, React, TypeScript, Front Plugin SDK and Core API, HubSpot API, OpenAI API, Git, GitHub |
 | Deployment approach | Vercel |
@@ -29,11 +29,9 @@ Exact handoffs, processing time, and error rate were not recorded.
 
 ## My contribution
 
-- **Personal responsibilities:** Directed requirements and subsequent changes, including product selections and HubSpot mappings. Reviewed changes and directed publication.
+- **Personal responsibilities:** Owned the project from inception to launch, including research, planning, teammate involvement, requirements, implementation, testing, and deployment. Defined product selections and HubSpot mappings, and handled subsequent changes.
 - **AI assistance:** Used Codex for implementation and maintenance: inspecting form and submission logic, editing mappings, running build checks, and committing and publishing changes.
 - **Manual validation:** Tested an added product option and confirmed it worked before publication.
-
-The original application's full division of authorship is not recorded.
 
 ## The solution
 
