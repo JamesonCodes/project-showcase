@@ -9,22 +9,22 @@ Sample Hub is a Front sidebar plugin for creating HubSpot sample requests direct
 | Documentation status | Documentation draft |
 | Project status | Core workflow implemented; historical usage reported; current deployment status unconfirmed |
 | My role | Project direction, requirements, and confirmed manual validation; used AI assistance for implementation and maintenance |
-| Timeline | Start date, launch date, and total development duration not recorded |
+| Timeline | 1 week |
 | Tools | Next.js App Router, React, TypeScript, Front Plugin SDK and Core API, HubSpot API, OpenAI API, Git, GitHub |
 | Deployment approach | Single Next.js project configured for Vercel |
 
 ## At a glance
 
-- **Problem:** Sample requests combine information from customer conversations with structured contact, shipping, and product fields in HubSpot.
-- **Solution:** A sidebar form inside Front that optionally extracts customer details, validates the request, and creates a HubSpot sample record associated with an existing contact.
-- **Outcome:** The core workflow is implemented. A historical reporting chart was estimated to attribute approximately 48% of its displayed sample records to Sample Hub.
+- **Problem:** Sample submissions involved handoffs and context switching between customer conversations in Front and request creation in HubSpot.
+- **Solution:** A small Front sidebar plugin that handles interpretation and setup, then lets a teammate review, correct, and explicitly submit the sample request to HubSpot.
+- **Outcome:** Fewer handoffs and less context switching, with sample submissions completed inside Front. A historical chart estimate attributed approximately 48% of its displayed sample records to Sample Hub.
 
 ## The problem
 
-- **Users:** Teammates creating sample requests from customer conversations in Front.
+- **Users:** Sock Club teammates creating sample requests from customer conversations in Front.
 - **Workflow:** Identify the recipient, capture shipping details, choose samples and quantities, and associate the request with the correct HubSpot contact.
-- **Friction:** Conversation details need to become structured HubSpot fields. A shipping address in the message body may differ from the sender's signature.
-- **Previous workflow:** Exact steps, processing time, and error rate were not recorded.
+- **Friction:** Handoffs between people and switching systems interrupted the task. Conversation details also needed interpretation before becoming structured HubSpot fields, especially when shipping details differed from the sender's signature.
+- **Previous workflow:** Move from the customer conversation in Front to another system to finish the sample submission. Exact handoffs, processing time, and error rate were not recorded.
 
 Sample Hub brings request creation into the conversation sidebar so users can complete the intake without leaving Front.
 
@@ -42,7 +42,7 @@ These responsibilities are confirmed in the project notes; the original applicat
 - **Workflow:** Enter customer details manually or use Smart-fill, review the fields, choose a standard pack or custom samples, set the requester and shipping options, and submit.
 - **Validation:** The backend checks Front context and required fields, then searches HubSpot for an existing contact by email.
 - **Output:** A HubSpot sample record associated with that contact and the Front conversation ID. The interface confirms creation and, when supported by the Front SDK, adds a conversation comment with the record ID.
-- **Human judgment:** Smart-fill runs only when clicked and fills editable fields. The user reviews the recipient, address, and selections before submitting.
+- **Human judgment:** Smart-fill runs only when clicked and fills editable fields. A teammate reviews the recipient, address, and selections, corrects edge cases, and makes the final call. No sample request is created without explicit human submission.
 
 ## Demo
 
@@ -75,12 +75,13 @@ The integration creates sample records; record editing and physical fulfillment 
 
 ## Results and evidence
 
-The evidence summary below comes from the project notes supplied for this draft. The underlying repository, historical chart, and build logs have not yet been linked in this library.
+The evidence summary below comes from the supplied project notes and my LinkedIn post about the tool. The underlying repository, historical chart, build logs, and post URL have not yet been linked in this library.
 
 | Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
 | Sample requests created from Front | Not recorded | Sidebar, submission route, contact association, and confirmation behavior implemented | Repository inspection | Checkout reviewed in the supplied project notes | Source repository |
 | Optional AI-assisted data entry | Not recorded | Manual Smart-fill populates editable contact and address fields | Repository inspection | Checkout reviewed in the supplied project notes | Form and address-parsing route |
+| Workflow friction | Handoffs and switching systems to complete requests | Fewer handoffs; sample submissions completed inside Front | Qualitative account | Not recorded | Author's LinkedIn post, supplied text |
 | Sample Hub share of displayed sample records | Not recorded | Approximately 48% | AI estimate from a historical chart | Report period not recorded; discussed August 6, 2026 | “Sample Hub Percentage” |
 | Manual validation | Not recorded | I confirmed that an added product option worked | Qualitative user confirmation | One maintenance test | “Add grip socks option” |
 | Production build | Not recorded | Historical build checks passed when the Google Fonts network request was allowed | Recorded build results | Maintenance checks | “Add grip socks option” |
@@ -91,8 +92,8 @@ The estimate does not establish a before-and-after improvement or confirm physic
 
 ## Decisions and tradeoffs
 
-- **Stay beside the conversation:** The sidebar keeps the form next to the source information. Time savings were not measured.
-- **AI extraction, human submission:** Smart-fill assists with interpreting message text while keeping fields editable and submission under user control.
+- **Stay beside the conversation:** Keep the UI small and embed assistance in the workflow teammates already use. The request can be completed inside Front; time savings were not measured.
+- **Stop automation at human judgment:** I intentionally kept review and submission with a person. AI handles interpretation and setup; the teammate corrects edge cases and approves the request.
 - **Require an existing contact:** The historical plan allowed optional association; the implementation requires a HubSpot match. This preserves the association but blocks requests until the contact exists.
 - **Centralize mappings:** Separate UI labels from HubSpot values so product options can change without changing the submission workflow.
 - **Use one Next.js project:** Keep the UI and API routes together, with external-service credentials on the server.
@@ -106,6 +107,7 @@ The estimate does not establish a before-and-after improvement or confirm physic
 - **Operations:** Deployed rate limiting was not verified. The source README recommends Vercel rate limiting; operational monitoring and alerting are not established.
 - **Development checks:** Historical lint checks were blocked by the Next.js and ESLint configuration. Builds required network access for Google Fonts.
 - **Documentation:** The historical project plan is not a completion checklist. Current behavior differs from it, particularly contact association.
+- **Lesson:** Human-in-the-loop assistance can remove workflow friction without automating the final decision. These components also provide a foundation for incremental automation where appropriate; further automation is not implemented here.
 
 ## Supporting-material links
 
