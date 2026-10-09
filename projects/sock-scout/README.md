@@ -86,10 +86,10 @@ These are **portfolio-reported results**, not independently verified measurement
 
 | Metric or observation | Before | After | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
-| Search speed | Absolute baseline not supplied | Reported ~10× faster | Reported comparison; method not supplied | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
+| Search speed | Not recorded | Reported ~10× faster | Reported comparison; method not supplied | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 | Internal search activity | Not supplied | Reported 1,000+ searches/week | Reported usage; raw counts not supplied | Weekly unit; exact window not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 | Search latency | Not supplied | Reported 300–600 ms | Reported performance; timing boundary and distribution not supplied | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
-| Lost-asset time | Not supplied | Reported ~40% reduction | Approximate portfolio claim; measurement versus estimate unspecified | Not supplied | [Portfolio](https://jamesoncodes.github.io/#featured-project) |
+| Lost-asset time | Not recorded | Reported ~40% reduction | Approximate portfolio claim; measurement versus estimate unspecified | Not supplied | [Portfolio](https://jamesoncodes.github.io/#featured-project) |
 | Designer experience | Redundant recreation and interruptions described | Positive feedback and adoption described | Qualitative feedback | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 
 The qualitative account does not establish that duplicate work was eliminated. {{Add dated analytics, before/after task samples, and the method behind each comparison}}
