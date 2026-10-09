@@ -117,9 +117,4 @@ The estimate does not establish a before-and-after improvement or confirm physic
 
 ## Supporting-material links
 
-- [Screenshots](screenshots/README.md)
-- [Diagrams](diagrams/README.md)
-- [Evaluations](evaluations/README.md)
 - [Videos and hosted demos](videos/README.md)
-
-The demo video is linked above. Screenshots, diagrams, evaluation material, and source-repository links have not yet been supplied.
