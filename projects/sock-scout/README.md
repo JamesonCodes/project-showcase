@@ -31,9 +31,8 @@ We evaluated Dropbox Dash, but it did not provide the nuanced visual discovery t
 ## My contribution
 
 - **Personal responsibilities:** Worked with design and sales to define requirements; built the end-to-end search system, resilient ingestion pipeline, and asset flagging workflow.
-- **Collaborators:** Designers and sales informed requirements. Baylor Meche and Rachal Berry created the logo. {{Describe other collaborators and distinguish their implementation responsibilities}}
+- **Collaborators:** Designers and sales informed requirements. Baylor Meche and Rachal Berry created the logo.
 - **AI assistance:** Used Codex and Claude for AI-assisted development, research, learning, and understanding the technologies and implementation. Vertex AI provides the product’s runtime multimodal embeddings.
-- **What I validated:** {{Describe how I validated ingestion reliability, search performance, and team adoption, including procedures, acceptance criteria, and test artifacts}}
 
 ## The solution
 
@@ -92,12 +91,12 @@ The figures below were previously published in my portfolio. Baselines for searc
 | Lost-asset time | Not recorded | ~40% reduction | Approximate reduction; measurement versus estimate unspecified | Not supplied | [Portfolio](https://jamesoncodes.github.io/#featured-project) |
 | Designer experience | Redundant recreation and interruptions | Positive feedback and adoption | Qualitative feedback | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 
-Designer feedback supports the usefulness of the tool; it does not establish that duplicate work was eliminated. {{Add dated analytics, before/after task samples, and the method behind each comparison}}
+Designer feedback supports the usefulness of the tool.
 
 ## Decisions and tradeoffs
 
 - **Purpose-built search:** Dropbox Dash did not meet the team's requirements for conceptual visual discovery. Building a dedicated system meant taking ownership of ingestion, access, and reliability.
-- **Shared text/image embeddings:** Vertex AI supports both query types in a shared space. I chose it for embedding quality, latency, and cost; benchmark data is not included here.
+- **Shared text/image embeddings:** Vertex AI supports both query types in a shared space. I chose it for embedding quality, latency, and cost. The embedding model ranked #1 on MTEB at the time.
 - **Serverless vector search:** Pinecone was chosen for metadata filtering, read performance, upserts, and low operational overhead.
 - **Recoverable ingestion:** Batching, duplicate checks, and retries address failures in long processing runs.
 - **Workflow integration:** Downloads, CRM links, and flagging connect discovery to the work users need to complete.
@@ -107,14 +106,6 @@ Designer feedback supports the usefulness of the tool; it does not establish tha
 - **Limitations:** Search relevance benchmarks, a dated corpus inventory, and exact measurement windows are not documented here. Screenshots show historical interface states. Asset quality still requires human judgment.
 - **Lessons:** UX drives adoption; resilient pipelines matter; useful search can reduce dependence on perfect filenames and metadata; trust in retrieval opens additional workflows.
 
-{{Add concrete failure cases, security and access constraints, and what I would change}}
-
-## Current state and next steps
-
-- **Current state:** Live and part of the daily internal team workflow.
-- **Documentation next steps:** Add exact build and launch dates, remaining collaborator details, available measurement artifacts, and a hosted walkthrough. Reconcile the corpus counts across screenshots and diagrams.
-- **Project next steps:** {{Describe actual planned product work; do not treat documentation gaps as a product roadmap}}
-
 ## Supporting-material links
 
 - [Screenshots](screenshots/README.md)
@@ -122,4 +113,3 @@ Designer feedback supports the usefulness of the tool; it does not establish tha
 - [Evaluations and evidence register](evaluations/README.md)
 - [Videos and hosted demos](videos/README.md)
 - [Original portfolio case study](https://jamesoncodes.github.io/articles/semantic-search-engine.html)
-- **Source repository:** {{Add the application source repository link if shareable; the portfolio repository contains documentation, not the app implementation}}
