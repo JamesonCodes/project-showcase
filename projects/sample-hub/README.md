@@ -11,7 +11,7 @@ A sample is a hand-picked selection of socks we send to prospects and customers 
 | Documentation status | Documentation draft |
 | Project status | Deployed and being used by the team |
 | My role | End-to-end ownership from inception to launch, with AI assistance for implementation and maintenance |
-| Timeline | 1 week |
+| Timeline | 1 week; launched January 5, 2026 |
 | Tools | Next.js App Router, React, TypeScript, Front Plugin SDK and Core API, HubSpot API, OpenAI API, Git, GitHub |
 | Deployment approach | Vercel |
 
@@ -44,15 +44,16 @@ https://github.com/user-attachments/assets/0ba51a46-5c15-485b-acac-8deba9de258b
 
 ## Results and evidence
 
-The findings below come from my workflow observations, LinkedIn post, and a historical reporting chart. The post URL and underlying chart data have not yet been linked here.
+Usage figures come from internal reporting. Qualitative findings come from my workflow observations and LinkedIn post. The internal reports are not included in this repository, and the post URL has not yet been linked here.
 
 | Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
+| Sample records created through Sample Hub | Not recorded | Over 2,600 | Measured usage count | January 5–October 14, 2026 | Internal reporting |
 | Workflow friction | Handoffs and switching systems to complete requests | Fewer handoffs; submissions completed inside Front | Qualitative account | Not recorded | Author's LinkedIn post, supplied text |
 | Attribution (secondary benefit) | Harder to trace the sample → deal → outcome conversion path | Clearer visibility into how sample requests connect to deals and their outcomes | Qualitative observation | Not recorded | Author's workflow observation |
-| Sample Hub share of displayed sample records | Not recorded | Approximately 48% | AI estimate from a historical chart | Report period not recorded; discussed August 6, 2026 | “Sample Hub Percentage” |
+| Share of sample submissions via Sample Hub | Not applicable (not yet launched) | Approximately 54% | Measured usage share (rounded) | January 5–October 14, 2026 | Internal reporting |
 
-The chart estimate used approximately 1,950 Sample Hub records out of approximately 4,095 across the displayed sources. Values were rounded. This indicates a share of recorded requests, not a before-and-after improvement or confirmed shipments. Time savings were not measured.
+Usage figures describe sample-record submissions, not confirmed physical shipments. Time savings were not measured.
 
 ## Decisions and lessons
 
