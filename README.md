@@ -17,8 +17,8 @@ The case studies below are documentation drafts. Documentation status describes 
 
 1. Create `projects/<project-slug>/` using a lowercase, hyphenated name.
 2. Copy the [project README template](templates/project-readme.md) into that folder as `README.md`.
-3. Add `screenshots/`, `diagrams/`, `evaluations/`, and `videos/`, each with a short README explaining its contents. The starter projects provide examples.
-4. Replace placeholders with verified information and set the template's supporting-material paths to the local folder READMEs. Keep documentation status separate from project development status.
+3. Add only the supporting folders you need (`screenshots/`, `diagrams/`, `evaluations/`, or `videos/`), each with a short README indexing its material.
+4. Replace placeholders with verified information, omit sections that do not apply, and link only available supporting material. Keep documentation status separate from project development status.
 5. Add a row to the project directory above and verify all relative links.
 
 See [AUTHORING.md](AUTHORING.md) for writing, evidence, and organization conventions.

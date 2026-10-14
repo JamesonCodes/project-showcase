@@ -1,92 +1,60 @@
 # {{Project name}}
 
-{{Describe the project in one sentence}}
+{{Describe the project in one sentence; define unfamiliar terms if needed}}
 
 ## Metadata
 
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | {{Describe the actual development status independently of documentation status}} |
-| My role | {{Describe my role}} |
-| Timeline | {{Provide the actual timeline or state that it is unknown}} |
+| Project status | {{Describe the actual development status}} |
+| My role | {{Summarize my ownership or responsibilities}} |
+| Timeline | {{Give the development duration or dates; note part-time work if applicable}} |
 | Tools | {{List the tools used}} |
 
-## At a glance
+## Problem and solution
 
-- **Problem:** {{Summarize the problem}}
-- **Solution:** {{Summarize the solution}}
-- **Outcome:** {{Describe the supported outcome or state that it has not been evaluated}}
-
-## The problem
-
-- **Users:** {{Describe the intended users}}
-- **Previous workflow:** {{Describe the previous workflow}}
-- **Friction:** {{Describe the friction in that workflow}}
-- **Baseline:** {{Describe the baseline and its source or state that no baseline was recorded}}
+- **Users and previous workflow:** {{Describe who needed this and how they previously completed the task}}
+- **Friction:** {{Describe the specific difficulty}}
+- **What changed:** {{Explain the user workflow, resulting output, and any downstream handoff}}
+- **Human judgment:** {{Describe review or approval where applicable}}
 
 ## My contribution
 
-- **Personal responsibilities:** {{Describe what I personally designed, built, or owned}}
-- **Collaborators:** {{Describe collaborators and their contributions or state that there were none}}
-- **AI assistance:** {{Describe how AI assisted the work or state that it was not used}}
-- **What I validated:** {{Describe what I reviewed, tested, and verified myself}}
-
-## The solution
-
-- **Trigger:** {{Describe what starts the workflow}}
-- **Workflow:** {{Describe the steps from input to completion}}
-- **Output:** {{Describe the resulting artifact or action}}
-- **Human judgment:** {{Describe where a person makes decisions or approves actions}}
+- **Personal responsibilities:** {{Describe what I owned and delivered beyond the short metadata summary}}
+- **Collaborators:** {{Describe others' contributions if applicable}}
+- **AI assistance:** {{Describe development assistance separately from AI used by the product}}
+- **Validation:** {{Describe actual review or testing if known}}
 
 ## Demo
 
-{{Describe a realistic input → system behavior → outcome example}}
-
-- **Input:** {{Provide the example input and label it as real, sanitized, or synthetic}}
-- **System behavior:** {{Describe what happens during the demo}}
-- **Outcome:** {{Describe the observed demo outcome}}
-- **Video or screenshots:** {{Add a hosted demo link or embed screenshots using relative paths}}
+{{Embed an available video or screenshots with brief context. Add a written input → behavior → outcome example only when it adds information beyond the demo and workflow}}
 
 ## How it works
 
-- **Components:** {{Describe the main components and their responsibilities}}
-- **Integrations:** {{Describe external systems and data exchanged}}
-- **Decision logic:** {{Describe routing, rules, or model decisions}}
-- **Error handling:** {{Describe failure modes and recovery behavior}}
-- **Human review:** {{Describe review checkpoints and escalation}}
-- **Monitoring:** {{Describe what is monitored and how issues are detected}}
+- **Components and integrations:** {{Describe the architecture and data flow}}
+- **Decision logic:** {{Explain relevant rules or model behavior}}
+- **Error handling:** {{Describe failure and recovery behavior}}
+- **Monitoring:** {{Describe implemented diagnostics or monitoring if applicable}}
 
-{{Add a relative link to a workflow or architecture diagram when available}}
+{{Link an available diagram if useful}}
 
 ## Results and evidence
 
-{{Explain the evaluation method, scope, and caveats or state that evaluation is pending}}
+{{Explain the evidence source and any material measurement limitations once}}
 
-| Metric or observation | Before | After | Evidence type | Measurement period | Source |
+| Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
-| {{Name the metric or observation}} | {{Record the baseline or mark unavailable}} | {{Record the result or mark unavailable}} | {{Measured result, estimate, or qualitative feedback}} | {{Record the actual measurement period}} | {{Link to supporting evidence}} |
+| {{Name the metric or observation}} | {{Record the baseline or use Not recorded}} | {{Record the result}} | {{Measured result, estimate, or qualitative observation}} | {{Give the actual period or use Not recorded}} | {{Identify or link the source}} |
 
-Keep measured results, estimates, and qualitative feedback explicitly distinct. For estimates, explain assumptions; for feedback, describe the context and attribution permission. A demo outcome alone does not establish a measured improvement.
+{{For estimates, explain assumptions or calculations. Do not infer an unrecorded baseline from an improvement claim}}
 
-## Decisions and tradeoffs
+## Decisions and lessons
 
-{{Describe important choices, alternatives considered, and the tradeoffs accepted}}
+- **{{Decision}}:** {{Explain why this approach was chosen and the tradeoff, without repeating implementation details}}
+- **{{Relevant limitation}}:** {{Describe a concrete constraint once}}
+- **{{Lesson}}:** {{Explain what I learned or would change}}
 
-## Limitations and lessons
+## Supporting materials
 
-- **Limitations:** {{Describe known constraints and unvalidated claims}}
-- **Lessons:** {{Describe what I learned and what I would change}}
-
-## Current state and next steps
-
-- **Current state:** {{Describe the actual current development state}}
-- **Next steps:** {{Describe planned work without presenting it as completed}}
-
-## Supporting-material links
-
-- [Screenshots]({{screenshots-path}})
-- [Diagrams]({{diagrams-path}})
-- [Evaluations]({{evaluations-path}})
-- [Videos and hosted demos]({{videos-path}})
-- **Source repository:** {{Link to the existing source repository instead of duplicating its code here}}
+{{Link only available supporting assets and shareable source repositories. Omit this section if the links already appear where needed}}

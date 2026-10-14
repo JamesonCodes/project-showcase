@@ -4,9 +4,13 @@ Use the [project README template](templates/project-readme.md) for every case st
 
 ## Replace placeholders
 
-Replace each `{{...}}` placeholder with verified information. Keep placeholders visible while drafting; when information is unavailable, say so rather than inventing details, dates, achievements, or metrics. Explicitly mark sections that do not apply and briefly explain why.
+Replace each `{{...}}` placeholder with verified information. Keep placeholders visible while drafting; when information is unavailable, say so rather than inventing details, dates, achievements, or metrics. Remove unsupported bullets and sections that do not apply rather than adding filler.
 
-Keep all 13 parts of the outline, from the project title and one-sentence description through supporting-material links. Describe personal contributions separately from collaborators and AI assistance, and explain what you personally validated.
+Use the template as a flexible starting point. The default structure is an introduction and metadata, Problem and solution, My contribution, Demo, How it works, Results and evidence, Decisions and lessons, and optional Supporting materials. Include actual validation work when known, and distinguish personal contributions from collaborators and AI assistance.
+
+Keep each detail in the section where it helps most: user workflow in Problem and solution, technical implementation in How it works, outcomes in Results and evidence, and reasons for choices in Decisions and lessons. Remove repeated explanations. A video can replace a written demo walkthrough.
+
+For longer case studies, optionally add a brief At a glance summary, split Problem and solution or Decisions and lessons into separate sections, or add Current state and next steps when it adds information beyond metadata. Existing case studies do not need identical headings or an automatic rewrite.
 
 Use **Documentation draft**, **In review**, or **Published** for documentation status. Record the actual project's development status independently, using an accurate description such as prototype, active development, maintained, or archived only when supported. A completed write-up does not imply a completed project.
 
@@ -14,12 +18,12 @@ Use **Documentation draft**, **In review**, or **Published** for documentation s
 
 1. Create a lowercase, hyphenated directory under `projects/`.
 2. Copy `templates/project-readme.md` into it as `README.md` and replace the project name and description.
-3. Create `screenshots/`, `diagrams/`, `evaluations/`, and `videos/`. Give each folder a short README explaining its intended contents, following the starters.
-4. Replace `{{screenshots-path}}`, `{{diagrams-path}}`, `{{evaluations-path}}`, and `{{videos-path}}` in the copied template with `screenshots/README.md`, `diagrams/README.md`, `evaluations/README.md`, and `videos/README.md` respectively.
+3. Create only the supporting folders you need: `screenshots/`, `diagrams/`, `evaluations/`, or `videos/`. Give each included folder a short README indexing its material. Use `evaluations/` only for actual evaluation material.
+4. Add relative links to available supporting files or folder READMEs. Omit links to folders that do not exist.
 5. Fill in the case study as evidence becomes available, retaining clear draft status until reviewed.
 6. Add the project's name, verified focus, documentation status, and relative README link to the [root directory](README.md).
 
-The reusable template intentionally contains placeholder link targets. Resolve them in each project before publishing.
+The reusable template contains authoring placeholders. Replace them or remove the corresponding unsupported content before publishing.
 
 ## Images, diagrams, and demos
 
@@ -33,7 +37,7 @@ Paths are relative to the Markdown file that contains the link. From a project R
 
 Link a supporting file with `[Evaluation notes](evaluations/baseline-comparison.md)`. From a supporting-folder README, `../README.md` links back to the case study. Use descriptive filenames and captions that explain what the reader should notice. Store diagram exports and their editable sources in `diagrams/`.
 
-Prefer hosted demo links in `videos/README.md` over large committed recordings. Describe each demo's input, system behavior, and outcome. Check viewing permissions and provide screenshots when useful.
+Prefer hosted demo links in `videos/README.md` over large committed recordings. Add brief demo context when useful; avoid repeating a workflow already explained in the README. Check viewing permissions and provide screenshots when useful.
 
 ## Document evidence
 
@@ -43,7 +47,7 @@ For each result, record the before and after values or explicitly mark unavailab
 - **Estimates:** Label them as estimates and explain assumptions and calculations.
 - **Qualitative feedback:** Label it as feedback and give context; use attributed quotes only with permission.
 
-Do not treat a synthetic demo or an estimate as evidence of real-world performance. Describe missing evidence and unvalidated claims directly. Keep planned outcomes separate from achieved outcomes.
+Do not present synthetic demo results or estimates as measured real-world performance. Describe missing evidence and unvalidated claims directly. Keep planned outcomes separate from achieved outcomes.
 
 ## Label examples and protect private information
 
@@ -57,6 +61,6 @@ Review text and assets for credentials, personal information, and confidential d
 
 ## Keep the library organized
 
-Keep one case study per project and place supporting assets in its four designated folders. Maintain each folder's README as an index when material is added. Link source repositories and hosted demos; avoid duplicate source code and large recordings.
+Keep one case study per project and place supporting assets in the relevant folders. Do not keep empty folders solely to match the template. Maintain each folder's README as an index when material is added. Link source repositories and hosted demos; avoid duplicate source code and large recordings.
 
 Update the root project directory when adding, renaming, or changing documentation status. Keep filenames stable where possible; update inbound links when moving material. Before publishing, review remaining `{{...}}` placeholders, confirm evidence labels, check image rendering, and verify relative links resolve from their containing files. Template placeholders may remain in the reusable template.

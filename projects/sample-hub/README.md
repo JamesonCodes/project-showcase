@@ -1,44 +1,32 @@
 # Sample Hub
 
-Sample Hub is a Front sidebar plugin for creating HubSpot sample requests directly from customer conversations, with optional AI assistance for filling contact and shipping details.
+Sample Hub is a Front sidebar plugin for creating sample records in HubSpot directly from customer conversations, with optional AI assistance for filling contact and shipping details.
+
+A sample is a hand-picked selection of socks we send to prospects and customers so they can assess the quality.
 
 ## Metadata
 
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | Core workflow implemented; historical usage reported; current deployment status unconfirmed |
+| Project status | Deployed and being used by the team |
 | My role | End-to-end ownership from inception to launch, with AI assistance for implementation and maintenance |
 | Timeline | 1 week |
 | Tools | Next.js App Router, React, TypeScript, Front Plugin SDK and Core API, HubSpot API, OpenAI API, Git, GitHub |
 | Deployment approach | Vercel |
 
-## At a glance
+## Problem and solution
 
-- **Problem:** Sample submissions involved handoffs and context switching between customer conversations in Front and request creation in HubSpot.
-- **Solution:** A small Front sidebar plugin that handles interpretation and setup, then lets a teammate review, correct, and explicitly submit the sample request to HubSpot.
-- **Outcome:** Fewer handoffs and less context switching, with sample submissions completed inside Front.
-
-## The problem
-
-- **Users:** Sock Club teammates creating sample requests from customer conversations.
-- **Previous workflow:** Move from Front to another system to enter recipient and shipping details, choose samples and quantities, and associate the request with a HubSpot contact.
-- **Friction:** Handoffs and switching systems interrupted the task. Customer messages also needed interpretation before their details could become structured request fields.
-
-Exact handoffs, processing time, and error rate were not recorded.
+- **Users and previous workflow:** Sock Club teammates moved from customer conversations in Front to HubSpot to create sample records with recipient, shipping, and sock-selection details. Another team processes those records and sends the samples.
+- **Friction:** Handoffs and context switching interrupted the task, while customer messages needed interpretation before becoming structured request fields.
+- **What changed:** Teammates can enter details manually or use Smart-fill, choose a standard pack or custom samples, and set shipping options inside Front.
+- **Human judgment:** The fields remain editable. A teammate reviews, corrects, and explicitly submits the request, creating the HubSpot record and receiving an on-screen confirmation.
 
 ## My contribution
 
 - **Personal responsibilities:** Owned the project from inception to launch, including research, planning, teammate involvement, requirements, implementation, testing, and deployment. Defined product selections and HubSpot mappings, and handled subsequent changes.
 - **AI assistance:** Used Codex for implementation and maintenance: inspecting form and submission logic, editing mappings, running build checks, and committing and publishing changes.
 - **Manual validation:** Tested an added product option and confirmed it worked before publication.
-
-## The solution
-
-- **Trigger:** Open Sample Hub beside a Front conversation.
-- **Workflow:** Enter customer details manually or use Smart-fill, choose a standard pack or custom samples, and set the requester and shipping options.
-- **Human judgment:** Review and correct the editable fields, then explicitly submit. No sample request is created without that approval.
-- **Output:** A HubSpot sample record and an on-screen confirmation.
 
 ## Demo
 
@@ -66,14 +54,12 @@ The findings below come from my workflow observations, LinkedIn post, and a hist
 
 The chart estimate used approximately 1,950 Sample Hub records out of approximately 4,095 across the displayed sources. Values were rounded. This indicates a share of recorded requests, not a before-and-after improvement or confirmed shipments. Time savings were not measured.
 
-## Decisions and tradeoffs
+## Decisions and lessons
 
 - **Embed the tool in the existing workflow:** A small sidebar avoids introducing another interface teammates need to visit.
 - **Keep the final decision human:** I intentionally stopped automation at the point where judgment matters, rather than automating submission end-to-end.
 - **Prioritize contact association:** Requiring a HubSpot match preserves the relationship between the request and its recipient, at the cost of blocking submission until the contact exists.
 - **Centralize mappings:** Separating UI labels from HubSpot values makes product-option changes easier to maintain.
-
-## Limitations and lessons
 
 - **Extraction coverage:** The prompt focuses on US addresses; broader address coverage is not established.
 - **Scope:** The application creates sample records. It does not create missing contacts, edit sample records, or handle physical fulfillment.
@@ -81,6 +67,6 @@ The chart estimate used approximately 1,950 Sample Hub records out of approximat
 - **Development checks:** Historical lint checks were blocked by the Next.js and ESLint configuration. Builds required network access for Google Fonts.
 - **Lesson:** The extraction, review, and submission components provide a foundation for incremental automation where appropriate. Further automation is not implemented here.
 
-## Supporting-material links
+## Supporting materials
 
 - [Videos and hosted demos](videos/README.md)
