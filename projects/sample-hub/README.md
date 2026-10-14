@@ -8,7 +8,7 @@ A sample is a hand-picked selection of socks we send to prospects and customers 
 
 | Field | Value |
 | --- | --- |
-| Documentation status | Documentation draft |
+| Documentation status | Published |
 | Project status | Deployed and being used by the team |
 | My role | End-to-end ownership from inception to launch, with AI assistance for implementation and maintenance |
 | Timeline | 1 week; launched January 5, 2026 |
@@ -44,7 +44,7 @@ https://github.com/user-attachments/assets/0ba51a46-5c15-485b-acac-8deba9de258b
 
 ## Results and evidence
 
-Usage figures come from internal reporting. Qualitative findings come from my workflow observations and LinkedIn post. The internal reports are not included in this repository, and the post URL has not yet been linked here.
+Usage and attribution reporting come from our internal HubSpot dashboard. Workflow benefits reflect my observations and account of the project.
 
 | Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
