@@ -1,12 +1,12 @@
-# Authoring case studies
+# Repository authoring and maintenance
 
-Use the [project README template](templates/project-readme.md) for every case study. This library is for documentation, demos, diagrams, and evidence; link existing source repositories instead of copying their code into it.
+Keep the root README focused on employers and teams considering project work. Use the [project README template](templates/project-readme.md) as a starting point for case studies. This library is for documentation, demos, diagrams, and evidence; link existing source repositories instead of copying their code into it.
 
 ## Replace placeholders
 
 Replace each `{{...}}` placeholder with verified information. Keep placeholders visible while drafting; when information is unavailable, say so rather than inventing details, dates, achievements, or metrics. Remove unsupported bullets and sections that do not apply rather than adding filler.
 
-Use the template as a flexible starting point. The default structure is an introduction and metadata, Problem and solution, My contribution, Demo, How it works, Results and evidence, Decisions and lessons, and optional Supporting materials. Include actual validation work when known, and distinguish personal contributions from collaborators and AI assistance.
+Use the template as a flexible starting point. Write directly in the author’s voice and avoid em dashes. The default structure is an introduction and metadata, Problem and solution, My contribution, Demo, How it works, Results and evidence, Decisions and lessons, and optional Supporting materials. Include actual validation work when known, and distinguish personal contributions from collaborators and AI assistance.
 
 Keep each detail in the section where it helps most: user workflow in Problem and solution, technical implementation in How it works, outcomes in Results and evidence, and reasons for choices in Decisions and lessons. Remove repeated explanations. A video can replace a written demo walkthrough.
 
@@ -64,3 +64,34 @@ Review text and assets for credentials, personal information, and confidential d
 Keep one case study per project and place supporting assets in the relevant folders. Do not keep empty folders solely to match the template. Maintain each folder's README as an index when material is added. Link source repositories and hosted demos; avoid duplicate source code and large recordings.
 
 Update the root project directory when adding, renaming, or changing documentation status. Keep filenames stable where possible; update inbound links when moving material. Before publishing, review remaining `{{...}}` placeholders, confirm evidence labels, check image rendering, and verify relative links resolve from their containing files. Template placeholders may remain in the reusable template.
+
+## Repository structure
+
+```text
+project-showcase/
+├── README.md
+├── AGENTS.md
+├── .gitignore
+├── templates/
+│   └── project-readme.md
+└── projects/
+    ├── sock-scout/
+    ├── ai-native-email-system/
+    ├── portal-plus-assist/
+    └── sample-hub/
+```
+
+The template provides this starting structure. Supporting folders can be omitted when they do not apply, as in Sock Scout and Sample Hub:
+
+```text
+<project-slug>/
+├── README.md
+├── screenshots/
+│   └── README.md
+├── diagrams/
+│   └── README.md
+├── evaluations/
+│   └── README.md
+└── videos/
+    └── README.md
+```

@@ -13,45 +13,6 @@ Documentation status describes the write-up; each project's actual development s
 | Portal+ Assist | {{Describe Portal+ Assist's focus}} | Documentation draft | [README](projects/portal-plus-assist/README.md) |
 | Sample Hub | Front sidebar sample requests with HubSpot integration and optional AI Smart-fill | Published | [README](projects/sample-hub/README.md) |
 
-## Add a project
+## About this library
 
-1. Create `projects/<project-slug>/` using a lowercase, hyphenated name.
-2. Copy the [project README template](templates/project-readme.md) into that folder as `README.md`.
-3. Add only the supporting folders you need (`screenshots/`, `diagrams/`, `evaluations/`, or `videos/`), each with a short README indexing its material.
-4. Replace placeholders with verified information, omit sections that do not apply, and link only available supporting material. Keep documentation status separate from project development status.
-5. Add a row to the project directory above and verify all relative links.
-
-See [AUTHORING.md](AUTHORING.md) for writing, evidence, and organization conventions.
-
-## Repository structure
-
-```text
-project-showcase/
-├── README.md
-├── AUTHORING.md
-├── .gitignore
-├── templates/
-│   └── project-readme.md
-└── projects/
-    ├── sock-scout/
-    ├── ai-native-email-system/
-    ├── portal-plus-assist/
-    └── sample-hub/
-```
-
-The template provides this starting structure. Supporting folders can be omitted when they do not apply, as in Sock Scout and Sample Hub:
-
-```text
-<project-slug>/
-├── README.md
-├── screenshots/
-│   └── README.md
-├── diagrams/
-│   └── README.md
-├── evaluations/
-│   └── README.md
-└── videos/
-    └── README.md
-```
-
-The library uses plain Markdown and supporting assets. Existing source repositories are linked from the case studies rather than duplicated here.
+Each project has its own case study and supporting material, such as screenshots, diagrams, or a hosted demo. The library uses plain Markdown and supporting assets. Existing source repositories are linked from the case studies rather than duplicated here.
