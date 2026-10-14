@@ -62,10 +62,7 @@ Usage figures describe sample-record submissions, not confirmed physical shipmen
 - **Prioritize contact association:** Requiring a HubSpot match preserves the relationship between the request and its recipient, at the cost of blocking submission until the contact exists.
 - **Centralize mappings:** Separating UI labels from HubSpot values makes product-option changes easier to maintain.
 
-- **Extraction coverage:** The prompt focuses on US addresses; broader address coverage is not established.
 - **Scope:** The application creates sample records. It does not create missing contacts, edit sample records, or handle physical fulfillment.
-- **Operations:** Operational monitoring, alerting, and deployed rate limiting are unverified. Context checks have not undergone a completed security assessment.
-- **Development checks:** Historical lint checks were blocked by the Next.js and ESLint configuration. Builds required network access for Google Fonts.
 - **Lesson:** The extraction, review, and submission components provide a foundation for incremental automation where appropriate. Further automation is not implemented here.
 
 ## Supporting materials
