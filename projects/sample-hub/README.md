@@ -50,7 +50,7 @@ Usage figures come from internal reporting. Qualitative findings come from my wo
 | --- | --- | --- | --- | --- | --- |
 | Sample records created through Sample Hub | Not applicable (not yet launched) | Over 2,600 | Measured usage count | January 5–October 14, 2026 | Internal reporting |
 | Workflow friction | Handoffs and switching systems to complete requests | Fewer handoffs; submissions completed inside Front | Qualitative account | Not recorded | Author's LinkedIn post, supplied text |
-| Attribution (secondary benefit) | Harder to trace the sample → deal → outcome conversion path | Clearer visibility into the sample → deal → outcome path through dashboard reports | Reporting capability; qualitative improvement | Not recorded | Internal HubSpot dashboard and reports |
+| Attribution (secondary benefit) | Harder to trace the sample → deal → outcome conversion path | Clearer visibility into the sample → deal → outcome path through dashboard reports | Reporting capability; qualitative improvement | Not recorded | Internal reporting |
 | Share of sample submissions via Sample Hub | Not applicable (not yet launched) | Approximately 54% | Measured usage share (rounded) | January 5–October 14, 2026 | Internal reporting |
 
 Usage figures describe sample-record submissions, not confirmed physical shipments. Time savings were not measured.
