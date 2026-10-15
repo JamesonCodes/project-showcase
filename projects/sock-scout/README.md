@@ -81,7 +81,6 @@ The figures below were previously published in my portfolio. Search-speed and lo
 - **Serverless vector search:** Pinecone was chosen for metadata filtering, read performance, upserts, and low operational overhead.
 - **Workflow integration:** Bringing discovery, downloads, CRM context, and quality flags together makes search useful within the team’s existing work.
 
-- **Search evaluation:** Search relevance benchmarks are not documented here.
 - **Lessons:** UX drives adoption; resilient pipelines matter; useful search can reduce dependence on perfect filenames and metadata; trust in retrieval opens additional workflows.
 
 ## Supporting materials
