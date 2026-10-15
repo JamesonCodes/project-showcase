@@ -47,7 +47,7 @@ The screenshots below walk through a search for an existing client's designs.
 
 *Sanitized screenshot: deal name and owner are blurred. Capture date and other sanitization details are undocumented.*
 
-See the [screenshot index](screenshots/README.md) for the flagging view and source files. {{Add a hosted walkthrough link if available}}
+See the [screenshot index](screenshots/README.md) for the flagging view and source files.
 
 ## How it works
 
