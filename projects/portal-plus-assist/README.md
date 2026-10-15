@@ -1,32 +1,33 @@
 # Portal+ Assist
 
-![Portal+ Assist cover showing an inbox alongside Portal+ project and design-request context](screenshots/cover.jpg)
+![Portal+ Assist cover (illustrative artwork, not a product screenshot)](screenshots/cover.jpg)
 
-Portal+ Assist is an internal Front plugin that brings Portal+ sales workflows into customer conversations, using AI to prepare work for human review and approval.
+A Front sidebar that lets Sock Club’s sales team look up customer projects and create design tasks in Portal+ without leaving the email conversation, including an AI-drafted design brief.
 
 ## Metadata
 
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | {{Confirm current deployment status and which capabilities are live}} |
-| My role | {{Describe my ownership and responsibilities}} |
-| Timeline | {{Provide development duration and launch dates}} |
-| Tools | Front, Portal+; {{Add the implementation stack and AI services}} |
+| Project status | In production for internal use |
+| My role | Product planning, implementation, deployment, and maintenance; {{Confirm overall ownership and collaborators}} |
+| Timeline | Development began June 2026; first production release July 30, 2026. {{Confirm development duration and whether part-time}} |
+| Tools | Next.js, React, TypeScript, Tailwind, Supabase Postgres, Vercel, Front Plugin SDK, Vercel AI SDK, AI Gateway, PostHog |
 
 ## Problem and solution
 
-- **Users and previous workflow:** Sales and sales support work primarily in Front, where customer conversations progress deals. Creating quotes, submitting design and revision requests, building carts, and processing purchase orders require moving into other systems.
-- **Friction:** Teammates copy, paste, and transcribe context from email threads and PDFs. Strategic Accounts also depend on handoffs between roles, adding coordination work even when the customer's intent is clear.
-- **Product approach:** Bring common Portal+ workflows into Front so teammates can initiate internal actions where the context already exists. AI interprets that context and prepares suggested actions.
-- **Human judgment:** A teammate reviews, edits, and approves the prepared work. Nothing executes without explicit human approval; sales and sales support retain accountability.
+- **Users and previous workflow:** Sock Club’s sales and sales support teammates work with customers in Front, a shared email inbox. Projects, designs, and tasks that hand work to Design live in Portal+, our internal order system. Creating a request meant leaving the conversation, finding the right customer and project, and transferring details from emails and attachments.
+- **Friction:** Manual transcription and handoffs interrupted the sales workflow. Design tasks did not always make clear whether the client wanted an exact recreation, a specific concept, or open exploration.
+- **What changed:** The sidebar identifies the customer, shows their projects and existing requests, and supports new design, revision, and production-files tasks inside Front. Classify can prepare a structured design brief for new requests.
+- **Human judgment:** Sales reviews and edits the prepared work before clicking **Create task**. Portal+ remains available for full control and complex exceptions.
 
 ## My contribution
 
-- **Personal responsibilities:** {{Describe what I researched, designed, built, and launched}}
-- **Collaborators:** {{Describe others' contributions, if applicable}}
-- **AI assistance:** {{Describe development assistance separately from AI used by the product}}
-- **Validation:** {{Describe actual testing and teammate review}}
+- **Planning:** Wrote the authentication strategy, analytics plan, Portal+ API reference, Classify design plan, and large-upload plan.
+- **Implementation:** Built the plugin, server routes, Portal+ OAuth integration, database schema, and Classify pipeline.
+- **Deployment and maintenance:** Set up CI and Vercel deployment and shipped iterative releases, including fixes driven by teammate reports.
+- **Collaborators:** Sales support requested in-plugin client renaming, and a teammate’s failed upload led to clearer size limits. {{Confirm Classify category and prompt approval, testing, and rollout contributors}}
+- **AI-assisted development and validation:** Used Claude Code and AI code review, supported by reference documents for Portal+ API behavior and the design system. Verified features against a live Portal+ environment before merging.
 
 ## Demo
 
@@ -40,39 +41,41 @@ https://github.com/user-attachments/assets/85fd1569-0e7e-4d00-9fb3-3b543f4e9d0c
 
 ## How it works
 
-- **Product structure:** One Front plugin exposes multiple Portal+ capabilities, each organized around a repeatable sales workflow.
-- **Workflow pattern:** Interpret context → prepare a suggested action → human review and editing → explicit approval → execution.
-- **Capability scope:** {{List implemented capabilities and distinguish live workflows from planned work. The product brief identifies quotes, new design and revision requests, carts, and purchase orders as workflow needs; it does not establish that all are implemented.}}
-- **Components and integrations:** {{Describe how Front context reaches the plugin and how approved actions are submitted to Portal+}}
-- **Error handling and monitoring:** {{Describe implemented validation, failure handling, diagnostics, and recovery}}
+- **Customer and project context:** The sidebar filters internal and CRM addresses when selecting the customer. Project cards show deal stage, assigned designer, and existing design requests.
+- **Task creation:** Fields adapt to the task type. Revisions use a visual picker of existing designs and versions; priorities load per task type. Teammates can suppress Portal+’s task-completion notification to the client.
+- **Integrations and access:** Server routes on Vercel call Portal+ through app-managed OAuth. Portal+ tokens stay encrypted in Postgres; the browser receives a revocable app session. Requests are checked against Front’s plugin secret and the app’s origin, and Portal+ error logs are redacted.
+- **Quality checks:** As of October 15, 2026, 320 automated tests in 32 files passed locally across API routes, authentication, Portal+ integration, and Classify parsing and validation. CI runs tests, linting, type checks, a production build, and a fresh database migration on pull requests.
 
 ### Classify: preparing design direction
 
-Client intent can be spread across a long email thread and attached artwork. On the new-design-request form, Classify reads the conversation and uploaded assets with a vision-capable language model, then drafts a structured **Design Direction** block at the top of the task description.
+For new design requests with uploaded artwork, Classify reads the latest part of the email thread and up to six files using a vision-capable model through AI Gateway. PDF, Illustrator, and EPS proofs are converted to images on the server first.
 
-- **When available:** New design requests with at least one uploaded asset. Revisions reference an existing design and do not support Classify.
-- **Output:** A request type (Recreate Template, Specific Ask, Inspired Direction, or Standard Deck), a short rationale, use case, and style, color, and logo notes. Ambiguous direction is marked `n/a`; feature add-ons require an explicit client request. Chassis type, packaging, and sales notes remain human-owned.
-- **Review and submission:** Sales reviews and edits the draft before creating the task. Classify only prepares the description; it does not submit the request.
-- **Re-classification:** A new run replaces the previous generated block instead of stacking another summary. Edits made inside that block can be overwritten. Changes to uploaded files do not automatically trigger a new run or warn that the draft may be stale.
+- **Draft:** A structured Design Direction block includes a request type (Recreate Template, Specific Ask, Inspired Direction, or Standard Deck), a short rationale, use case, and style and logo notes. Chassis type, packaging, and sales notes are forced blank for Sales to complete. Revisions do not support Classify.
+- **Validation:** The prompt instructs the model to use explicit client information and return `n/a` when direction is ambiguous. The server checks allowed categories, features, and field limits, blanking invalid fields. These checks constrain structure; they do not establish factual accuracy.
+- **Re-classification:** A new run replaces the previous generated block. Edits inside that block can be overwritten. Changed attachments do not automatically trigger a new run or warn that the draft may be stale.
 
 ## Results and evidence
 
-The intended benefits are less context switching, fewer manual transfers and handoffs, and more time for selling. These are product goals; measured outcomes have not yet been added to this case study.
+The findings below come from the codebase review and development history supplied for this draft. Team feedback is qualitative; deployment and test counts describe delivery and validation, rather than business impact. Analytics were added after launch, so there is no instrumented pre-launch task-time baseline.
 
 | Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
-| Workflow friction | Context switching, manual transcription, and handoffs between roles | {{Add observed changes for a confirmed live capability}} | Qualitative problem account; outcome pending | Not recorded | Author's original product brief |
+| Where design tasks are created | In Portal+, outside the email conversation | In the Front sidebar alongside the conversation | Product capability | Since July 2026 | Application |
+| Classify usefulness on a real thread | Not recorded | A sales teammate reported that Classify captured the right details from a multi-email thread | Qualitative feedback; single report | August 19, 2026 | Private Front conversation |
+| Client name corrections | Leave the plugin to correct a client name | Rename in the sidebar, verified by reading Portal+ back | Shipped workflow improvement | August 3, 2026 | Source repository PR #11 |
+| Large upload failures | Misleading authentication error | Size checked before upload with a clear message | Reported issue resolved | August 4, 2026 | Source repository PR #12 |
+| Production deployments | Not applicable (not yet launched) | 13 production deployments | Deployment count | July 30–October 8, 2026 | Vercel deployment records on GitHub |
 
-{{Add supported usage figures, measured results, team-informed estimates, or qualitative feedback with their sources and periods.}}
+{{Add PostHog usage counts, task-creation timings, and Classify draft retention or editing rates with actual reporting periods. Do not present uncollected values as measured results.}}
 
 ## Decisions and lessons
 
-- **Optimize for momentum:** Keep common workflows close to customer conversations. Portal+ remains the place for full control and complex exceptions.
-- **Use a consistent approval model:** Each capability follows the same preparation, review, and approval pattern so teammates retain control as workflows expand.
-- **Focus on frequent work:** Prioritize common, repeatable actions rather than attempting every edge case.
-- **Preserve ownership:** Remove repetitive transfer and setup work while retaining sales and sales support expertise. Replacing these roles is outside the product's scope.
-- **Bound automation:** AI assists with interpretation and suggestions. Autonomous execution and final decisions are outside the product's scope.
-- **Lessons:** {{Add lessons from implementation and actual team use}}
+- **Own OAuth where the host cannot:** Front’s OAuth relay was unavailable for private plugins. App-managed OAuth keeps tokens server-side but adds responsibility for refresh, rotation, revocation, and concurrent refresh handling. Temporary upstream outages do not automatically clear stored credentials.
+- **Validate AI output in the application:** Model changes exposed inconsistent labels, malformed fields, and provider schema incompatibilities. Local parsing and validation reduce provider dependence, while editable drafts preserve review of valid but incorrect answers.
+- **Keep business decisions human-owned:** Chassis type, packaging, and sales notes depend on decisions that may not exist in the conversation, so Classify leaves them blank.
+- **Test native dependencies in production:** Duplicate image-library binaries caused Classify to fail in deployment despite working locally. Fixing dependency resolution and the production bundler reinforced the need to validate native dependencies in the hosting environment.
+- **Make platform limits visible:** Vercel’s request-body limit is lower than Portal+’s upload limit. The plugin enforces a clear 4 MB limit; direct-to-storage uploads remain planned.
+- **Instrument before launch:** Adding analytics after release limited before-and-after comparisons. Future workflows should establish measurement before rollout.
 
 ## Supporting materials
 
