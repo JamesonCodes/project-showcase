@@ -14,34 +14,18 @@ An internal semantic visual search tool that helps Sock Club’s design and sale
 | Timeline | Sales feature functionality: 2 weeks. Design feature functionality: 1 month. Both developed part-time. |
 | Tools | Next.js / React, TypeScript, FastAPI, Vercel, Vertex AI, Pinecone, AWS S3, AWS Cognito, HubSpot API, PostHog |
 
-See my [portfolio article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) for the original write-up.
+## Problem and solution
 
-## At a glance
-
-- **Problem:** Designers and sales struggled to find legacy work in a large Dropbox archive organized around inconsistent filenames and folders.
-- **Solution:** Search by concept, text, image, or client context using multimodal embeddings and a vector index, with access to original assets and CRM context.
-- **Outcome:** Organic adoption, 1,000+ internal searches per week, and roughly 10× faster search. Measurement details and available evidence are noted below.
-
-## The problem
-
-- **Users:** Sock Club designers, sales teammates, and new hires looking for past creative work.
-- **Previous workflow:** Browse nested Dropbox folders, guess filenames, or ask colleagues who remembered where a file lived.
+- **Users and previous workflow:** Sock Club designers, sales teammates, and new hires browsed nested Dropbox folders, guessed filenames, or asked colleagues to locate past creative work.
 - **Friction:** Designers recreated hard-to-find assets; sales interrupted designers for examples; new hires relied on tribal knowledge.
-
-We evaluated Dropbox Dash, but it did not provide the nuanced visual discovery the team needed.
+- **What changed:** Teammates search by description, client name, uploaded image, or a similar design. Results include previews, original files, and related HubSpot or internal project context.
+- **Human judgment:** Teammates choose suitable designs and flag issues such as outdated logos, licensing restrictions, or knittability. A similarity score alone does not establish production suitability.
 
 ## My contribution
 
 - **Personal responsibilities:** Worked with design and sales to define requirements; built the end-to-end search system, resilient ingestion pipeline, and asset flagging workflow.
 - **Collaborators:** Designers and sales informed requirements. Baylor Meche and Rachal Berry created the logo.
 - **AI assistance:** Used Codex and Claude for AI-assisted development, research, learning, and understanding the technologies and implementation. Vertex AI provides the product’s runtime multimodal embeddings.
-
-## The solution
-
-- **Trigger:** A teammate enters a description or client name, uploads an image, or explores designs similar to an existing result.
-- **Workflow:** Embed the query, retrieve similar assets, hydrate metadata, and present previews with links to related deals and original files.
-- **Output:** Relevant design candidates, downloadable assets, and supporting HubSpot or internal project context.
-- **Human judgment:** Teammates choose suitable designs and flag issues such as outdated logos, licensing restrictions, or knittability. A similarity score alone does not establish production suitability.
 
 ## Demo
 
@@ -69,17 +53,14 @@ See the [screenshot index](screenshots/README.md) for the flagging view and sour
 
 ![Sock Scout system architecture](diagrams/architecture.png)
 
-*Architecture diagram. The 75,000+ index label and the 113,125-style results screenshot represent different snapshots. Their dates need confirmation before comparing them with the 100k+ archive figure.*
+*Architecture diagram. Corpus counts reflect different historical snapshots; see the [diagram notes](diagrams/README.md) for context.*
 
 - **Components:** Next.js frontend; FastAPI search backend on Vercel’s serverless Python runtime; Vertex AI embeddings; Pinecone serverless vector index; S3 asset storage; Cognito authentication.
-- **Integrations:** Dropbox-to-S3 ingestion, HubSpot deal metadata, and PostHog usage analytics and error tracking.
+- **Integrations:** Dropbox-to-S3 ingestion and HubSpot deal metadata.
 - **Decision logic:** Text and image queries share an embedding space. The index uses cosine similarity and 1,408-dimensional vectors, with metadata filtering and hydration.
 - **Ingestion:** Convert files to PNG previews, generate embeddings, and upsert vectors with metadata. Check Pinecone before embedding to avoid duplicates.
 - **Error handling:** Adjustable batch concurrency, exponential backoff and retries, corrupt-file skipping, blank-PSD handling, and progress tracking support long ingestion runs.
-- **Human review:** Designers flag assets using preset reasons; teammates assess the relevance and suitability of retrieved work.
 - **Monitoring:** PostHog provides usage analytics and error tracking. {{Add alerting thresholds, ownership, and incident examples}}
-
-The [diagram notes](diagrams/README.md) record the source and snapshot limitations.
 
 ## Results and evidence
 
@@ -93,22 +74,17 @@ The figures below were previously published in my portfolio. Baselines for searc
 | Lost-asset time | Not recorded | ~40% reduction | Approximate reduction; measurement versus estimate unspecified | Not supplied | [Portfolio](https://jamesoncodes.github.io/#featured-project) |
 | Designer experience | Redundant recreation and interruptions | Positive feedback and adoption | Qualitative feedback | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 
-Designer feedback supports the usefulness of the tool.
-
-## Decisions and tradeoffs
+## Decisions and lessons
 
 - **Purpose-built search:** Dropbox Dash did not meet the team's requirements for conceptual visual discovery. Building a dedicated system meant taking ownership of ingestion, access, and reliability.
 - **Shared text/image embeddings:** Vertex AI supports both query types in a shared space. I chose it for embedding quality, latency, and cost. The embedding model ranked #1 on MTEB at the time.
 - **Serverless vector search:** Pinecone was chosen for metadata filtering, read performance, upserts, and low operational overhead.
-- **Recoverable ingestion:** Batching, duplicate checks, and retries address failures in long processing runs.
-- **Workflow integration:** Downloads, CRM links, and flagging connect discovery to the work users need to complete.
+- **Workflow integration:** Bringing discovery, downloads, CRM context, and quality flags together makes search useful within the team’s existing work.
 
-## Limitations and lessons
-
-- **Limitations:** Search relevance benchmarks, a dated corpus inventory, and exact measurement windows are not documented here. Screenshots show historical interface states. Asset quality still requires human judgment.
+- **Search evaluation:** Search relevance benchmarks are not documented here.
 - **Lessons:** UX drives adoption; resilient pipelines matter; useful search can reduce dependence on perfect filenames and metadata; trust in retrieval opens additional workflows.
 
-## Supporting-material links
+## Supporting materials
 
 - [Screenshots](screenshots/README.md)
 - [Diagrams](diagrams/README.md)
