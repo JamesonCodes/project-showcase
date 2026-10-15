@@ -40,6 +40,15 @@ Portal+ Assist is an internal Front plugin that brings Portal+ sales workflows i
 - **Components and integrations:** {{Describe how Front context reaches the plugin and how approved actions are submitted to Portal+}}
 - **Error handling and monitoring:** {{Describe implemented validation, failure handling, diagnostics, and recovery}}
 
+### Classify: preparing design direction
+
+Client intent can be spread across a long email thread and attached artwork. On the new-design-request form, Classify reads the conversation and uploaded assets with a vision-capable language model, then drafts a structured **Design Direction** block at the top of the task description.
+
+- **When available:** New design requests with at least one uploaded asset. Revisions reference an existing design and do not support Classify.
+- **Output:** A request type (Recreate Template, Specific Ask, Inspired Direction, or Standard Deck), a short rationale, use case, and style, color, and logo notes. Ambiguous direction is marked `n/a`; feature add-ons require an explicit client request. Chassis type, packaging, and sales notes remain human-owned.
+- **Review and submission:** Sales reviews and edits the draft before creating the task. Classify only prepares the description; it does not submit the request.
+- **Re-classification:** A new run replaces the previous generated block instead of stacking another summary. Edits made inside that block can be overwritten. Changes to uploaded files do not automatically trigger a new run or warn that the draft may be stale.
+
 ## Results and evidence
 
 The intended benefits are less context switching, fewer manual transfers and handoffs, and more time for selling. These are product goals; measured outcomes have not yet been added to this case study.
