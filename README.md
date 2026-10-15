@@ -4,11 +4,11 @@ This library holds deeper case studies, demos, diagrams, and evidence from my GT
 
 ## Project directory
 
-Documentation status describes the write-up; each project's actual development status is recorded separately in its metadata. Sample Hub is published. Sock Scout and the email-system case studies remain drafts based on portfolio material. Portal+ Assist is awaiting author input.
+Documentation status describes the write-up; each project's actual development status is recorded separately in its metadata. Sock Scout and Sample Hub are published. The AI Native Email System case study remains a draft based on portfolio material. Portal+ Assist is awaiting author input.
 
 | Project | Focus | Documentation status | Case study |
 | --- | --- | --- | --- |
-| Sock Scout | Semantic visual search for creative assets | Documentation draft | [README](projects/sock-scout/README.md) |
+| Sock Scout | Semantic visual search for creative assets | Published | [README](projects/sock-scout/README.md) |
 | AI Native Email System | Job-based inbox workflows, human review, and earned autonomy | Documentation draft | [README](projects/ai-native-email-system/README.md) |
 | Portal+ Assist | {{Describe Portal+ Assist's focus}} | Documentation draft | [README](projects/portal-plus-assist/README.md) |
 | Sample Hub | Front sidebar sample requests with HubSpot integration and optional AI Smart-fill | Published | [README](projects/sample-hub/README.md) |
