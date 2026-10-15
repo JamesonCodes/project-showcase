@@ -9,7 +9,7 @@ An internal semantic visual search tool that helps Sock Club’s design and sale
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | Live and part of the daily internal team workflow |
+| Project status | Deployed and used daily by the team |
 | My role | Defined requirements with designers and sales; built the search system and asset flagging workflow |
 | Timeline | Sales feature functionality: 2 weeks. Design feature functionality: 1 month. Both developed part-time. |
 | Tools | Next.js / React, TypeScript, FastAPI, Vercel, Vertex AI, Pinecone, AWS S3, AWS Cognito, HubSpot API, PostHog |

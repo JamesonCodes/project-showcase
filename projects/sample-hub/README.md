@@ -9,7 +9,7 @@ A sample is a hand-picked selection of socks we send to prospects and customers 
 | Field | Value |
 | --- | --- |
 | Documentation status | Published |
-| Project status | Deployed and being used by the team |
+| Project status | Deployed and used daily by the team |
 | My role | End-to-end ownership from inception to launch, with AI assistance for implementation and maintenance |
 | Timeline | 1 week; launched January 5, 2026 |
 | Tools | Next.js App Router, React, TypeScript, Front Plugin SDK and Core API, HubSpot API, OpenAI API, Git, GitHub |
