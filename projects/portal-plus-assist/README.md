@@ -32,6 +32,15 @@ Portal+ Assist is an internal Front plugin that brings Portal+ sales workflows i
 
 {{Add a hosted walkthrough or screenshots of a confirmed live capability. Show the conversation context, prepared action, human review, and approved outcome. Label examples as real, sanitized, or synthetic.}}
 
+
+
+https://github.com/user-attachments/assets/be65b427-5c96-40e9-89a3-b8873b3522af
+
+
+https://github.com/user-attachments/assets/85fd1569-0e7e-4d00-9fb3-3b543f4e9d0c
+
+
+
 ## How it works
 
 - **Product structure:** One Front plugin exposes multiple Portal+ capabilities, each organized around a repeatable sales workflow.
