@@ -1,6 +1,6 @@
 # Portal+ Assist
 
-![Portal+ Assist cover (illustrative artwork, not a product screenshot)](screenshots/cover.jpg)
+![Portal+ Assist cover (illustrative artwork, not a product screenshot)](cover.jpg)
 
 A Front sidebar that lets Sock Club’s sales team look up customer projects and create design tasks in Portal+ without leaving the email conversation, including an AI-drafted design brief.
 
@@ -68,17 +68,9 @@ For new design requests with uploaded artwork, Classify reads the latest part of
 
 ## Results and evidence
 
-The findings below come from the codebase review and development history supplied for this draft. Team feedback is qualitative; deployment and test counts describe delivery and validation, rather than business impact. Analytics were added after launch, so there is no instrumented pre-launch task-time baseline.
-
 | Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
-| Where design tasks are created | In Portal+, outside the email conversation | In the Front sidebar alongside the conversation | Product capability | Since July 2026 | Application |
-| Classify usefulness on a real thread | Not recorded | A sales teammate reported that Classify captured the right details from a multi-email thread | Qualitative feedback; single report | August 19, 2026 | Private Front conversation |
-| Client name corrections | Leave the plugin to correct a client name | Rename in the sidebar, verified by reading Portal+ back | Shipped workflow improvement | August 3, 2026 | Source repository PR #11 |
-| Large upload failures | Misleading authentication error | Size checked before upload with a clear message | Reported issue resolved | August 4, 2026 | Source repository PR #12 |
-| Production deployments | Not applicable (not yet launched) | 13 production deployments | Deployment count | July 30–October 8, 2026 | Vercel deployment records on GitHub |
-
-{{Add PostHog usage counts, task-creation timings, and Classify draft retention or editing rates with actual reporting periods. Do not present uncollected values as measured results.}}
+| TBD | TBD | TBD | TBD | TBD | TBD |
 
 ## Decisions and lessons
 
