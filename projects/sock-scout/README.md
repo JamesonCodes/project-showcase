@@ -18,7 +18,7 @@ An internal semantic visual search tool that helps Sock Club’s design and sale
 
 - **Users and previous workflow:** Sock Club designers, sales teammates, and new hires browsed nested Dropbox folders, guessed filenames, or asked colleagues to locate past creative work.
 - **Friction:** Designers recreated hard-to-find assets; sales interrupted designers for examples; new hires relied on tribal knowledge.
-- **What changed:** Teammates search by description, client name, uploaded image, or a similar design. Results include previews, original files, and related HubSpot or internal project context.
+- **What changed:** Teammates search by meaning and visual similarity, rather than relying on exact filenames or tags. They can describe a concept, enter a client name, upload an image, or find designs similar to an existing result. Results include previews, original files, and related HubSpot or internal project context.
 - **Human judgment:** Teammates choose suitable designs and flag issues such as outdated logos, licensing restrictions, or knittability. A similarity score alone does not establish production suitability.
 
 ## My contribution
