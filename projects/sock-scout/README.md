@@ -69,8 +69,8 @@ The figures below were previously published in my portfolio. Search-speed and lo
 | Metric or observation | Before | After | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
 | Search speed | Manual search through folders and filenames | Estimated ~10× faster | Team-informed estimate | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
-| Internal search activity | Not supplied | 1,000+ searches/week | Usage figure; raw counts not included | Weekly unit; exact window not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
-| Search latency | Not supplied | 300–600 ms | Performance figure; timing boundary and distribution not documented | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
+| Internal search activity | Not supplied | 1,000+ searches/week | Usage figure; raw counts not included | Weekly unit; exact window not supplied | PostHog analytics |
+| Search latency | Not supplied | 300–600 ms | Performance figure; timing boundary and distribution not documented | Not supplied | PostHog performance events |
 | Lost-asset time | Time spent locating hard-to-find assets | Estimated ~40% reduction | Team-informed estimate | Not supplied | [Portfolio](https://jamesoncodes.github.io/#featured-project) |
 | Designer experience | Redundant recreation and interruptions | Positive feedback and adoption | Qualitative feedback | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 
