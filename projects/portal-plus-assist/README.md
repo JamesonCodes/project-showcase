@@ -41,6 +41,16 @@ https://github.com/user-attachments/assets/85fd1569-0e7e-4d00-9fb3-3b543f4e9d0c
 
 ## How it works
 
+```mermaid
+flowchart LR
+  A[Customer email in Front] --> B[Portal+ Assist sidebar]
+  B -->|lookup, task creation| C[Portal+ Assist server on Vercel]
+  C -->|OAuth-scoped API calls| D[Portal+]
+  C -->|thread text + artwork| E[AI model via AI Gateway]
+  C --- F[(Encrypted credentials in Postgres)]
+  D --> G[Design team works the task]
+```
+
 - **Customer and project context:** The sidebar filters internal and CRM addresses when selecting the customer. Project cards show deal stage, assigned designer, and existing design requests.
 - **Task creation:** Fields adapt to the task type. Revisions use a visual picker of existing designs and versions; priorities load per task type. Teammates can suppress Portal+’s task-completion notification to the client.
 - **Integrations and access:** Server routes on Vercel call Portal+ through app-managed OAuth. Portal+ tokens stay encrypted in Postgres; the browser receives a revocable app session. Requests are checked against Front’s plugin secret and the app’s origin, and Portal+ error logs are redacted.
