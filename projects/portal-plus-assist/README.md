@@ -1,5 +1,7 @@
 # Portal+ Assist
 
+![Portal+ Assist cover showing an inbox alongside Portal+ project and design-request context](screenshots/cover.jpg)
+
 Portal+ Assist is an internal Front plugin that brings Portal+ sales workflows into customer conversations, using AI to prepare work for human review and approval.
 
 ## Metadata
