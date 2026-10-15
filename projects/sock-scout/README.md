@@ -60,7 +60,7 @@ See the [screenshot index](screenshots/README.md) for the flagging view and sour
 - **Decision logic:** Text and image queries share an embedding space. The index uses cosine similarity and 1,408-dimensional vectors, with metadata filtering and hydration.
 - **Ingestion:** Convert files to PNG previews, generate embeddings, and upsert vectors with metadata. Check Pinecone before embedding to avoid duplicates.
 - **Error handling:** Adjustable batch concurrency, exponential backoff and retries, corrupt-file skipping, blank-PSD handling, and progress tracking support long ingestion runs.
-- **Monitoring:** PostHog provides usage analytics and error tracking. {{Add alerting thresholds, ownership, and incident examples}}
+- **Monitoring:** PostHog provides usage analytics and error tracking.
 
 ## Results and evidence
 
