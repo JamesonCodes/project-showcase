@@ -64,14 +64,14 @@ See the [screenshot index](screenshots/README.md) for the flagging view and sour
 
 ## Results and evidence
 
-The figures below were previously published in my portfolio. Baselines for search speed and lost-asset time were not recorded, and raw measurement data is not included here.
+The figures below were previously published in my portfolio. Search-speed and lost-asset time improvements are approximate estimates based on team feedback about the previous and current workflows, rather than formal timing studies.
 
 | Metric or observation | Before | After | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
-| Search speed | Not recorded | ~10× faster | Approximate comparison; method not documented | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
+| Search speed | Manual search through folders and filenames | Estimated ~10× faster | Team-informed estimate | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 | Internal search activity | Not supplied | 1,000+ searches/week | Usage figure; raw counts not included | Weekly unit; exact window not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 | Search latency | Not supplied | 300–600 ms | Performance figure; timing boundary and distribution not documented | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
-| Lost-asset time | Not recorded | ~40% reduction | Approximate reduction; measurement versus estimate unspecified | Not supplied | [Portfolio](https://jamesoncodes.github.io/#featured-project) |
+| Lost-asset time | Time spent locating hard-to-find assets | Estimated ~40% reduction | Team-informed estimate | Not supplied | [Portfolio](https://jamesoncodes.github.io/#featured-project) |
 | Designer experience | Redundant recreation and interruptions | Positive feedback and adoption | Qualitative feedback | Not supplied | [Article](https://jamesoncodes.github.io/articles/semantic-search-engine.html) |
 
 ## Decisions and lessons
