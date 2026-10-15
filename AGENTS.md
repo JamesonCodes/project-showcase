@@ -11,6 +11,10 @@ This repository is a plain Markdown library of project case studies for prospect
 - Keep credentials and confidential information out of committed content. Link source repositories and hosted demos rather than duplicating code or committing large recordings.
 - After edits, verify relative links and update the root project directory when project names, paths, or documentation status change.
 
+## Commit and push
+
+For this repository only, commit and push each completed change unless the user says “local only.” Include only changes belonging to the task.
+
 ## Read when needed
 
 - Before adding or substantially revising a case study, read [the authoring guide](docs/authoring.md) and [the project README template](docs/templates/project-readme.md).
