@@ -1,94 +1,64 @@
 # Portal+ Assist
 
-{{Describe the project in one sentence}}
+Portal+ Assist is an internal Front plugin that brings Portal+ sales workflows into customer conversations, using AI to prepare work for human review and approval.
 
 ## Metadata
 
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | {{Describe the actual development status independently of documentation status}} |
-| My role | {{Describe my role}} |
-| Timeline | {{Provide the actual timeline or state that it is unknown}} |
-| Tools | {{List the tools used}} |
+| Project status | {{Confirm current deployment status and which capabilities are live}} |
+| My role | {{Describe my ownership and responsibilities}} |
+| Timeline | {{Provide development duration and launch dates}} |
+| Tools | Front, Portal+; {{Add the implementation stack and AI services}} |
 
-## At a glance
+## Problem and solution
 
-- **Problem:** {{Summarize the problem}}
-- **Solution:** {{Summarize the solution}}
-- **Outcome:** {{Describe the supported outcome or state that it has not been evaluated}}
-
-## The problem
-
-- **Users:** {{Describe the intended users}}
-- **Previous workflow:** {{Describe the previous workflow}}
-- **Friction:** {{Describe the friction in that workflow}}
-- **Baseline:** {{Describe the baseline and its source or state that no baseline was recorded}}
+- **Users and previous workflow:** Sales and sales support work primarily in Front, where customer conversations progress deals. Creating quotes, submitting design and revision requests, building carts, and processing purchase orders require moving into other systems.
+- **Friction:** Teammates copy, paste, and transcribe context from email threads and PDFs. Strategic Accounts also depend on handoffs between roles, adding coordination work even when the customer's intent is clear.
+- **Product approach:** Bring common Portal+ workflows into Front so teammates can initiate internal actions where the context already exists. AI interprets that context and prepares suggested actions.
+- **Human judgment:** A teammate reviews, edits, and approves the prepared work. Nothing executes without explicit human approval; sales and sales support retain accountability.
 
 ## My contribution
 
-- **Personal responsibilities:** {{Describe what I personally designed, built, or owned}}
-- **Collaborators:** {{Describe collaborators and their contributions or state that there were none}}
-- **AI assistance:** {{Describe how AI assisted the work or state that it was not used}}
-- **What I validated:** {{Describe what I reviewed, tested, and verified myself}}
-
-## The solution
-
-- **Trigger:** {{Describe what starts the workflow}}
-- **Workflow:** {{Describe the steps from input to completion}}
-- **Output:** {{Describe the resulting artifact or action}}
-- **Human judgment:** {{Describe where a person makes decisions or approves actions}}
+- **Personal responsibilities:** {{Describe what I researched, designed, built, and launched}}
+- **Collaborators:** {{Describe others' contributions, if applicable}}
+- **AI assistance:** {{Describe development assistance separately from AI used by the product}}
+- **Validation:** {{Describe actual testing and teammate review}}
 
 ## Demo
 
-{{Describe a realistic input → system behavior → outcome example}}
-
-- **Input:** {{Provide the example input and label it as real, sanitized, or synthetic}}
-- **System behavior:** {{Describe what happens during the demo}}
-- **Outcome:** {{Describe the observed demo outcome}}
-- **Video or screenshots:** {{Add a hosted demo link or embed screenshots using relative paths}}
+{{Add a hosted walkthrough or screenshots of a confirmed live capability. Show the conversation context, prepared action, human review, and approved outcome. Label examples as real, sanitized, or synthetic.}}
 
 ## How it works
 
-- **Components:** {{Describe the main components and their responsibilities}}
-- **Integrations:** {{Describe external systems and data exchanged}}
-- **Decision logic:** {{Describe routing, rules, or model decisions}}
-- **Error handling:** {{Describe failure modes and recovery behavior}}
-- **Human review:** {{Describe review checkpoints and escalation}}
-- **Monitoring:** {{Describe what is monitored and how issues are detected}}
-
-{{Add a relative link to a workflow or architecture diagram when available}}
+- **Product structure:** One Front plugin exposes multiple Portal+ capabilities, each organized around a repeatable sales workflow.
+- **Workflow pattern:** Interpret context → prepare a suggested action → human review and editing → explicit approval → execution.
+- **Capability scope:** {{List implemented capabilities and distinguish live workflows from planned work. The product brief identifies quotes, new design and revision requests, carts, and purchase orders as workflow needs; it does not establish that all are implemented.}}
+- **Components and integrations:** {{Describe how Front context reaches the plugin and how approved actions are submitted to Portal+}}
+- **Error handling and monitoring:** {{Describe implemented validation, failure handling, diagnostics, and recovery}}
 
 ## Results and evidence
 
-{{Explain the evaluation method, scope, and caveats or state that evaluation is pending}}
+The intended benefits are less context switching, fewer manual transfers and handoffs, and more time for selling. These are product goals; measured outcomes have not yet been added to this case study.
 
-| Metric or observation | Before | After | Evidence type | Measurement period | Source |
+| Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
-| {{Name the metric or observation}} | {{Record the baseline or mark unavailable}} | {{Record the result or mark unavailable}} | {{Measured result, estimate, or qualitative feedback}} | {{Record the actual measurement period}} | {{Link to supporting evidence}} |
+| Workflow friction | Context switching, manual transcription, and handoffs between roles | {{Add observed changes for a confirmed live capability}} | Qualitative problem account; outcome pending | Not recorded | Author's original product brief |
 
-Keep measured results, estimates, and qualitative feedback explicitly distinct. For estimates, explain assumptions; for feedback, describe the context and attribution permission. A demo outcome alone does not establish a measured improvement.
+{{Add supported usage figures, measured results, team-informed estimates, or qualitative feedback with their sources and periods.}}
 
-## Decisions and tradeoffs
+## Decisions and lessons
 
-{{Describe important choices, alternatives considered, and the tradeoffs accepted}}
+- **Optimize for momentum:** Keep common workflows close to customer conversations. Portal+ remains the place for full control and complex exceptions.
+- **Use a consistent approval model:** Each capability follows the same preparation, review, and approval pattern so teammates retain control as workflows expand.
+- **Focus on frequent work:** Prioritize common, repeatable actions rather than attempting every edge case.
+- **Preserve ownership:** Remove repetitive transfer and setup work while retaining sales and sales support expertise. Replacing these roles is outside the product's scope.
+- **Bound automation:** AI assists with interpretation and suggestions. Autonomous execution and final decisions are outside the product's scope.
+- **Lessons:** {{Add lessons from implementation and actual team use}}
 
-## Limitations and lessons
+## Supporting materials
 
-- **Limitations:** {{Describe known constraints and unvalidated claims}}
-- **Lessons:** {{Describe what I learned and what I would change}}
-
-## Current state and next steps
-
-- **Current state:** {{Describe the actual current development state}}
-- **Next steps:** {{Describe planned work without presenting it as completed}}
-
-## Supporting-material links
-
-- [Screenshots](screenshots/README.md)
-- [Diagrams](diagrams/README.md)
-- [Evaluations](evaluations/README.md)
-- [Videos and hosted demos](videos/README.md)
-- **Source repository:** {{Link to the existing source repository instead of duplicating its code here}}
-
+- {{Add links to available demos, diagrams, screenshots, or evidence as they are added}}
+- **Source repository:** {{Link the existing source repository if shareable}}
 - **Related case study:** [AI Native Email System](../ai-native-email-system/README.md)
