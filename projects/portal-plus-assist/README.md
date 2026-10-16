@@ -11,7 +11,7 @@ A Front sidebar that lets Sock Club’s sales team look up customer projects and
 | Documentation status | Documentation draft |
 | Project status | In production for internal use |
 | My role | Product planning, implementation, deployment, and maintenance; {{Confirm overall ownership and collaborators}} |
-| Timeline | Development began June 2026; deployed to production August 1, 2026. {{Confirm development duration and whether part-time}} |
+| Timeline | Developed part-time beginning June 2026; deployed to production August 1, 2026. The timeline included waiting for the internal development team to expose the first Portal+ API endpoints needed by the plugin. |
 | Tools | Next.js, React, TypeScript, Tailwind, Supabase Postgres, Vercel, Front Plugin SDK, Vercel AI SDK, AI Gateway, PostHog |
 
 ## Problem and solution
