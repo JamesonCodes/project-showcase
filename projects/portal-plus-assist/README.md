@@ -11,7 +11,7 @@ A Front sidebar that lets Sock Club’s sales team look up customer projects and
 | Documentation status | Documentation draft |
 | Project status | In production for internal use |
 | My role | Product planning, implementation, deployment, and maintenance; {{Confirm overall ownership and collaborators}} |
-| Timeline | Development began June 2026; first production release July 30, 2026. {{Confirm development duration and whether part-time}} |
+| Timeline | Development began June 2026; deployed to production August 1, 2026. {{Confirm development duration and whether part-time}} |
 | Tools | Next.js, React, TypeScript, Tailwind, Supabase Postgres, Vercel, Front Plugin SDK, Vercel AI SDK, AI Gateway, PostHog |
 
 ## Problem and solution
@@ -58,7 +58,7 @@ flowchart LR
 
 ### Classify: preparing design direction
 
-I met with the Director of Creative Operations to understand what she wanted in an ideal design brief. I codified those learnings into Classify’s structured output, making that guidance available to every teammate preparing a new design request.
+I met with the Director of Creative Operations to understand what she wanted in an ideal design brief. I codified those learnings into Classify’s structured output, making that guidance available to every teammate preparing a new design request. The goal is to give Design clearer direction upfront and reduce requests that need a second full design cycle before the customer sees something usable.
 
 For new design requests with uploaded artwork, Classify reads the latest part of the email thread and up to six files using a vision-capable model through AI Gateway. PDF, Illustrator, and EPS proofs are converted to images on the server first.
 
@@ -70,7 +70,15 @@ For new design requests with uploaded artwork, Classify reads the latest part of
 
 | Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
-| TBD | TBD | TBD | TBD | TBD | TBD |
+| Design tasks submitted through Portal+ Assist | Not applicable (not yet launched) | Over 1,500 | Reported usage count | August 1–October 16, 2026 | Internal reporting, supplied by author |
+| Time to complete a design-request submission | Approximately 4 minutes through Portal+, based on manual team time logging | Approximately 50 seconds median through Portal+ Assist | Manually timed baseline; measured current median | Baseline: before launch, dates not recorded; current analytics window not specified | Team time logging; PostHog analytics |
+| Request-submission capacity | Manual submission workflow | Approximately 0.03–0.06 FTE equivalent capacity returned from design requests alone | Annualized projection | Annualized; as of October 16, 2026 | Author’s capacity projection |
+| Design rework | Approximately 1 in 5 requests requires a second full design cycle before the customer sees something usable | Reduction through clearer Classify briefs is intended; not yet measured | Team-reported baseline; outcome pending | Baseline period not specified | Author’s account |
+| Potential Design capacity | Rework consumes design time | Projected 168 hours/year, approximately 1% of capacity across roughly eight designers | Annualized projection; not measured savings | Annualized; as of October 16, 2026 | Author’s capacity projection |
+
+The timing comparison uses different collection methods; a matched study and sample sizes are not documented here. Submission capacity and potential Design capacity are separate projections and should not be added together as demonstrated savings. The Design projection describes potential room for work the team cannot take on today; a reduction in second-cycle work has not yet been established.
+
+{{Add annual request volume, working-hours assumptions, and the calculation behind the 0.03–0.06 FTE projection. For the Design projection, add assumed cycle duration and reduction in second-cycle requests, plus the annual team-capacity denominator.}}
 
 ## Decisions and lessons
 
@@ -79,7 +87,7 @@ For new design requests with uploaded artwork, Classify reads the latest part of
 - **Keep business decisions human-owned:** Chassis type, packaging, and sales notes depend on decisions that may not exist in the conversation, so Classify leaves them blank.
 - **Test native dependencies in production:** Duplicate image-library binaries caused Classify to fail in deployment despite working locally. Fixing dependency resolution and the production bundler reinforced the need to validate native dependencies in the hosting environment.
 - **Make platform limits visible:** Vercel’s request-body limit is lower than Portal+’s upload limit. The plugin enforces a clear 4 MB limit; direct-to-storage uploads remain planned.
-- **Instrument before launch:** Adding analytics after release limited before-and-after comparisons. Future workflows should establish measurement before rollout.
+- **Use consistent timing methods:** The manual pre-launch time logs provide a starting point, while PostHog captures the current workflow. Instrumenting before rollout would make future comparisons more consistent.
 
 ## Supporting materials
 
