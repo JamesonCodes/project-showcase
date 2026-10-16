@@ -47,3 +47,29 @@ I see this approach fitting AI-native service businesses that deliver repeatable
 ## What I’m exploring next
 
 These sources illustrate useful workflow patterns. They do not prove that agents are unnecessary or that a repository-based approach always performs better. I’m exploring this approach for GTM work and will add my own implementations and evidence over time.
+
+## Try it yourself
+
+This prompt is a practical adaptation inspired by Jake Van Clief and David McDermott’s [ICM](https://github.com/RinDig/Interpretable-Context-Methodology), not an official template. Use the copy button on the code block in GitHub, then paste it into your coding assistant.
+
+```text
+Help me set up a folder-based AI workspace inspired by Jake Van Clief and David McDermott’s Interpretable Context Methodology (ICM):
+https://github.com/RinDig/Interpretable-Context-Methodology
+
+First, ask me what workflow I want to repeat, what inputs I have, what deliverable I need, and where human review matters. Ask only what you need to propose a useful first version.
+
+Then:
+1. Propose the simplest folder structure that fits the workflow. Explain each folder’s purpose.
+2. Separate reusable guidance, such as brand voice and quality standards, from inputs and outputs specific to each run.
+3. Break the workflow into numbered stages where useful. Give each stage Markdown instructions defining its inputs, process, outputs, and review checkpoint.
+4. Create a short root instruction file that maps the workspace and tells the assistant which files to read for each task. Avoid loading everything at once.
+5. Include places for Markdown plans, QA findings, and dated run logs so future sessions can understand decisions, completed work, failures, and next steps.
+6. Use scripts for mechanical steps when useful. Identify required API access without inventing integrations or storing credentials.
+7. Walk through one example run and check that each stage produces what the next stage needs.
+
+Keep the structure small. Do not create empty folders, unnecessary agents, or orchestration infrastructure. Mark missing information clearly and distinguish planned work from completed work.
+
+Create the workspace locally after we agree on the structure. Do not send messages, publish outputs, modify external systems, commit, or push without my approval.
+
+Treat this as a practical adaptation inspired by ICM, not an official implementation or a guarantee of better results.
+```

@@ -19,4 +19,4 @@ Each project has its own case study and supporting material, such as screenshots
 
 ## Notes and explorations
 
-- [Repository-driven AI workflows](docs/repository-driven-ai-workflows.md): An exploratory note on repeatable GTM work using persistent context, instructions, scripts, and tools.
+- [Repository-driven AI workflows](docs/repository-driven-ai-workflows.md): An exploratory note on repeatable GTM work using persistent context, instructions, scripts, and tools. Includes a [copyable setup prompt](docs/repository-driven-ai-workflows.md#try-it-yourself).
