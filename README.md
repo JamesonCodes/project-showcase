@@ -16,3 +16,7 @@ Documentation status describes the write-up; each project's actual development s
 ## About this library
 
 Each project has its own case study and supporting material, such as screenshots, diagrams, or a hosted demo. The library uses plain Markdown and supporting assets. Existing source repositories are linked from the case studies rather than duplicated here.
+
+## Notes and explorations
+
+- [Repository-driven AI workflows](docs/repository-driven-ai-workflows.md): An exploratory note on repeatable GTM work using persistent context, instructions, scripts, and tools.
