@@ -8,7 +8,7 @@ My design philosophy is:
 
 > Building a custom agent is often the wrong starting point. Before investing in orchestration, memory systems, and autonomous loops, see whether clear instructions, persistent files, scripts, and API access solve the problem. Build the simplest system that reliably gets the work done.
 
-Unnecessary agent infrastructure can consume time and maintenance effort without improving the outcome. An existing coding assistant may already provide the ability to read files, use tools, run scripts, and work through multiple steps. Custom agents remain useful when the work justifies them, such as a recurring process that needs dedicated execution, state management, or integrations beyond the existing assistant.
+Unnecessary infrastructure consumes time and maintenance effort. An existing coding assistant may already supply file access, tools, scripts, and multi-step execution. Custom agents remain useful when requirements exceed those capabilities.
 
 The value is the working process, not the folders themselves. Start with a task, define acceptable output and review points, preserve inputs, and record corrections. Scripts handle repeatable transformations; APIs supply current information or execute approved actions.
 
@@ -16,9 +16,11 @@ Markdown plans capture goals, decisions, status, and next steps. QA notes record
 
 Jake Van Clief and David McDermott’s **Interpretable Context Methodology (ICM)** provides a closely related architectural reference: staged folders, explicit inputs and outputs, selective context loading, and separate reusable guidance and working artifacts. It still uses agents while reducing custom orchestration. Their paper reports preliminary practitioner experience, not controlled evidence of superior performance. [ICM paper](https://arxiv.org/html/2603.16021v2), [implementation repository](https://github.com/RinDig/Interpretable-Context-Methodology).
 
-The following external examples help make the pattern tangible. They are other teams’ work, not my implementations.
+Vercel’s **Eve** extends a directory-based approach into deployed agents: Markdown instructions and skills sit alongside TypeScript tools, with a framework providing durable execution and integrations. I see this as a possible next step when requirements justify infrastructure beyond an existing assistant. [Vercel Eve](https://vercel.com/eve).
 
-**Ad production at Anthropic.** Producing fresh ads involved repeated copy creation, character checks, and movement between tools. Anthropic describes a Claude Code workflow that combines campaign performance data, existing copy, and keywords with reusable brand, product, and advertising instructions. A marketer refines and reviews the copy before export to a Google Ads upload-ready CSV. A related Figma plugin takes headline variations and a selected creative frame to generate creative permutations. The reusable context and review process matter alongside the automation. [Anthropic’s marketing workflow](https://claude.com/resources/articles/how-anthropic-uses-claude-marketing).
+These external examples are other teams’ work, not my implementations.
+
+**Ad production at Anthropic.** Producing fresh ads involved repeated copy creation, character checks, and movement between tools. Anthropic describes a Claude Code workflow that combines campaign performance data, existing copy, and keywords with reusable brand, product, and advertising instructions. A marketer refines and reviews the copy before export to a Google Ads upload-ready CSV. A related Figma plugin takes headline variations and a selected creative frame to generate creative permutations. [Anthropic’s marketing workflow](https://claude.com/resources/articles/how-anthropic-uses-claude-marketing).
 
 **Inbound qualification at Anthropic.** A small GTM team needed to qualify a large volume of interest despite incomplete data and manual Salesforce work. Clay’s customer account describes enrichment across providers, Claude-based industry classification, lead scoring, and matching personal signups to work identities. The output is enriched, standardized Salesforce records that support prioritization, with conditional opportunity and account updates. This is a vendor-reported company implementation. [Anthropic’s Clay implementation](https://www.clay.com/customers/anthropic).
 
