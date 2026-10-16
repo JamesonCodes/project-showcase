@@ -26,6 +26,12 @@ Keep records current, distinguish planned from completed work, and remove secret
 
 If your assistant or agent harness supports scheduled tasks, a schedule can trigger the workflow using the instructions and context already stored in the repository. Each run can save dated outputs, QA findings, and logs for review. Define what runs automatically, what requires approval, and how failures or incomplete work should be surfaced. Use scheduling already available in the tool before building a custom scheduler.
 
+### Work toward a defined outcome
+
+Where an assistant or agent harness supports persistent goals, I could pair the repository's context and procedures with an objective that carries across turns. For example, Codex documents a `/goal` command for continuing toward a defined outcome with completion checks and constraints. [OpenAI's Goals guide](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex).
+
+A potential GTM application is preparing a campaign package for review: use the approved brief and source material, draft the assets, check required formats and factual support, and record unresolved issues. Define completion as a review-ready package with QA results, with publication requiring human approval. Keep progress and evidence in the repository, and set resource limits and conditions for stopping or asking for input in the harness. A schedule determines when work starts; a goal defines what the run should accomplish. This is a workflow I want to test, not a validated implementation.
+
 ## Related approaches
 
 Jake Van Clief and David McDermott’s **Interpretable Context Methodology (ICM)** provides a closely related architectural reference: staged folders, explicit inputs and outputs, selective context loading, and separate reusable guidance and working artifacts. It still uses agents while reducing custom orchestration. Their paper reports preliminary practitioner experience, not controlled evidence of superior performance. [ICM paper](https://arxiv.org/html/2603.16021v2), [implementation repository](https://github.com/RinDig/Interpretable-Context-Methodology).
