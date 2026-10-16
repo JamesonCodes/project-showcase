@@ -87,8 +87,15 @@ The timing comparison uses different collection methods; a matched study and sam
 - **Make platform limits visible:** Vercel’s request-body limit is lower than Portal+’s upload limit. The plugin enforces a clear 4 MB limit; direct-to-storage uploads remain planned.
 - **Use consistent timing methods:** The manual pre-launch time logs provide a starting point, while PostHog captures the current workflow. Instrumenting before rollout would make future comparisons more consistent.
 
+## Future directions
+
+I’d like to extend the plugin to support additional Portal+ workflows. These capabilities are not yet implemented:
+
+- **Generate quotes:** Prepare quotes from the conversation. This requires a Portal+ API endpoint that is not yet available.
+- **Create design decks:** Build design decks directly from the plugin.
+- **Create carts:** Create carts without leaving Front.
+
 ## Supporting materials
 
 - [Videos and hosted demos](videos/README.md)
-- **Source repository:** {{Link the existing source repository if shareable}}
 - **Related case study:** [AI Native Email System](../ai-native-email-system/README.md)
