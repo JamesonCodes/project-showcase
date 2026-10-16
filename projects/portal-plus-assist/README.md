@@ -8,7 +8,7 @@ A Front sidebar that lets Sock Club’s sales team look up customer projects and
 
 | Field | Value |
 | --- | --- |
-| Documentation status | Documentation draft |
+| Documentation status | Published |
 | Project status | In production for internal use |
 | My role | Product planning, plugin implementation, deployment, and maintenance |
 | Timeline | Developed part-time beginning June 2026; deployed to production August 1, 2026. The timeline included waiting for the internal development team to expose the first Portal+ API endpoints needed by the plugin. |
