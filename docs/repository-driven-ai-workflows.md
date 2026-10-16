@@ -2,7 +2,7 @@
 
 *An exploratory note on how I want to approach repeatable GTM work.*
 
-I use “repository-driven AI workflows” as a descriptive label for keeping the materials needed to do a job together. A project folder holds context, reusable instructions, scripts, inputs, outputs, and lessons. The goal is to make AI-assisted work easier to repeat, inspect, and improve without rebuilding the context in every conversation. This is not a standardized framework.
+I use “repository-driven AI workflows” as a descriptive label for keeping the materials needed to do a job together. A project folder holds context, reusable instructions, plans, scripts, inputs, outputs, QA records, logs, and lessons. The goal is to make AI-assisted work easier to repeat, inspect, and improve without rebuilding the context in every conversation. This is not a standardized framework.
 
 My design philosophy is:
 
@@ -11,6 +11,8 @@ My design philosophy is:
 Unnecessary agent infrastructure can consume time and maintenance effort without improving the outcome. An existing coding assistant may already provide the ability to read files, use tools, run scripts, and work through multiple steps. Custom agents remain useful when the work justifies them, such as a recurring process that needs dedicated execution, state management, or integrations beyond the existing assistant.
 
 The value is the working process, not the folders themselves. I would start with one concrete task, define acceptable output and review points, preserve the inputs, and record corrections as reusable guidance. Scripts handle repeatable transformations; API access supplies current information or executes approved actions. Outputs and results make the next iteration easier to evaluate. A tidy directory alone does none of that.
+
+Markdown plans can capture the goal, decisions, task status, and next steps alongside the work. QA notes record what was checked, expected versus actual behavior, failures, and unresolved issues. Dated run logs link inputs, commands, outputs, and fixes. A future agent can read the relevant records to resume work, understand prior decisions, and avoid repeating failed approaches. Keep them current, distinguish plans from completed work, and remove secrets or private data before committing logs.
 
 The following external examples help make the pattern tangible. They are other teams’ work, not my implementations.
 
