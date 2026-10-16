@@ -28,7 +28,7 @@ If your assistant or agent harness supports scheduled tasks, a schedule can trig
 
 ### Work toward a defined outcome
 
-Where an assistant or agent harness supports persistent goals, I could pair the repository's context and procedures with an objective that carries across turns. For example, Codex documents a `/goal` command for continuing toward a defined outcome with completion checks and constraints. [OpenAI's Goals guide](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex).
+Where an assistant or agent harness supports persistent goals, I could pair the repository's context and procedures with an objective that carries across turns. For example, Codex documents a `/goal` command for continuing toward a defined outcome with completion checks and constraints. [OpenAI's Goals guide](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex). Claude Code also offers [`/goal`](https://code.claude.com/docs/en/goal).
 
 A potential GTM application is preparing a campaign package for review: use the approved brief and source material, draft the assets, check required formats and factual support, and record unresolved issues. Define completion as a review-ready package with QA results, with publication requiring human approval. Keep progress and evidence in the repository, and set resource limits and conditions for stopping or asking for input in the harness. A schedule determines when work starts; a goal defines what the run should accomplish. This is a workflow I want to test, not a validated implementation.
 
