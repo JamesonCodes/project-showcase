@@ -10,7 +10,7 @@ A Front sidebar that lets Sock Club’s sales team look up customer projects and
 | --- | --- |
 | Documentation status | Documentation draft |
 | Project status | In production for internal use |
-| My role | Product planning, implementation, deployment, and maintenance; {{Confirm overall ownership and collaborators}} |
+| My role | Product planning, plugin implementation, deployment, and maintenance |
 | Timeline | Developed part-time beginning June 2026; deployed to production August 1, 2026. The timeline included waiting for the internal development team to expose the first Portal+ API endpoints needed by the plugin. |
 | Tools | Next.js, React, TypeScript, Tailwind, Supabase Postgres, Vercel, Front Plugin SDK, Vercel AI SDK, AI Gateway, PostHog |
 
@@ -26,7 +26,7 @@ A Front sidebar that lets Sock Club’s sales team look up customer projects and
 - **Planning:** Wrote the authentication strategy, analytics plan, Portal+ API reference, Classify design plan, and large-upload plan.
 - **Implementation:** Built the plugin, server routes, Portal+ OAuth integration, database schema, and Classify pipeline.
 - **Deployment and maintenance:** Set up CI and Vercel deployment and shipped iterative releases, including fixes driven by teammate reports.
-- **Collaborators:** Sales support requested in-plugin client renaming, and a teammate’s failed upload led to clearer size limits. {{Confirm other testing and rollout contributors}}
+- **Collaborators:** Worked with Ross Gayler on exposing the Portal+ API endpoints, scopes, and authentication needed by the plugin. Partnered with Rachal Berry, Director of Creative Operations, to define the ideal design brief that informed Classify. Sales support also informed improvements to client renaming and upload error messages.
 - **AI-assisted development and validation:** Used Claude Code and AI code review, supported by reference documents for Portal+ API behavior and the design system. Verified features against a live Portal+ environment before merging.
 
 ## Demo
@@ -58,7 +58,7 @@ flowchart LR
 
 ### Classify: preparing design direction
 
-I met with the Director of Creative Operations to understand what she wanted in an ideal design brief. I codified those learnings into Classify’s structured output, making that guidance available to every teammate preparing a new design request. The goal is to give Design clearer direction upfront and reduce requests that need a second full design cycle before the customer sees something usable.
+I codified the design-brief guidance into Classify’s structured output, making it available to every teammate preparing a new design request. The goal is to give Design clearer direction upfront and reduce requests that need a second full design cycle before the customer sees something usable.
 
 For new design requests with uploaded artwork, Classify reads the latest part of the email thread and up to six files using a vision-capable model through AI Gateway. PDF, Illustrator, and EPS proofs are converted to images on the server first.
 
