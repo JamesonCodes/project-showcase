@@ -22,6 +22,10 @@ Keep useful records alongside the work:
 
 Keep records current, distinguish planned from completed work, and remove secrets before committing logs.
 
+### Recurring runs
+
+If your assistant or agent harness supports scheduled tasks, a schedule can trigger the workflow using the instructions and context already stored in the repository. Each run can save dated outputs, QA findings, and logs for review. Define what runs automatically, what requires approval, and how failures or incomplete work should be surfaced. Use scheduling already available in the tool before building a custom scheduler.
+
 ## Related approaches
 
 Jake Van Clief and David McDermott’s **Interpretable Context Methodology (ICM)** provides a closely related architectural reference: staged folders, explicit inputs and outputs, selective context loading, and separate reusable guidance and working artifacts. It still uses agents while reducing custom orchestration. Their paper reports preliminary practitioner experience, not controlled evidence of superior performance. [ICM paper](https://arxiv.org/html/2603.16021v2), [implementation repository](https://github.com/RinDig/Interpretable-Context-Methodology).
