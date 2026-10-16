@@ -50,7 +50,7 @@ These sources illustrate useful workflow patterns. They do not prove that agents
 
 ## Try it yourself
 
-This prompt is a practical adaptation inspired by Jake Van Clief and David McDermott’s [ICM](https://github.com/RinDig/Interpretable-Context-Methodology), not an official template. Use the copy button on the code block in GitHub, then paste it into your coding assistant.
+This prompt is a practical adaptation inspired by Jake Van Clief and David McDermott’s [ICM](https://github.com/RinDig/Interpretable-Context-Methodology), not an official template. It is meant to get you started; adapt the instructions and structure to your workflow as needed. Use the copy button on the code block in GitHub, then paste it into your coding assistant.
 
 ```text
 Help me set up a folder-based AI workspace inspired by Jake Van Clief and David McDermott’s Interpretable Context Methodology (ICM):
