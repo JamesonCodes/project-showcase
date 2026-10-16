@@ -70,11 +70,11 @@ For new design requests with uploaded artwork, Classify reads the latest part of
 
 | Metric or observation | Before | After or current finding | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
-| Design tasks submitted through Portal+ Assist | Not applicable (not yet launched) | Over 1,500 | Reported usage count | August 1–October 16, 2026 | Internal reporting, supplied by author |
+| Design tasks submitted through Portal+ Assist | Not applicable (not yet launched) | Over 1,500 | Reported usage count | August 1–October 16, 2026 | PostHog analytics |
 | Time to complete a design-request submission | Approximately 4 minutes through Portal+, based on manual team time logging | Approximately 50 seconds median through Portal+ Assist | Manually timed baseline; measured current median | Baseline: before launch, dates not recorded; current analytics window not specified | Team time logging; PostHog analytics |
 | Request-submission capacity | Manual submission workflow | Approximately 0.03–0.06 FTE equivalent capacity returned from design requests alone | Annualized projection | Annualized; as of October 16, 2026 | Author’s capacity projection |
-| Design rework | Approximately 1 in 5 requests requires a second full design cycle before the customer sees something usable | Reduction through clearer Classify briefs is intended; not yet measured | Team-reported baseline; outcome pending | Baseline period not specified | Author’s account |
-| Potential Design capacity | Rework consumes design time | Projected 168 hours/year, approximately 1% of capacity across roughly eight designers | Annualized projection; not measured savings | Annualized; as of October 16, 2026 | Author’s capacity projection |
+| Design rework | Approximately 1 in 5 requests requires a second full design cycle before the customer sees something usable | Data collection is ongoing to assess whether clearer Classify briefs reduce second full design cycles | Team-reported baseline; outcome data collection ongoing | Baseline period not specified | Author’s account |
+| Potential Design capacity | Rework consumes design time | Projected 168 hours/year, approximately 1% of capacity across roughly eight designers | Annualized estimate from Rachal Berry; not measured savings | Annualized; as of October 16, 2026 | Rachal Berry, Director of Creative Operations |
 
 The timing comparison uses different collection methods; a matched study and sample sizes are not documented here. Submission capacity and potential Design capacity are separate projections and should not be added together as demonstrated savings. The Design projection describes potential room for work the team cannot take on today; a reduction in second-cycle work has not yet been established.
 
