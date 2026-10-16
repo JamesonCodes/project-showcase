@@ -94,6 +94,7 @@ I’d like to extend the plugin to support additional Portal+ workflows. These c
 - **Generate quotes:** Prepare quotes from the conversation. This requires a Portal+ API endpoint that is not yet available.
 - **Create design decks:** Build design decks directly from the plugin.
 - **Create carts:** Create carts without leaving Front.
+- **Prepare purchase orders:** Upload a purchase-order PDF and use AI to extract its details into the appropriate fields for review and correction before submission, following the same draft-and-review pattern as Classify.
 
 ## Supporting materials
 
