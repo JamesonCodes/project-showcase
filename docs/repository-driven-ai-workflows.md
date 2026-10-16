@@ -36,14 +36,6 @@ These external examples are other teams’ work, not my implementations.
 
 Producing fresh ads involved repeated copy creation, character checks, and movement between tools. Anthropic describes a Claude Code workflow that combines campaign performance data, existing copy, and keywords with reusable brand, product, and advertising instructions. A marketer refines and reviews the copy before export to a Google Ads upload-ready CSV. A related Figma plugin takes headline variations and a selected creative frame to generate creative permutations. [Anthropic’s marketing workflow](https://claude.com/resources/articles/how-anthropic-uses-claude-marketing).
 
-### Inbound qualification at Anthropic
-
-A small GTM team needed to qualify a large volume of interest despite incomplete data and manual Salesforce work. Clay’s customer account describes enrichment across providers, Claude-based industry classification, lead scoring, and matching personal signups to work identities. The output is enriched, standardized Salesforce records that support prioritization, with conditional opportunity and account updates. This is a vendor-reported company implementation. [Anthropic’s Clay implementation](https://www.clay.com/customers/anthropic).
-
-### Signal-based sales at Vanta and Amplitude
-
-The problem is recognizing relevant account changes and opportunities. Clay reports that Vanta monitors SOC 2 announcements, compliance-related website changes, funding, and CISO job postings. Amplitude combines its product data with AI research to identify customers suited to cross-sell. The useful output is account context for prioritization and follow-up. These examples illustrate the broader pattern of inputs, interpretation, and actionable output; the source does not establish repository-based implementations. [Clay’s signal examples](https://www.clay.com/signals).
-
 ### A literal folder-based workspace
 
 Databar’s implementation guide addresses scattered GTM context with a proposed workspace containing ideal customer profile (ICP), positioning, voice, account notes, procedures, campaign materials, and CSV inputs and outputs. Reusable instructions and live data access support tasks such as account briefs and pipeline reviews, with results kept alongside campaign work. It is a setup guide, not evidence of a named company’s production results, and it also includes optional subagents and memory tooling. [Databar’s workspace guide](https://databar.ai/blog/article/claude-code-as-your-gtm-second-brain).
