@@ -78,8 +78,6 @@ For new design requests with uploaded artwork, Classify reads the latest part of
 
 The timing comparison uses different collection methods; a matched study and sample sizes are not documented here. Submission capacity and potential Design capacity are separate projections and should not be added together as demonstrated savings. The Design projection describes potential room for work the team cannot take on today; a reduction in second-cycle work has not yet been established.
 
-{{Add annual request volume, working-hours assumptions, and the calculation behind the 0.03–0.06 FTE projection. For the Design projection, add assumed cycle duration and reduction in second-cycle requests, plus the annual team-capacity denominator.}}
-
 ## Decisions and lessons
 
 - **Own OAuth where the host cannot:** Front’s OAuth relay was unavailable for private plugins. App-managed OAuth keeps tokens server-side but adds responsibility for refresh, rotation, revocation, and concurrent refresh handling. Temporary upstream outages do not automatically clear stored credentials.
