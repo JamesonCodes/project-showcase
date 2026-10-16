@@ -10,9 +10,11 @@ My design philosophy is:
 
 Unnecessary agent infrastructure can consume time and maintenance effort without improving the outcome. An existing coding assistant may already provide the ability to read files, use tools, run scripts, and work through multiple steps. Custom agents remain useful when the work justifies them, such as a recurring process that needs dedicated execution, state management, or integrations beyond the existing assistant.
 
-The value is the working process, not the folders themselves. I would start with one concrete task, define acceptable output and review points, preserve the inputs, and record corrections as reusable guidance. Scripts handle repeatable transformations; API access supplies current information or executes approved actions. Outputs and results make the next iteration easier to evaluate. A tidy directory alone does none of that.
+The value is the working process, not the folders themselves. Start with a task, define acceptable output and review points, preserve inputs, and record corrections. Scripts handle repeatable transformations; APIs supply current information or execute approved actions.
 
-Markdown plans can capture the goal, decisions, task status, and next steps alongside the work. QA notes record what was checked, expected versus actual behavior, failures, and unresolved issues. Dated run logs link inputs, commands, outputs, and fixes. A future agent can read the relevant records to resume work, understand prior decisions, and avoid repeating failed approaches. Keep them current, distinguish plans from completed work, and remove secrets or private data before committing logs.
+Markdown plans capture goals, decisions, status, and next steps. QA notes record checks, failures, and unresolved issues. Dated logs connect inputs, commands, outputs, and fixes so future agents can resume work without repeating failed approaches. Keep records current, distinguish planned from completed work, and remove secrets before committing logs.
+
+Jake Van Clief and David McDermott’s **Interpretable Context Methodology (ICM)** provides a closely related architectural reference: staged folders, explicit inputs and outputs, selective context loading, and separate reusable guidance and working artifacts. It still uses agents while reducing custom orchestration. Their paper reports preliminary practitioner experience, not controlled evidence of superior performance. [ICM paper](https://arxiv.org/html/2603.16021v2), [implementation repository](https://github.com/RinDig/Interpretable-Context-Methodology).
 
 The following external examples help make the pattern tangible. They are other teams’ work, not my implementations.
 
