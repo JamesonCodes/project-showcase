@@ -35,6 +35,10 @@ Keep useful records alongside the work:
 
 Keep records current, distinguish planned from completed work, and store secrets in a `.env` file excluded from version control by `.gitignore`. Keep secrets out of logs.
 
+### Turn repeatable work into skills
+
+As a workflow becomes reliable, capture its instructions in a Markdown skill: when to use it, required inputs, steps, checks, and expected outputs. Keep the core instructions independent of any one tool so they can move between assistants. Scripts, integrations, and skill-loading formats may still need adapting.
+
 ### Recurring runs
 
 If your assistant or agent harness supports scheduled tasks, a schedule can trigger the workflow using the instructions and context already stored in the repository. Each run can save dated outputs, QA findings, and logs for review. Define what runs automatically, what requires approval, and how failures or incomplete work should be surfaced. Use scheduling already available in the tool before building a custom scheduler.
