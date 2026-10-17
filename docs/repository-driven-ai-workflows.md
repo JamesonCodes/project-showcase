@@ -20,7 +20,7 @@ Keep useful records alongside the work:
 - **QA notes:** Checks, failures, and unresolved issues.
 - **Run logs:** Dated inputs, commands, outputs, and fixes so future agents can resume work without repeating failed approaches.
 
-Keep records current, distinguish planned from completed work, and remove secrets before committing logs.
+Keep records current, distinguish planned from completed work, and store secrets in a `.env` file excluded from version control by `.gitignore`. Keep secrets out of logs.
 
 ### Recurring runs
 
