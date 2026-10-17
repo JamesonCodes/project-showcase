@@ -1,6 +1,6 @@
 # Sales Capacity Planner
 
-I built a sales capacity analysis tool that connects account activity to units of work and estimated effort. It helps sales leadership examine team capacity and account workload when considering account allocation, staffing, role design, and automation.
+I built a sales capacity analysis tool that connects account activity to units of work and estimated effort.
 
 [How it works](#how-it-works) · [Results and limitations](#results-and-limitations) · [Detailed evaluations](evaluations/README.md)
 
@@ -68,12 +68,9 @@ flowchart TD
 
 *Simplified architecture; internal schemas and company data are omitted. Reported hours are estimates.*
 
-### From activity to estimated effort
+### Estimating effort
 
-1. **Classify email:** Use thread context to assign a task and rationale. Derive the category from the task inventory.
-2. **Apply benchmarks:** Use time-study logs to estimate task duration for each team.
-3. **Count other work:** Attribute production activity and calls to people and accounts, and retrieve revenue.
-4. **Build the snapshot:** Combine inputs into a rolling report for leadership review.
+The email classifier uses thread context to return a task and rationale. The broader category comes from the task inventory. Duration benchmarks vary by team, and account views pair estimated effort with revenue.
 
 | Activity | Treatment in the model |
 | --- | --- |
@@ -101,7 +98,7 @@ The comparison used **156 messages from a single rater**. It was direct review, 
 - **Coverage is incomplete:** Email misses internal work, and phone-based call matching can miss activity.
 - **Ownership can shift history:** Current account ownership can attribute historical work to a new owner.
 
-**Current use:** The live reporting page and daily classifier run internally. Business impact and resulting leadership decisions have not been documented for this case study.
+Business impact and resulting leadership decisions have not been documented for this case study.
 
 ## Decisions and lessons
 
@@ -109,7 +106,6 @@ The comparison used **156 messages from a single rater**. It was direct review, 
 - **Classify individual messages:** A conversation can contain several kinds of work. Message-level labels preserve that distinction but require care to avoid counting a request and its reply as separate completed tasks.
 - **Derive categories from tasks:** A fixed inventory keeps classification and duration benchmarks aligned.
 - **Inspect errors and category distributions:** Overall agreement can improve while a particular category gets worse. Reviewing individual mistakes and category-level results helps expose that regression.
-- **Keep uncertainty visible:** Sparse time studies, missing activity, and role differences limit how precisely the tool can describe individual capacity.
 - **Stop unsupported comparisons:** I paused an efficiency analysis when the available proxies could not separate account mix from differences in how people work.
 
 ## Public documentation scope

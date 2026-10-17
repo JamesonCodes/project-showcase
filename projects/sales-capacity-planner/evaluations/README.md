@@ -14,13 +14,13 @@ These evaluations used **real internal email data**. Raw messages, ground-truth 
 | [Unsupervised clustering](#unsupervised-clustering) | 1,985 deduplicated emails | Exploratory taxonomy check |
 | [Snapshot reconciliation](#live-snapshot-reconciliation) | 13,117 messages | Record completeness |
 
-These checks do not measure business impact or validate estimated hours. Sources are my internal prompt documentation, backfill audit, embedding analyses, and snapshot notes; underlying records remain private.
+These checks do not measure business impact or validate estimated hours. Sources are my internal prompt documentation, backfill audit, embedding analyses, and snapshot notes.
 
 ## Classifier prompt comparisons
 
 - **Reference:** One account manager's hand-labelled time-study log, recategorized under the current six-category taxonomy.
 - **Sample:** 156 messages carrying both a manual label and a classifier label.
-- **Reviewed:** September 22–23, 2026, through direct message review.
+- **Reviewed:** September 22–23, 2026, through direct message review rather than an end-to-end pipeline run.
 
 ### Results
 
@@ -50,7 +50,6 @@ An Internal gap was not included in the supplied notes.
 ### Limits
 
 - The reference came from a single rater and contained inconsistent labels on near-identical messages. It is an imperfect reference rather than unquestioned ground truth.
-- These comparisons came from direct message review, not an end-to-end pipeline run.
 - The reference table was deleted on October 9, 2026. These comparisons cannot be reproduced, and the next prompt evaluation needs a new labelled set.
 - Earlier figures combined Processing with Transactional and overstated agreement. The table above replaces those figures.
 
@@ -137,7 +136,7 @@ The separability ranking pointed toward a different boundary than the actual err
 
 ## Regression checks and remaining gaps
 
-I also used regression fixtures to check query changes. Classification, data completeness, and estimated effort require separate checks: success in one does not validate the others.
+I also used regression fixtures to check query changes.
 
 - **New reference set:** Needed for the next prompt evaluation.
 - **Broader coverage:** More roles and time studies are needed to assess generalization.
