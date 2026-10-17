@@ -4,13 +4,13 @@
 
 “Repository-driven AI workflows” is my descriptive label for keeping work materials together. A project folder holds context, reusable instructions, plans, scripts, inputs, outputs, QA records, logs, and lessons. The goal is repeatable, inspectable AI-assisted work without rebuilding context every conversation. This is not a standardized framework.
 
-## Start with the simplest reliable system
+## Start simple
 
 > Building a custom agent is often the wrong starting point. Before investing in orchestration, memory systems, and autonomous loops, see whether clear instructions, persistent files, scripts, and API access solve the problem. Build the simplest system that reliably gets the work done.
 
 Unnecessary infrastructure consumes time and maintenance effort. An existing coding assistant may already supply file access, tools, scripts, and multi-step execution. Custom agents remain useful when requirements exceed those capabilities.
 
-## Make the work reusable
+## How the workflow works
 
 The value is the working process, not the folders themselves. Start with a task, define acceptable output and review points, preserve inputs, and record corrections. Scripts handle repeatable transformations; APIs supply current information or execute approved actions.
 
@@ -39,7 +39,9 @@ Keep records current, distinguish planned from completed work, and store secrets
 
 As a workflow becomes reliable, capture its instructions in a Markdown skill: when to use it, required inputs, steps, checks, and expected outputs. Keep the core instructions independent of any one tool so they can move between assistants. Scripts, integrations, and skill-loading formats may still need adapting.
 
-### Recurring runs
+## Run it repeatedly
+
+### Schedule the work
 
 If your assistant or agent harness supports scheduled tasks, a schedule can trigger the workflow using the instructions and context already stored in the repository. Each run can save dated outputs, QA findings, and logs for review. Define what runs automatically, what requires approval, and how failures or incomplete work should be surfaced. Use scheduling already available in the tool before building a custom scheduler.
 
@@ -55,15 +57,17 @@ One workflow I want to test is a weekly sales signal brief: **“Which existing 
 
 Keep account context, qualification rules, outputs, and feedback in the repository. Define completion as a checked brief ready for review, including when no useful signals are found. Use salesperson feedback to improve the process and eventually capture it as a reusable skill. This is a proposed workflow, not a validated implementation.
 
-## Related approaches
+## References and possibilities
+
+These references inform my thinking; my own implementations and evidence are still developing. They do not establish that agents are unnecessary or that repository-based work always performs better.
+
+### Related approaches
 
 Jake Van Clief and David McDermott’s **Interpretable Context Methodology (ICM)** provides a closely related architectural reference: staged folders, explicit inputs and outputs, selective context loading, and separate reusable guidance and working artifacts. It still uses agents while reducing custom orchestration. Their paper reports preliminary practitioner experience, not controlled evidence of superior performance. [ICM paper](https://arxiv.org/html/2603.16021v2), [implementation repository](https://github.com/RinDig/Interpretable-Context-Methodology).
 
 Vercel’s **Eve** extends a directory-based approach into deployed agents: Markdown instructions and skills sit alongside TypeScript tools, with a framework providing durable execution and integrations. I see this as a possible next step when requirements justify infrastructure beyond an existing assistant. [Vercel Eve](https://vercel.com/eve).
 
-## Examples in GTM
-
-These external examples are other teams’ work, not my implementations.
+These external GTM examples are other teams’ work, not my implementations.
 
 ### Ad production at Anthropic
 
@@ -73,13 +77,9 @@ Producing fresh ads involved repeated copy creation, character checks, and movem
 
 Databar’s implementation guide addresses scattered GTM context with a proposed workspace containing ideal customer profile (ICP), positioning, voice, account notes, procedures, campaign materials, and CSV inputs and outputs. Reusable instructions and live data access support tasks such as account briefs and pipeline reviews, with results kept alongside campaign work. It is a setup guide, not evidence of a named company’s production results, and it also includes optional subagents and memory tooling. [Databar’s workspace guide](https://databar.ai/blog/article/claude-code-as-your-gtm-second-brain).
 
-## Potential application: client service delivery
+### Potential application: client service delivery
 
 I see this approach fitting AI-native service businesses that deliver repeatable work for clients. Shared procedures and QA standards can guide delivery, while each client’s workspace holds their context, plans, inputs, deliverables, approvals, and lessons. The opportunity is a repeatable process with client-specific judgment and a clear record of the work. This is an application I’m exploring, not a validated business model.
-
-## What I’m exploring next
-
-These sources illustrate useful workflow patterns. They do not prove that agents are unnecessary or that a repository-based approach always performs better. I’m exploring this approach for GTM work and will add my own implementations and evidence over time.
 
 ## Try it yourself
 
