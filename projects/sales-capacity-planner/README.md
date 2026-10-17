@@ -11,13 +11,13 @@ I built a tool that counts account work and estimates the time it takes, helping
 | Documentation status | Documentation draft |
 | Project status | In use internally, with a live report and daily email classification; methods are still being refined |
 | My role | Sales Operations; built the work counts, email classification, and reporting |
-| Tools | SQL, Snowflake, Supabase, HubSpot, Front, Dialpad, n8n, Claude, Python, Google Sheets |
+| Tools | SQL, Snowflake, Supabase, HubSpot, Front, Dialpad, n8n, Claude, Claude Artifacts, Python, Google Sheets |
 
 ## Problem and solution
 
 **The gap:** Revenue was visible; the effort behind each account was not. Work was spread across email, CRM, order systems, and calls. Emails did not record the type of work or how long it took.
 
-**What I built:** A reporting page that combines production activity, labelled email, and task times from time studies to show:
+**What I built:** An interactive Claude Artifact that brings together work counts, labelled email, and task times from time studies. Leaders can explore:
 
 - Estimated capacity by person.
 - Estimated effort by account alongside revenue.
@@ -63,7 +63,7 @@ flowchart TD
     Benchmarks --> Build
     Warehouse --> Build
     Allowances[Estimates for unrecorded work] --> Build
-    Build --> Page[Capacity and account workload reporting]
+    Build --> Page[Interactive Claude Artifact]
 ```
 
 *Simplified data flow; internal database details and company data are omitted. Hours are estimates.*
