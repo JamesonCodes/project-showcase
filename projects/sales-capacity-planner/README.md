@@ -35,6 +35,23 @@ Different roles have different responsibilities and support arrangements. The pa
 
 ## How it works
 
+```mermaid
+flowchart TD
+    Email[Sales email] --> Store[(Message store)]
+    Store --> Classifier[Daily task classification]
+    Inventory[Task inventory] --> Classifier
+    Classifier --> Tasks[Classified messages]
+    Logs[Time-study logs] --> Benchmarks[Task-duration benchmarks]
+    Systems[CRM, order systems, and calls] --> Warehouse[Warehouse queries and work attribution]
+    Tasks --> Build[Build rolling snapshot]
+    Benchmarks --> Build
+    Warehouse --> Build
+    Allowances[Allowances for unrecorded work] --> Build
+    Build --> Page[Capacity and account workload reporting]
+```
+
+*Simplified architecture; internal schemas and company data are omitted. Reported hours are estimates.*
+
 1. Email messages enter a data store and receive task labels from a defined inventory. The classifier uses thread context, returns a task and rationale, and derives the broader category from the inventory.
 2. Time-study logs supply task-duration benchmarks for each team.
 3. Warehouse queries count production work and call activity, attribute it to people and accounts, and retrieve revenue.
