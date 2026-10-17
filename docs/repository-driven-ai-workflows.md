@@ -16,16 +16,17 @@ The value is the working process, not the folders themselves. Start with a task,
 
 ```mermaid
 flowchart TD
-    Task[Define the task and acceptable output] --> Context[Load relevant context and instructions]
+    Start[Manual start or recurring schedule] --> Task[Task or goal with completion checks]
+    Task --> Context[Load relevant context, instructions, and skills]
     Context --> Work[Do the work]
     Work --> Review[Check output and review where needed]
     Review --> Save[Save outputs, QA notes, and lessons]
     Save --> Next[Start the next run]
-    Next --> Context
-    Save -. Update reusable guidance .-> Context
+    Next --> Task
+    Save -. Update context and skills .-> Context
 ```
 
-*An illustrative workflow: saved lessons improve the guidance available to the next run.*
+*An illustrative workflow: a manual start or optional schedule triggers the run; the task or goal defines success. Saved lessons inform updates to context and skills for future runs.*
 
 Keep useful records alongside the work:
 
