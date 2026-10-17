@@ -1,6 +1,6 @@
 # Sales Capacity Planner
 
-I built a sales capacity analysis tool that connects account activity to units of work and estimated effort.
+I built a tool that counts account work and estimates the time it takes, helping sales leaders understand team capacity.
 
 [How it works](#how-it-works) · [Results and limitations](#results-and-limitations) · [Detailed evaluations](evaluations/README.md)
 
@@ -9,32 +9,32 @@ I built a sales capacity analysis tool that connects account activity to units o
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | Active internally, with a live reporting page and daily email classification; methods are still being refined |
-| My role | Sales Operations; responsible for work-unit measurement and the data, classification, and reporting layers |
+| Project status | In use internally, with a live report and daily email classification; methods are still being refined |
+| My role | Sales Operations; built the work counts, email classification, and reporting |
 | Tools | SQL, Snowflake, Supabase, HubSpot, Front, Dialpad, n8n, Claude, Python, Google Sheets |
 
 ## Problem and solution
 
-**The gap:** Revenue was visible; the effort behind each account was not. Work was spread across email, CRM, order systems, and calls. Email had neither task labels nor recorded durations.
+**The gap:** Revenue was visible; the effort behind each account was not. Work was spread across email, CRM, order systems, and calls. Emails did not record the type of work or how long it took.
 
-**What I built:** A reporting page that combines production activity, classified email, and time-study benchmarks to show:
+**What I built:** A reporting page that combines production activity, labelled email, and task times from time studies to show:
 
 - Estimated capacity by person.
 - Estimated effort by account alongside revenue.
-- Workload by activity type, with coverage and methodology available for review.
+- Workload by activity type, with notes on the data and methods.
 
-**Decisions it supports:** Account allocation, support coverage, service models, hiring, role design, and automation.
+**Decisions it supports:** Who owns each account, how much support it needs, how service is delivered, when to hire, how roles are defined, and where to automate.
 
-Different roles have different support arrangements. The page discourages cross-team ranking and shows missing email coverage rather than inferring activity.
+Different roles have different support arrangements. The page discourages ranking people across teams and flags missing email data instead of guessing.
 
 ## My contribution
 
 ### What I owned
 
-- **Data and attribution:** Wrote warehouse queries and defined rules for incomplete or ambiguous ownership.
-- **Classification:** Iterated the email classifier against manual labels, established backfill and daily runs, and explored embedding clusters to check the taxonomy.
-- **Effort model:** Converted time-study logs into task-duration benchmarks, with fallbacks for sparse observations.
-- **Reporting:** Built the rolling snapshot and reporting pages; documented methods, assumptions, and limitations.
+- **Data and work counts:** Wrote warehouse queries and defined how to assign work when records did not clearly identify who did it.
+- **Email classification:** Improved task labels by comparing them with manual labels. Set up historical and daily processing, and explored groups of similar emails to check the task categories.
+- **Time estimates:** Used time-study logs to estimate task times, with broader benchmarks when a task had too few observations.
+- **Reporting:** Built the report and its rolling data snapshot; documented methods, assumptions, and limitations.
 
 ### Collaborators and AI assistance
 
@@ -43,41 +43,41 @@ Different roles have different support arrangements. The page discourages cross-
 | Executive leadership | Sponsored the study and helped set scope |
 | Sales managers | Owned category definitions and coordinated time studies |
 | Account managers | Recorded task durations |
-| Engineering | Clarified source-system behavior affecting attribution |
+| Engineering | Explained how source systems record who did the work |
 | Claude in Cowork | Assisted with SQL, Python, and reporting code |
 | Claude subagents | Perform email classification |
 
-I defined the methodology and rules, reviewed outputs, and ran validation.
+I chose the methods and rules, reviewed outputs, and checked the results.
 
 ## How it works
 
 ```mermaid
 flowchart TD
     Email[Sales email] --> Store[(Message store)]
-    Store --> Classifier[Daily task classification]
-    Inventory[Task inventory] --> Classifier
-    Classifier --> Tasks[Classified messages]
-    Logs[Time-study logs] --> Benchmarks[Task-duration benchmarks]
-    Systems[CRM, order systems, and calls] --> Warehouse[Warehouse queries and work attribution]
-    Tasks --> Build[Build rolling snapshot]
+    Store --> Classifier[Daily email task labels]
+    Inventory[Task list] --> Classifier
+    Classifier --> Tasks[Labelled messages]
+    Logs[Time-study logs] --> Benchmarks[Task-time estimates]
+    Systems[CRM, order systems, and calls] --> Warehouse[Count and assign work]
+    Tasks --> Build[Build rolling report snapshot]
     Benchmarks --> Build
     Warehouse --> Build
-    Allowances[Allowances for unrecorded work] --> Build
+    Allowances[Estimates for unrecorded work] --> Build
     Build --> Page[Capacity and account workload reporting]
 ```
 
-*Simplified architecture; internal schemas and company data are omitted. Reported hours are estimates.*
+*Simplified data flow; internal database details and company data are omitted. Hours are estimates.*
 
 ### Estimating effort
 
-The email classifier uses thread context to return a task and rationale. The broader category comes from the task inventory. Duration benchmarks vary by team, and account views pair estimated effort with revenue.
+The classifier reads the email and earlier messages in its thread, then returns a task label and a short explanation. Each task belongs to a predefined category. Task-time estimates vary by team, and account views show estimated effort alongside revenue.
 
-| Activity | Treatment in the model |
+| Activity | How time is estimated |
 | --- | --- |
-| Sent email | Task-duration estimate |
-| Incoming email | Separate reading-time allowance to reduce double counting |
-| Automated outbound | Visible as volume, without manual task time |
-| Coordination, meetings, and unrecorded work | Explicit allowances |
+| Sent email | Estimated task time |
+| Incoming email | Separate reading-time estimate to reduce double counting |
+| Automated outbound | Counted, with no manual task time assigned |
+| Coordination, meetings, and unrecorded work | Added time estimates |
 
 ## Results and limitations
 
@@ -88,27 +88,27 @@ The email classifier uses thread context to return a task and rationale. The bro
 | Agreement with manual labels | 67.3% | 82.7% |
 | Category mix error | 11.5 points | 7.7 points |
 
-The comparison used **156 messages from a single rater**. It was direct review, not an end-to-end pipeline test.
+The comparison used **156 messages from a single rater**. Messages were reviewed directly; the test did not run through the full automated process.
 
 [Read the evaluation results, methods, and limitations →](evaluations/README.md)
 
 ### How to interpret capacity
 
-- **Hours are estimates:** Benchmarks come from limited time studies, with assumptions and fallback durations.
-- **Coverage is incomplete:** Email misses internal work, and phone-based call matching can miss activity.
-- **Ownership can shift history:** Current account ownership can attribute historical work to a new owner.
+- **Hours are estimates:** Task times come from limited time studies; some use assumptions or broader benchmarks.
+- **Coverage is incomplete:** Email misses internal work, and matching calls by phone number can miss activity.
+- **Account changes affect history:** Past work can appear under the current account owner.
 
-Business impact and resulting leadership decisions have not been documented for this case study.
+Business impact and decisions made using the tool have not been documented for this case study.
 
 ## Decisions and lessons
 
-- **Build on earlier learning:** Working on [Sock Scout](../sock-scout/README.md) introduced me to vector search. That experience helped steer this project's exploration of email embeddings, clustering, and category boundaries.
-- **Attribute work to the performer:** Record creation and account ownership do not reliably identify who completed the work. Attribution needs to reflect source-system behavior.
-- **Classify individual messages:** A conversation can contain several kinds of work. Message-level labels preserve that distinction but require care to avoid counting a request and its reply as separate completed tasks.
-- **Derive categories from tasks:** A fixed inventory keeps classification and duration benchmarks aligned.
-- **Inspect errors and category distributions:** Overall agreement can improve while a particular category gets worse. Reviewing individual mistakes and category-level results helps expose that regression.
-- **Stop unsupported comparisons:** I paused an efficiency analysis when the available proxies could not separate account mix from differences in how people work.
+- **Build on earlier learning:** Working on [Sock Scout](../sock-scout/README.md) introduced me to vector search. That experience led me to explore email embeddings (numerical representations of text), clustering similar emails, and checking how clearly categories differ.
+- **Count work for the person who did it:** The record creator or account owner may not have done the work. Assignment rules need to reflect how each source system records activity.
+- **Classify individual messages:** A conversation can contain several kinds of work. Labelling each message captures those differences, but a request and reply should not count as two completed tasks.
+- **Set the category through the task:** A shared task list keeps email labels and time estimates consistent.
+- **Check mistakes within each category:** Overall agreement can improve while one category gets worse. Reviewing individual errors and category results helps catch this.
+- **Know when to stop:** I paused an efficiency analysis because the available measures could not show whether differences came from the accounts people handled or how they worked.
 
 ## Public documentation scope
 
-This case study describes my contribution, the general approach, and aggregate evaluation results. Business workload findings, customer and employee data, internal schemas, full classifier prompts, and raw evaluation records are omitted. Source code and reporting pages are private; no public demo is available.
+This case study describes my contribution, the general approach, and evaluation summaries and figures. Business workload findings, customer and employee data, internal database details, full classifier prompts, and raw evaluation records are omitted. Source code and reporting pages are private; no public demo is available.
