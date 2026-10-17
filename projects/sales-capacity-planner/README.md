@@ -2,7 +2,9 @@
 
 I built a sales capacity analysis tool that connects account activity to units of work and estimated effort. It helps sales leadership examine team capacity and account workload when considering account allocation, staffing, role design, and automation.
 
-## Metadata
+[How it works](#how-it-works) · [Results and limitations](#results-and-limitations) · [Detailed evaluations](evaluations/README.md)
+
+## At a glance
 
 | Field | Value |
 | --- | --- |
@@ -13,25 +15,39 @@ I built a sales capacity analysis tool that connects account activity to units o
 
 ## Problem and solution
 
-Revenue reporting did not show the effort behind an account. Work was spread across email, CRM, order systems, and calls, with no consistent measure of workload. Email was especially difficult because messages had neither structured task labels nor recorded durations.
+**The gap:** Revenue was visible; the effort behind each account was not. Work was spread across email, CRM, order systems, and calls. Email had neither task labels nor recorded durations.
 
-I combined production activity counts with email task classification and time-study benchmarks. The reporting page shows estimated capacity by person and estimated effort by account alongside revenue. These views support leadership review of account allocation, support coverage, service models, hiring, and role responsibilities.
+**What I built:** A reporting page that combines production activity, classified email, and time-study benchmarks to show:
 
-Different roles have different responsibilities and support arrangements. The page discourages ranking people across teams and makes missing email coverage visible rather than filling it with inferred activity.
+- Estimated capacity by person.
+- Estimated effort by account alongside revenue.
+- Workload by activity type, with coverage and methodology available for review.
+
+**Decisions it supports:** Account allocation, support coverage, service models, hiring, role design, and automation.
+
+Different roles have different support arrangements. The page discourages cross-team ranking and shows missing email coverage rather than inferring activity.
 
 ## My contribution
 
-- Wrote warehouse queries to count production activity and attribute work to the person who performed it.
-- Defined attribution rules for records with incomplete or ambiguous ownership.
-- Built and iterated the email classifier against manually labelled examples, then established a backfill and daily classification process.
-- Converted time-study logs into task-duration benchmarks, with fallbacks for sparse observations.
-- Explored email embedding clusters as an independent check on the task taxonomy.
-- Built the reporting pages and the process that combines classified email, production activity, calls, and revenue into a rolling snapshot.
-- Documented methodology, assumptions, and limitations for leadership.
+### What I owned
 
-**Collaborators:** Executive leadership sponsored the study and helped set scope. Sales managers owned work-category definitions and coordinated time studies. Account managers recorded task durations, and engineering clarified source-system behavior that affected attribution.
+- **Data and attribution:** Wrote warehouse queries and defined rules for incomplete or ambiguous ownership.
+- **Classification:** Iterated the email classifier against manual labels, established backfill and daily runs, and explored embedding clusters to check the taxonomy.
+- **Effort model:** Converted time-study logs into task-duration benchmarks, with fallbacks for sparse observations.
+- **Reporting:** Built the rolling snapshot and reporting pages; documented methods, assumptions, and limitations.
 
-**AI assistance:** I worked with Claude in Cowork to develop SQL, Python, and reporting code. Claude subagents perform email classification. I defined the methodology and rules, reviewed outputs, and ran validation.
+### Collaborators and AI assistance
+
+| Contributor | Responsibility |
+| --- | --- |
+| Executive leadership | Sponsored the study and helped set scope |
+| Sales managers | Owned category definitions and coordinated time studies |
+| Account managers | Recorded task durations |
+| Engineering | Clarified source-system behavior affecting attribution |
+| Claude in Cowork | Assisted with SQL, Python, and reporting code |
+| Claude subagents | Perform email classification |
+
+I defined the methodology and rules, reviewed outputs, and ran validation.
 
 ## How it works
 
@@ -52,21 +68,40 @@ flowchart TD
 
 *Simplified architecture; internal schemas and company data are omitted. Reported hours are estimates.*
 
-1. Email messages enter a data store and receive task labels from a defined inventory. The classifier uses thread context, returns a task and rationale, and derives the broader category from the inventory.
-2. Time-study logs supply task-duration benchmarks for each team.
-3. Warehouse queries count production work and call activity, attribute it to people and accounts, and retrieve revenue.
-4. A build step combines these inputs into a rolling reporting snapshot.
-5. Leaders explore workload by person, account, and activity type, with methodology and coverage information available alongside the estimates.
+### From activity to estimated effort
 
-Sent messages receive task-duration estimates. Incoming messages receive a separate reading-time allowance to reduce double counting. Automated outbound messages remain visible as volume without assigned manual task time. Coordination, meetings, and other unrecorded work use explicit allowances.
+1. **Classify email:** Use thread context to assign a task and rationale. Derive the category from the task inventory.
+2. **Apply benchmarks:** Use time-study logs to estimate task duration for each team.
+3. **Count other work:** Attribute production activity and calls to people and accounts, and retrieve revenue.
+4. **Build the snapshot:** Combine inputs into a rolling report for leadership review.
 
-## Validation and limitations
+| Activity | Treatment in the model |
+| --- | --- |
+| Sent email | Task-duration estimate |
+| Incoming email | Separate reading-time allowance to reduce double counting |
+| Automated outbound | Visible as volume, without manual task time |
+| Coordination, meetings, and unrecorded work | Explicit allowances |
 
-I compared classifier outputs with manual labels, audited a backfill, explored the task taxonomy with embeddings and clustering, and reconciled reporting snapshots. Across prompt versions v4 to v7, agreement with a single rater's labels increased from 67.3% to 82.7% on 156 messages, while category mix error fell from 11.5 to 7.7 percentage points. These were direct-review comparisons, not end-to-end pipeline tests. See [evaluation results, methods, and limitations](evaluations/README.md) for the full context.
+## Results and limitations
 
-Estimated hours are model outputs, not direct time tracking. Task benchmarks come from limited time studies, and some activities use assumptions or fallback durations. Email does not capture all internal work. Current account ownership can also shift historical work onto a new owner, and phone-based call matching can miss activity.
+### Classifier results
 
-The live reporting page and daily classifier are in use internally. Business impact and resulting leadership decisions have not been documented for this case study.
+| Direct-review measure | v4 | v7 |
+| --- | --- | --- |
+| Agreement with manual labels | 67.3% | 82.7% |
+| Category mix error | 11.5 points | 7.7 points |
+
+The comparison used **156 messages from a single rater**. It was direct review, not an end-to-end pipeline test.
+
+[Read the evaluation results, methods, and limitations →](evaluations/README.md)
+
+### How to interpret capacity
+
+- **Hours are estimates:** Benchmarks come from limited time studies, with assumptions and fallback durations.
+- **Coverage is incomplete:** Email misses internal work, and phone-based call matching can miss activity.
+- **Ownership can shift history:** Current account ownership can attribute historical work to a new owner.
+
+**Current use:** The live reporting page and daily classifier run internally. Business impact and resulting leadership decisions have not been documented for this case study.
 
 ## Decisions and lessons
 

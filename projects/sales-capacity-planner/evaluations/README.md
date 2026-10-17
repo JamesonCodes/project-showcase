@@ -2,15 +2,27 @@
 
 [Back to the case study](../README.md)
 
-These evaluations ran on real internal email data. The figures report classification checks, exploratory analysis, and snapshot completeness. They do not measure business impact or validate estimated hours. Raw messages, ground-truth tables, and customer communications are not published.
+These evaluations used **real internal email data**. Raw messages, ground-truth tables, and customer communications remain private.
 
-Sources are my internal classifier prompt documentation, backfill audit, embedding analyses, and live snapshot notes. The results are summarized here; underlying records remain private.
+## Evaluation map
+
+| Evaluation | Scope | What it checks |
+| --- | --- | --- |
+| [Prompt comparisons](#classifier-prompt-comparisons) | 156 manually labelled messages | Label agreement and category mix |
+| [Backfill audit](#full-backfill-audit) | 40 sampled records from 3,579 messages | AI reviewer agreement and consistency |
+| [Category separability](#category-separability) | 420 labelled messages | Ambiguity in embedding space |
+| [Unsupervised clustering](#unsupervised-clustering) | 1,985 deduplicated emails | Exploratory taxonomy check |
+| [Snapshot reconciliation](#live-snapshot-reconciliation) | 13,117 messages | Record completeness |
+
+These checks do not measure business impact or validate estimated hours. Sources are my internal prompt documentation, backfill audit, embedding analyses, and snapshot notes; underlying records remain private.
 
 ## Classifier prompt comparisons
 
-I compared successive prompts against one account manager's hand-labelled time-study log. The reference labels were recategorized under the current six-category taxonomy. The comparison covered 156 messages with both a manual label and a classifier label, reviewed September 22–23, 2026.
+- **Reference:** One account manager's hand-labelled time-study log, recategorized under the current six-category taxonomy.
+- **Sample:** 156 messages carrying both a manual label and a classifier label.
+- **Reviewed:** September 22–23, 2026, through direct message review.
 
-Agreement measures matching labels. Category mix error tracks distortion in the category distribution and is reported in percentage points. The supplied notes do not specify its aggregation formula.
+### Results
 
 | Prompt version | Agreement | Category mix error | Main change |
 | --- | --- | --- | --- |
@@ -19,11 +31,23 @@ Agreement measures matching labels. Category mix error tracks distortion in the 
 | v6 | 78.2% | 10.3 points | Introduced explicit decision-tree precedence and additional rules |
 | v7 | 82.7% | 7.7 points | Refined boundary rules and reduced the Processing gap from -5.1 to -1.3 points |
 
-Reported v7 category-share gaps relative to manual labels were Transactional -2.6, Processing -1.3, None +0.6, Growth +2.6, and Service +0.6 percentage points. An Internal gap was not included in the supplied notes.
+**Reading the measures:** Agreement measures matching labels. Mix error tracks distortion in category distribution, in percentage points; the supplied notes do not specify its aggregation formula.
+
+### Category gaps at v7
+
+| Category | Share gap vs manual labels |
+| --- | --- |
+| Transactional | -2.6 points |
+| Processing | -1.3 points |
+| None | +0.6 points |
+| Growth | +2.6 points |
+| Service | +0.6 points |
+
+An Internal gap was not included in the supplied notes.
 
 **What I learned:** v5 improved agreement while category mix error worsened. Measuring both exposed a regression that agreement alone would have hidden.
 
-**Limitations:**
+### Limits
 
 - The reference came from a single rater and contained inconsistent labels on near-identical messages. It is an imperfect reference rather than unquestioned ground truth.
 - These comparisons came from direct message review, not an end-to-end pipeline run.
@@ -32,22 +56,36 @@ Reported v7 category-share gaps relative to manual labels were Transactional -2.
 
 ## Full backfill audit
 
-On October 7, 2026, ten Claude Opus subagents classified 3,579 messages across 1,062 conversations using v7. The run produced zero invalid task names.
+- **Run:** October 7, 2026; v7 with ten Claude Opus subagents.
+- **Coverage:** 3,579 messages across 1,062 conversations; zero invalid task names.
+- **Audit:** A separate read-only AI agent reviewed 40 randomly selected records.
 
-A separate read-only AI agent reviewed 40 randomly selected records:
+### Results
 
 | Check | Agreement |
 | --- | --- |
 | Category | 39 of 40 |
 | Task | 38 of 40 |
 
-The audit suggested Service was under-labelled: the estimated rate was 3.0–3.5%, compared with 2.6% classified. It also identified five inconsistencies across processing partitions, including different treatment of incoming purchase orders. Interim conventions were added to the daily prompt to resolve them.
+### Findings and follow-up
 
-**Limitations:** This was a small sample reviewed by an AI agent. Agreement with that reviewer is not human-verified accuracy. The estimated Service rate is an audit estimate, not a measured population rate. Valid task names establish inventory compliance, not correct classification.
+- **Service under-labelling:** Estimated rate of 3.0–3.5%, compared with 2.6% classified.
+- **Partition consistency:** Five inconsistencies, including different treatment of incoming purchase orders.
+- **Response:** Added interim conventions to the daily prompt.
+
+### Limits
+
+- The sample was small and AI-reviewed; agreement is not human-verified accuracy.
+- The Service rate is an audit estimate, not a measured population rate.
+- Valid task names establish inventory compliance, not correct classification.
 
 ## Category separability
 
-On September 23, 2026, I compared cosine similarity on `text-embedding-3-small` vectors for 420 labelled messages to explore whether categories were distinguishable from message text alone.
+- **Date and sample:** September 23, 2026; 420 labelled messages.
+- **Method:** Cosine similarity on `text-embedding-3-small` vectors.
+- **Question:** Are the categories distinguishable from message text alone?
+
+### Findings
 
 - Growth was the most cohesive category and had the clearest boundaries.
 - Transactional was the least distinct category and represented about half the data.
@@ -58,7 +96,10 @@ The separability ranking pointed toward a different boundary than the actual err
 
 ## Unsupervised clustering
 
-On October 2, 2026, I ran a two-pass UMAP and HDBSCAN analysis over 1,985 deduplicated email embeddings, without supplying categories in advance.
+- **Date and sample:** October 2, 2026; 1,985 deduplicated email embeddings.
+- **Method:** Two-pass UMAP and HDBSCAN, with no categories supplied in advance.
+
+### Results
 
 | Observation | Result |
 | --- | --- |
@@ -67,13 +108,18 @@ On October 2, 2026, I ran a two-pass UMAP and HDBSCAN analysis over 1,985 dedupl
 | First-pass stability across random seeds | Adjusted Rand Index (ARI) 0.89–0.96 |
 | Sequence messages grouped as Outreach | 294 of 299 |
 
-The sequence grouping provided an independent exploratory check on the taxonomy. Stability across seeds describes consistency of the clustering; it does not establish that the groups are correct or validate the classifier.
+**Interpretation:** Sequence grouping provided an independent exploratory check on the taxonomy.
+
+**Limit:** Stability across seeds measures consistency, not group correctness or classifier accuracy.
 
 ## Live snapshot reconciliation
 
-Each refresh checks message totals by kind, unclassified rows, duplicate identifiers, unmapped senders, and account matches.
+- **Checks per refresh:** Message totals by kind, unclassified rows, duplicate identifiers, unmapped senders, and account matches.
+- **Snapshot date:** October 16, 2026.
+- **Window:** September 17–October 15, 2026.
+- **Result:** All 13,117 messages reconciled.
 
-The October 16, 2026 snapshot covered September 17–October 15, 2026. All 13,117 messages reconciled to the following breakdown:
+### Message breakdown
 
 | Reported message grouping | Count |
 | --- | --- |
@@ -85,10 +131,14 @@ The October 16, 2026 snapshot covered September 17–October 15, 2026. All 13,11
 | Automated | 2 |
 | **Total** | **13,117** |
 
-These are the snapshot's reported groupings; null-minute is a duration-data condition rather than a communication type. Reconciliation confirms that records are accounted for. It does not establish correct task labels, complete capture of all work, or accurate duration estimates.
+**Reading the breakdown:** These are the snapshot's reported groupings. Null-minute is a duration-data condition rather than a communication type.
+
+**Limit:** Reconciliation confirms that records are accounted for. It does not establish correct labels, complete capture of all work, or accurate durations.
 
 ## Regression checks and remaining gaps
 
 I also used regression fixtures to check query changes. Classification, data completeness, and estimated effort require separate checks: success in one does not validate the others.
 
-The next evaluation needs a new manually labelled reference set. Broader role coverage and time studies remain necessary to assess how well classification and duration benchmarks generalize. Time saved and leadership decisions changed have not been recorded.
+- **New reference set:** Needed for the next prompt evaluation.
+- **Broader coverage:** More roles and time studies are needed to assess generalization.
+- **Business outcomes:** Time saved and leadership decisions changed have not been recorded.
