@@ -102,6 +102,7 @@ Business impact and decisions made using the tool have not been documented for t
 
 ## Decisions and lessons
 
+- **Inform the AI Native Email System:** Initial findings support the direction of my [AI Native Email System](../ai-native-email-system/README.md). The email clusters and task categories provide a starting point for grouping related work and routing messages by intent. Applying these findings to that system is a next step.
 - **Build on earlier learning:** Working on [Sock Scout](../sock-scout/README.md) introduced me to vector search. That experience led me to explore email embeddings (numerical representations of text), clustering similar emails, and checking how clearly categories differ.
 - **Count work for the person who did it:** The record creator or account owner may not have done the work. Assignment rules need to reflect how each source system records activity.
 - **Classify individual messages:** A conversation can contain several kinds of work. Labelling each message captures those differences, but a request and reply should not count as two completed tasks.
