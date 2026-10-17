@@ -102,6 +102,7 @@ Business impact and resulting leadership decisions have not been documented for 
 
 ## Decisions and lessons
 
+- **Build on earlier learning:** Working on [Sock Scout](../sock-scout/README.md) introduced me to vector search. That experience helped steer this project's exploration of email embeddings, clustering, and category boundaries.
 - **Attribute work to the performer:** Record creation and account ownership do not reliably identify who completed the work. Attribution needs to reflect source-system behavior.
 - **Classify individual messages:** A conversation can contain several kinds of work. Message-level labels preserve that distinction but require care to avoid counting a request and its reply as separate completed tasks.
 - **Derive categories from tasks:** A fixed inventory keeps classification and duration benchmarks aligned.
