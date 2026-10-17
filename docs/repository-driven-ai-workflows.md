@@ -47,7 +47,45 @@ If your assistant or agent harness supports scheduled tasks, a schedule can trig
 
 Where an assistant or agent harness supports persistent goals, I could pair the repository's context and procedures with an objective that carries across turns. For example, Codex documents a `/goal` command for continuing toward a defined outcome with completion checks and constraints. [OpenAI's Goals guide](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex). Claude Code also offers [`/goal`](https://code.claude.com/docs/en/goal).
 
-A potential GTM application is preparing a campaign package for review: use the approved brief and source material, draft the assets, check required formats and factual support, and record unresolved issues. Define completion as a review-ready package with QA results, with publication requiring human approval. Keep progress and evidence in the repository, and set resource limits and conditions for stopping or asking for input in the harness. A schedule determines when work starts; a goal defines what the run should accomplish. This is a workflow I want to test, not a validated implementation.
+A schedule determines when work starts; a goal defines what the run should accomplish. Set limits on time, cost, and tool use, plus conditions for stopping or asking for input.
+
+### Potential application: a sales signal brief
+
+I would test a weekly brief for existing accounts that helps a salesperson answer: **“Which customers have a relevant reason to hear from us this week?”** This is a proposed workflow, not a validated implementation.
+
+Start small: one account source, 20–30 customers, two signal types, and one weekly brief. Account context would include websites and a short purchase history. Possible signals include upcoming events, company milestones, new locations, or hiring announcements; choose two that fit the product or service.
+
+1. **Research:** Check the selected signals and retain source links and publication dates.
+2. **Assess relevance:** Use documented criteria and purchase history to explain whether each signal suggests a plausible customer need. Flag uncertainty.
+3. **Prepare the brief:** Include customer context, the signal, supporting sources, why it may matter, and a suggested conversation starter.
+4. **Check and review:** Verify sources, flag stale or duplicate signals, and record unresolved issues. Require human approval before any outreach.
+5. **Learn:** Have the salesperson mark suggestions useful, irrelevant, already known, or worth pursuing. Use that feedback to refine the criteria.
+
+**Synthetic example:** Invented account and signal, not a research result.
+
+| Field | Example |
+| --- | --- |
+| Account | Example Company |
+| Signal | Announced an employee event |
+| Evidence | A real brief would include a verified source link and publication date |
+| Customer context | Previously purchased employee welcome kits |
+| Possible relevance | The event may be a reason to discuss another order |
+| Suggested action | Ask whether event purchasing plans are underway |
+| Uncertainty | No evidence the customer needs the product for this event |
+
+**Completion:** A brief ready for review, with sources checked and QA findings recorded. A run with no relevant signals should report that result. Keep account context, qualification rules, dated briefs, QA notes, and feedback in the workspace. Once the process is reliable, capture it as a reusable skill.
+
+**Evidence to collect:**
+
+| Question | Evidence |
+| --- | --- |
+| Does it save research time? | Timed manual research compared with reviewing the brief |
+| Are signals accurate? | Source checks and stale or duplicate signal rate |
+| Are suggestions useful? | Salesperson acceptance and rejection reasons |
+| Do suggestions lead to action? | Suggestions pursued, with replies and opportunities tracked separately |
+| Is it economical to run? | Cost per run and per accepted suggestion |
+
+The first useful result would be learning which signals help sellers, including false positives and changes made after feedback. Revenue impact would require separate evidence over time.
 
 ## Related approaches
 
