@@ -14,6 +14,19 @@ Unnecessary infrastructure consumes time and maintenance effort. An existing cod
 
 The value is the working process, not the folders themselves. Start with a task, define acceptable output and review points, preserve inputs, and record corrections. Scripts handle repeatable transformations; APIs supply current information or execute approved actions.
 
+```mermaid
+flowchart TD
+    Task[Define the task and acceptable output] --> Context[Load relevant context and instructions]
+    Context --> Work[Do the work]
+    Work --> Review[Check output and review where needed]
+    Review --> Save[Save outputs, QA notes, and lessons]
+    Save --> Next[Start the next run]
+    Next --> Context
+    Save -. Update reusable guidance .-> Context
+```
+
+*An illustrative workflow: saved lessons improve the guidance available to the next run.*
+
 Keep useful records alongside the work:
 
 - **Plans:** Markdown files with goals, decisions, status, and next steps.
