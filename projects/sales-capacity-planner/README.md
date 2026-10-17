@@ -62,7 +62,7 @@ Sent messages receive task-duration estimates. Incoming messages receive a separ
 
 ## Validation and limitations
 
-I compared classifier outputs with manual labels, audited a backfill, explored the task taxonomy with embeddings and clustering, and reconciled reporting snapshots. See [evaluation methods and limitations](evaluations/README.md) for the public summary. Internal results and source data are not published.
+I compared classifier outputs with manual labels, audited a backfill, explored the task taxonomy with embeddings and clustering, and reconciled reporting snapshots. Across prompt versions v4 to v7, agreement with a single rater's labels increased from 67.3% to 82.7% on 156 messages, while category mix error fell from 11.5 to 7.7 percentage points. These were direct-review comparisons, not end-to-end pipeline tests. See [evaluation results, methods, and limitations](evaluations/README.md) for the full context.
 
 Estimated hours are model outputs, not direct time tracking. Task benchmarks come from limited time studies, and some activities use assumptions or fallback durations. Email does not capture all internal work. Current account ownership can also shift historical work onto a new owner, and phone-based call matching can miss activity.
 
@@ -79,4 +79,4 @@ The live reporting page and daily classifier are in use internally. Business imp
 
 ## Public documentation scope
 
-This case study describes my contribution and the general approach. Company findings, workload figures, customer and employee data, internal schemas, classification rules, and evaluation records are omitted. Source code and reporting pages are private; no public demo is available.
+This case study describes my contribution, the general approach, and aggregate evaluation results. Business workload findings, customer and employee data, internal schemas, full classifier prompts, and raw evaluation records are omitted. Source code and reporting pages are private; no public demo is available.
