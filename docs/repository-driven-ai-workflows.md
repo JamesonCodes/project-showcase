@@ -2,90 +2,82 @@
 
 *An exploration of repeatable GTM work.*
 
-“Repository-driven AI workflows” is my descriptive label for keeping work materials together. A project folder holds context, reusable instructions, plans, scripts, inputs, outputs, QA records, logs, and lessons. The goal is repeatable, inspectable AI-assisted work without rebuilding context every conversation. This is not a standardized framework.
+I’m exploring how to use a repository to keep AI-assisted work easy to repeat, review, and improve without rebuilding context every conversation. The folder holds the instructions, source material, tools, and records needed to continue the work. “Repository-driven AI workflows” is my label for this approach.
 
 ## Start simple
 
-> Building a custom agent is often the wrong starting point. Before investing in orchestration, memory systems, and autonomous loops, see whether clear instructions, persistent files, scripts, and API access solve the problem. Build the simplest system that reliably gets the work done.
-
-Unnecessary infrastructure consumes time and maintenance effort. An existing coding assistant may already supply file access, tools, scripts, and multi-step execution. Custom agents remain useful when requirements exceed those capabilities.
+I would start with clear instructions, persistent files, scripts, and API access in an existing coding assistant. Custom agents and orchestration become worthwhile when the work needs capabilities that setup cannot provide.
 
 ## How the workflow works
 
-Define acceptable output, check it before use, then track what happens afterward. Use results to revise instructions, qualification rules, or skills for the next run. Scripts handle repeatable transformations; APIs supply current information or execute approved actions.
+Define acceptable output, check it before use, then track what happens afterward. Review the results before updating instructions, qualification rules, or skills. Scripts handle repeatable steps; APIs supply current information or carry out approved actions.
 
 ```mermaid
 flowchart TD
-    Start[Manual start or recurring schedule] --> Task[Task or goal with completion checks]
-    Task --> Context[Load relevant context, instructions, and skills]
+    Start[Manual start or schedule] --> Task[Define the task and completion checks]
+    Task --> Context[Load relevant context and instructions]
     Context --> Work[Do the work]
-    Work --> Review[Check output and review where needed]
-    Review --> Save[Save outputs, QA notes, and lessons]
-    Save --> Feedback[Record outcomes and review changes]
-    Feedback --> Next[Start the next run]
+    Work --> Review[Check output and get required approval]
+    Review --> Save[Save outputs and QA notes]
+    Save --> Outcomes[Record outcomes]
+    Outcomes --> Changes[Human reviews proposed changes]
+    Changes --> Next[Start the next run]
     Next --> Task
-    Feedback -. Update context and skills .-> Context
+    Changes -. Approved updates .-> Context
 ```
 
-*QA checks the output; outcome feedback informs the next run. Logs alone do not establish improvement. See Alex Lindahl's [GTM learning loops](https://newsletter.gtmengineering.ai/p/future-of-gtm-self-learning-revenue).*
+*Checking output and learning from outcomes are separate steps. Logs alone do not establish improvement. See Alex Lindahl’s [GTM learning loops](https://newsletter.gtmengineering.ai/p/future-of-gtm-self-learning-revenue).*
 
 Keep useful records alongside the work:
 
-- **Plans:** Markdown files with goals, decisions, status, and next steps.
+- **Plans:** Goals, decisions, status, and next steps.
 - **QA notes:** Checks, failures, and unresolved issues.
-- **Run logs:** Dated inputs, commands, outputs, and fixes so future agents can resume work without repeating failed approaches.
+- **Run logs:** Dated inputs, actions, outputs, and fixes so future sessions can pick up the work.
 
-Keep records current, distinguish planned from completed work, and store secrets in a `.env` file excluded from version control by `.gitignore`. Keep secrets out of logs.
+Keep records current and distinguish planned from completed work. Keep secrets out of committed files and logs.
 
 ### Turn repeatable work into skills
 
-As a workflow becomes reliable, capture its instructions in a Markdown skill: when to use it, required inputs, steps, checks, and expected outputs. Keep the core instructions independent of any one tool so they can move between assistants. Scripts, integrations, and skill-loading formats may still need adapting.
+Once a workflow is reliable, I would capture it as a Markdown skill: when to use it, required inputs, steps, checks, and outputs. Keeping the instructions independent of one tool makes them easier to reuse, though scripts, integrations, and skill formats may need adapting.
 
 ## Run it repeatedly
 
-### Schedule the work
+A schedule determines when work starts; a goal defines what the run should accomplish.
 
-If your assistant or agent harness supports scheduled tasks, a schedule can trigger the workflow using the instructions and context already stored in the repository. Each run can save dated outputs, QA findings, and logs for review. Define what runs automatically, what requires approval, and how failures or incomplete work should be surfaced. Use scheduling already available in the tool before building a custom scheduler.
+Where the assistant supports scheduling, I would use that before building a scheduler. Each run should report failures or unfinished work, with clear rules for what runs automatically and what needs approval.
 
-### Work toward a defined outcome
-
-Where an assistant or agent harness supports persistent goals, I could pair the repository's context and procedures with an objective that carries across turns. For example, Codex documents a `/goal` command for continuing toward a defined outcome with completion checks and constraints. [OpenAI's Goals guide](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex). Claude Code also offers [`/goal`](https://code.claude.com/docs/en/goal).
-
-A schedule determines when work starts; a goal defines what the run should accomplish. Set limits on time, cost, and tool use, plus conditions for stopping or asking for input.
+For work that takes several rounds, a supported goal feature can keep the objective in view. Examples include Codex’s [`/goal`](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex) and Claude Code’s [`/goal`](https://code.claude.com/docs/en/goal). I would define completion checks, limits on time, cost, and tool use, and when to stop or ask for input.
 
 ### Potential application: a sales signal brief
 
-One workflow I want to test is a weekly sales signal brief: **“Which existing customers have a relevant reason to hear from us this week?”** Start with a small account list and two signal types. Research sources, assess relevance against customer context, and prepare a brief with links, dates, suggested actions, and uncertainty for human review.
+One workflow I want to test is a weekly brief: **“Which existing customers have a relevant reason to hear from us this week?”** I would start with a small account list and two signal types, check whether each signal matters to the customer, and prepare a brief with sources, dates, suggested actions, and uncertainty for human review.
 
-Keep account context, qualification rules, outputs, and feedback in the repository. Completion means a checked brief, including when no useful signals are found. Track which signals salespeople use and the resulting replies or meetings; review that evidence before changing qualification rules. This is a proposed workflow, not a validated implementation.
+The repository would hold account context, qualification rules, outputs, and feedback. A checked brief completes the run, even when no useful signals are found. I would track which signals salespeople use and the resulting replies or meetings, then review the evidence before changing the rules.
 
 ## References and possibilities
 
-These references inform my thinking; my own implementations and evidence are still developing. They do not establish that agents are unnecessary or that repository-based work always performs better.
+These sources inform my thinking. The workflows above are proposals, and the external examples below are other teams’ work.
 
 ### Related approaches
 
-Jake Van Clief and David McDermott’s **Interpretable Context Methodology (ICM)** provides a closely related architectural reference: staged folders, explicit inputs and outputs, selective context loading, and separate reusable guidance and working artifacts. It still uses agents while reducing custom orchestration. Their paper reports preliminary practitioner experience, not controlled evidence of superior performance. [ICM paper](https://arxiv.org/html/2603.16021v2), [implementation repository](https://github.com/RinDig/Interpretable-Context-Methodology).
+Jake Van Clief and David McDermott’s **Interpretable Context Methodology (ICM)** separates reusable guidance from working files and loads context as needed. Its paper reports preliminary practitioner experience, not controlled evidence of better performance. [ICM paper](https://arxiv.org/html/2603.16021v2), [implementation repository](https://github.com/RinDig/Interpretable-Context-Methodology).
 
-Vercel’s **Eve** extends a directory-based approach into deployed agents: Markdown instructions and skills sit alongside TypeScript tools, with a framework providing durable execution and integrations. I see this as a possible next step when requirements justify infrastructure beyond an existing assistant. [Vercel Eve](https://vercel.com/eve).
+Vercel’s **Eve** combines Markdown instructions and skills with TypeScript tools, durable execution, and integrations. I see it as a possible next step when an existing assistant is no longer enough. [Vercel Eve](https://vercel.com/eve).
 
-These external GTM examples are other teams’ work, not my implementations.
+### GTM examples
 
-### Ad production at Anthropic
+**Anthropic’s ad workflow** combines campaign data and reusable brand instructions to draft copy that a marketer reviews before CSV export. It shows how existing tools can support a repeatable process with human review. [Anthropic’s marketing workflow](https://claude.com/resources/articles/how-anthropic-uses-claude-marketing).
 
-Producing fresh ads involved repeated copy creation, character checks, and movement between tools. Anthropic describes a Claude Code workflow that combines campaign performance data, existing copy, and keywords with reusable brand, product, and advertising instructions. A marketer refines and reviews the copy before export to a Google Ads upload-ready CSV. A related Figma plugin takes headline variations and a selected creative frame to generate creative permutations. [Anthropic’s marketing workflow](https://claude.com/resources/articles/how-anthropic-uses-claude-marketing).
+**Databar’s workspace guide** brings positioning, customer context, procedures, and campaign files together for tasks such as account briefs and pipeline reviews. It is a setup guide rather than evidence of production results. [Databar’s workspace guide](https://databar.ai/blog/article/claude-code-as-your-gtm-second-brain).
 
-### A literal folder-based workspace
-
-Databar’s implementation guide addresses scattered GTM context with a proposed workspace containing ideal customer profile (ICP), positioning, voice, account notes, procedures, campaign materials, and CSV inputs and outputs. Reusable instructions and live data access support tasks such as account briefs and pipeline reviews, with results kept alongside campaign work. It is a setup guide, not evidence of a named company’s production results, and it also includes optional subagents and memory tooling. [Databar’s workspace guide](https://databar.ai/blog/article/claude-code-as-your-gtm-second-brain).
-
-### Potential application: client service delivery
-
-I see this approach fitting AI-native service businesses that deliver repeatable work for clients. Shared procedures and QA standards can guide delivery, while each client’s workspace holds their context, plans, inputs, deliverables, approvals, and lessons. The opportunity is a repeatable process with client-specific judgment and a clear record of the work. This is an application I’m exploring, not a validated business model.
+I also see a potential use in client services: shared procedures and quality checks, with a separate workspace for each client’s context, deliverables, and approvals.
 
 ## Try it yourself
 
-This prompt is a practical adaptation inspired by Jake Van Clief and David McDermott’s [ICM](https://github.com/RinDig/Interpretable-Context-Methodology), not an official template. It is meant to get you started; adapt the instructions and structure to your workflow as needed. Use the copy button on the code block in GitHub, then paste it into your coding assistant.
+This setup prompt is inspired by Jake Van Clief and David McDermott’s [ICM](https://github.com/RinDig/Interpretable-Context-Methodology), not an official template. Copy it into your coding assistant and adapt it to your work.
+
+<details>
+<summary>Copy the setup prompt</summary>
 
 ```text
 Help me set up a folder-based AI workspace inspired by Jake Van Clief and David McDermott’s Interpretable Context Methodology (ICM):
@@ -105,6 +97,6 @@ Then:
 Keep the structure small. Do not create empty folders, unnecessary agents, or orchestration infrastructure. Mark missing information clearly and distinguish planned work from completed work.
 
 Create the workspace locally after we agree on the structure. Do not send messages, publish outputs, modify external systems, commit, or push without my approval.
-
-Treat this as a practical adaptation inspired by ICM, not an official implementation or a guarantee of better results.
 ```
+
+</details>
