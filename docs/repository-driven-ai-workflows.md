@@ -14,16 +14,11 @@ Define acceptable output, check it before use, then track what happens afterward
 
 ```mermaid
 flowchart TD
-    Start[Manual start or schedule] --> Task[Define the task and completion checks]
-    Task --> Context[Load relevant context and instructions]
+    Task[Define the task] --> Context[Load context]
     Context --> Work[Do the work]
-    Work --> Review[Check output and get required approval]
-    Review --> Save[Save outputs and QA notes]
-    Save --> Outcomes[Record outcomes]
-    Outcomes --> Changes[Human reviews proposed changes]
-    Changes --> Next[Start the next run]
-    Next --> Task
-    Changes -. Approved updates .-> Context
+    Work --> Review[Check and approve]
+    Review --> Outcomes[Record outcomes]
+    Outcomes -. Human-reviewed updates to instructions .-> Task
 ```
 
 *Checking output and learning from outcomes are separate steps. Logs alone do not establish improvement. See Alex Lindahl’s [GTM learning loops](https://newsletter.gtmengineering.ai/p/future-of-gtm-self-learning-revenue).*
