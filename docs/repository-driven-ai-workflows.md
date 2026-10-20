@@ -12,7 +12,7 @@ Unnecessary infrastructure consumes time and maintenance effort. An existing cod
 
 ## How the workflow works
 
-The value is the working process, not the folders themselves. Start with a task, define acceptable output and review points, preserve inputs, and record corrections. Scripts handle repeatable transformations; APIs supply current information or execute approved actions.
+Define acceptable output, check it before use, then track what happens afterward. Use results to revise instructions, qualification rules, or skills for the next run. Scripts handle repeatable transformations; APIs supply current information or execute approved actions.
 
 ```mermaid
 flowchart TD
@@ -21,12 +21,13 @@ flowchart TD
     Context --> Work[Do the work]
     Work --> Review[Check output and review where needed]
     Review --> Save[Save outputs, QA notes, and lessons]
-    Save --> Next[Start the next run]
+    Save --> Feedback[Record outcomes and review changes]
+    Feedback --> Next[Start the next run]
     Next --> Task
-    Save -. Update context and skills .-> Context
+    Feedback -. Update context and skills .-> Context
 ```
 
-*An illustrative workflow: a manual start or optional schedule triggers the run; the task or goal defines success. Saved lessons inform updates to context and skills for future runs.*
+*QA checks the output; outcome feedback informs the next run. Logs alone do not establish improvement. See Alex Lindahl's [GTM learning loops](https://newsletter.gtmengineering.ai/p/future-of-gtm-self-learning-revenue).*
 
 Keep useful records alongside the work:
 
@@ -56,7 +57,7 @@ A schedule determines when work starts; a goal defines what the run should accom
 
 One workflow I want to test is a weekly sales signal brief: **“Which existing customers have a relevant reason to hear from us this week?”** Start with a small account list and two signal types. Research sources, assess relevance against customer context, and prepare a brief with links, dates, suggested actions, and uncertainty for human review.
 
-Keep account context, qualification rules, outputs, and feedback in the repository. Define completion as a checked brief ready for review, including when no useful signals are found. Use salesperson feedback to improve the process and eventually capture it as a reusable skill. This is a proposed workflow, not a validated implementation.
+Keep account context, qualification rules, outputs, and feedback in the repository. Completion means a checked brief, including when no useful signals are found. Track which signals salespeople use and the resulting replies or meetings; review that evidence before changing qualification rules. This is a proposed workflow, not a validated implementation.
 
 ## References and possibilities
 
