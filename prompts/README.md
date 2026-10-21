@@ -5,5 +5,6 @@ Prompts readers can adapt to their own work, with context, usage instructions, a
 | Prompt | Purpose | Status |
 | --- | --- | --- |
 | [AI Workspace Starter](ai-workspace-starter.md) | Set up a small AI workspace with reusable instructions, inputs, outputs, and review steps | Exploratory; no evaluated example run documented |
+| [Decision Council](decision-council.md) | Examine a decision through five simulated perspectives, critique assumptions, and plan next steps | Exploratory; no evaluated example run documented |
 
 [Back to Project Showcase](../README.md)

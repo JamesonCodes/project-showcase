@@ -68,4 +68,4 @@ Each project has its own case study and supporting material, such as screenshots
 
 ## Reusable prompts
 
-Browse the [prompt directory](prompts/README.md) for prompts you can adapt, starting with [AI Workspace Starter](prompts/ai-workspace-starter.md). Each entry explains its purpose, use, and testing status.
+Browse the [prompt directory](prompts/README.md) for [AI Workspace Starter](prompts/ai-workspace-starter.md) and [Decision Council](prompts/decision-council.md). Each entry explains its purpose, use, and testing status.
