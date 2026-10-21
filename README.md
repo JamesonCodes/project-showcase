@@ -68,4 +68,7 @@ Each project has its own case study and supporting material, such as screenshots
 
 ## Reusable prompts
 
-Browse the [prompt directory](prompts/README.md) for [AI Workspace Starter](prompts/ai-workspace-starter.md) and [Decision Council](prompts/decision-council.md). Each entry explains its purpose, use, and testing status.
+- [AI Workspace Starter](prompts/ai-workspace-starter.md): Set up a small AI workspace with reusable instructions, inputs, outputs, and review steps.
+- [Decision Council](prompts/decision-council.md): Examine a decision through five simulated perspectives, challenge assumptions, and plan next steps.
+
+See the [prompt directory](prompts/README.md) for usage and testing status.
