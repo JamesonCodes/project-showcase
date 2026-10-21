@@ -84,4 +84,4 @@ I see this approach fitting AI-native service businesses that deliver repeatable
 
 ## Try it yourself
 
-Use the [workflow workspace setup prompt](../prompts/workflow-workspace-setup.md) to adapt this approach to your own work. It includes usage instructions and attribution to ICM.
+Use the [AI Workspace Starter prompt](../prompts/ai-workspace-starter.md) to adapt this approach to your own work. It includes usage instructions and attribution to ICM.

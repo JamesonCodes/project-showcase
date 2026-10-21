@@ -78,7 +78,7 @@ project-showcase/
 │       └── project-readme.md
 ├── prompts/
 │   ├── README.md
-│   └── workflow-workspace-setup.md
+│   └── ai-workspace-starter.md
 └── projects/
     ├── sock-scout/
     ├── ai-native-email-system/

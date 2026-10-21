@@ -1,4 +1,4 @@
-# Workflow workspace setup
+# AI Workspace Starter
 
 A starting prompt for setting up a small, folder-based AI workspace for repeatable work. The assistant asks about the workflow, proposes a structure, and creates it locally after agreement.
 

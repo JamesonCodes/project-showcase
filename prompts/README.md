@@ -4,6 +4,6 @@ Prompts readers can adapt to their own work, with context, usage instructions, a
 
 | Prompt | Purpose | Status |
 | --- | --- | --- |
-| [Workflow workspace setup](workflow-workspace-setup.md) | Set up a small AI workspace with reusable instructions, inputs, outputs, and review steps | Exploratory; no evaluated example run documented |
+| [AI Workspace Starter](ai-workspace-starter.md) | Set up a small AI workspace with reusable instructions, inputs, outputs, and review steps | Exploratory; no evaluated example run documented |
 
 [Back to Project Showcase](../README.md)
