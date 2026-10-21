@@ -54,8 +54,8 @@ Documentation status describes the write-up; each project's actual development s
 | --- | --- | --- | --- |
 | Sock Scout | Semantic visual search for creative assets | Published | [README](projects/sock-scout/README.md) |
 | AI Native Email System | Job-based inbox workflows, human review, and earned autonomy | Documentation draft | [README](projects/ai-native-email-system/README.md) |
-| Portal+ Assist | Portal+ project lookup and design requests in Front with AI-drafted briefs | Published | [README](projects/portal-plus-assist/README.md) |
-| Sample Hub | Front sidebar sample requests with HubSpot integration and optional AI Smart-fill | Published | [README](projects/sample-hub/README.md) |
+| Portal+ Assist | Front plugin for Portal+ project lookup and design requests with AI-drafted briefs | Published | [README](projects/portal-plus-assist/README.md) |
+| Sample Hub | Front plugin for sample requests with HubSpot integration and optional AI Smart-fill | Published | [README](projects/sample-hub/README.md) |
 | Sales Capacity Planner | Account workload and estimated team capacity for sales planning | Documentation draft | [README](projects/sales-capacity-planner/README.md) |
 
 ## About this library
