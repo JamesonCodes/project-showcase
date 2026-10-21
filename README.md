@@ -64,4 +64,8 @@ Each project has its own case study and supporting material, such as screenshots
 
 ## Notes and explorations
 
-- [Repository-driven AI workflows](docs/repository-driven-ai-workflows.md): An exploratory note on repeatable GTM work using persistent context, instructions, scripts, and tools. Includes a [copyable setup prompt](docs/repository-driven-ai-workflows.md#try-it-yourself).
+- [Repository-driven AI workflows](docs/repository-driven-ai-workflows.md): An exploratory note on repeatable GTM work using persistent context, instructions, scripts, and tools. Includes a [copyable setup prompt](prompts/workflow-workspace-setup.md).
+
+## Reusable prompts
+
+Browse the [prompt directory](prompts/README.md) for prompts you can adapt, starting with [workflow workspace setup](prompts/workflow-workspace-setup.md). Each entry explains its purpose, use, and testing status.
