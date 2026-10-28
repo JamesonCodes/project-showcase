@@ -36,7 +36,7 @@ The rep supplies or confirms those essentials by @mentioning the agent again. No
 - **Collaborators:** {{Identify collaborators and their contributions}}.
 - **AI assistance during development:** I used AI to help brainstorm the initial architecture.
 - **Runtime AI:** Claude runs the quote agent, and DeepSeek repairs malformed structured output.
-- **Validation:** {{Provide testing and validation work beyond the reported Claude review}}.
+- **Validation:** Evaluations are planned but have not yet been created or run. Creating and running them is required before the workflow goes into production.
 
 ## Demo
 
