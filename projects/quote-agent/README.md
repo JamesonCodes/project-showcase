@@ -140,6 +140,7 @@ The following work is planned and has not yet been implemented for production:
 - **PDF attachment:** Replace the temporary PDF link used in testing with an actual PDF attached to the planned email draft, so access to the quote does not depend on link expiration.
 - **Webhook verification:** Validate Front's signature header before processing events.
 - **Duplicate-event protection:** Prevent retried events from generating duplicate quotes, comments, or memory turns.
+- **Project context:** Distinguish a new project from a follow-up supplying missing information for an earlier quote. A Front conversation can cover multiple projects, so the agent must associate each request and answer with the correct project and quote.
 - **Failure handling:** Add appropriate feedback for filtered mentions, plus retries and error handling for comment fetching.
 - **Price-break validation:** Validate price breaks passed from the agent to the pricing code to catch transcription errors before they reach the PDF.
 - **Price lookup edge case:** Stop quote generation if a quantity passes the product minimum but has no applicable price break, rather than allowing a zero-priced line.
