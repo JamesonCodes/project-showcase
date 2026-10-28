@@ -30,7 +30,7 @@ Quotes must follow the pricing rules that apply to the customer's account. The r
 
 ## My contribution
 
-- **Personal responsibilities:** I took the agent from concept to a working implementation, choosing n8n as the runtime and building the workflow, integrations, and decision logic.
+- **Personal responsibilities:** I came up with the idea for Quote Agent and brought it to life, choosing n8n as the runtime and building the workflow, integrations, and decision logic.
 - **Collaborators:** Ryu Watanabe developed the MCP server tools. Joshua Varghese developed the initial skills that informed the agent's system prompt.
 - **AI assistance during development:** I used AI to help brainstorm the initial architecture.
 - **Validation:** Evaluations must be created and run before production; this work is planned.
