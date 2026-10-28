@@ -32,7 +32,7 @@ The rep supplies or confirms those essentials by @mentioning the agent again. No
 
 ## My contribution
 
-- **Personal responsibilities:** {{Describe which parts I designed, built, and tested}}.
+- **Personal responsibilities:** I chose n8n as the agent's runtime and built the workflow and decision logic.
 - **Collaborators:** Ryu Watanabe developed the MCP server tools. Joshua Varghese developed the initial skills that informed the agent's system prompt.
 - **AI assistance during development:** I used AI to help brainstorm the initial architecture.
 - **Runtime AI:** Claude runs the quote agent, and DeepSeek repairs malformed structured output.
