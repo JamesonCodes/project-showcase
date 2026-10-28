@@ -57,7 +57,7 @@ Documentation status describes the write-up; each project's actual development s
 | Portal+ Assist | Front plugin | Portal+ project lookup and design requests with AI-drafted briefs | Published | [README](projects/portal-plus-assist/README.md) |
 | Sample Hub | Front plugin | Sample requests with HubSpot integration and optional AI Smart-fill | Published | [README](projects/sample-hub/README.md) |
 | Sales Capacity Planner | Reporting tool | Account workload and estimated team capacity for sales planning | Documentation draft | [README](projects/sales-capacity-planner/README.md) |
-| Quote Agent | n8n workflow | Front quote requests, CDP pricing, and PDF quote generation | Documentation draft | [README](projects/quote-agent/README.md) |
+| Quote Agent | n8n workflow | Front quote requests, pricing through MCP tools, and PDF quote generation | Documentation draft | [README](projects/quote-agent/README.md) |
 
 ## About this library
 
