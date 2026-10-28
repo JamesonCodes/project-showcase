@@ -33,7 +33,7 @@ The rep supplies or confirms those essentials by @mentioning the agent again. No
 ## My contribution
 
 - **Personal responsibilities:** {{Describe which parts I designed, built, and tested}}.
-- **Collaborators:** {{Identify collaborators and their contributions}}.
+- **Collaborators:** Ryu Watanabe developed the MCP server tools. Joshua Varghese developed the initial skills that informed the agent's system prompt.
 - **AI assistance during development:** I used AI to help brainstorm the initial architecture.
 - **Runtime AI:** Claude runs the quote agent, and DeepSeek repairs malformed structured output.
 - **Validation:** Evaluations are planned but have not yet been created or run. Creating and running them is required before the workflow goes into production.
