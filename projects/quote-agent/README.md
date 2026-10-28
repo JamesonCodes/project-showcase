@@ -22,6 +22,8 @@ I wanted to preserve that handoff structure while giving an agent the job of pre
 
 A rep @mentions the agent in a Front comment. The agent gathers customer and product facts through Sock Club's MCP server tools, asks follow-up questions when essentials are missing, and returns a structured quote configuration. Code calculates prices and builds the layout, PDF.co renders the PDF, and the workflow posts a link in the same Front conversation.
 
+The planned next step is to create a draft email reply with the quote attached, so the sales rep can review, edit, and approve it before sending. Draft email creation and quote attachment are not yet implemented.
+
 Distributor and wholesale customers receive net pricing; direct customers receive coded pricing. The prompt describes the difference as roughly 30%, so this is a design constraint, not a measured result. The agent must never guess the customer, products, quantities, customer type, or account manager, and prices must come through Sock Club's MCP server tools.
 
 The rep supplies or confirms those essentials by @mentioning the agent again. Notes identify sources and assumptions for review, such as an assumed header card variant or a customer not found in the customer records. The PDF reminds the rep to confirm sock size because prices are per size. The workflow does not send the quote to the customer; the rep reviews it first.
