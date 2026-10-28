@@ -18,7 +18,9 @@ An n8n workflow that turns a sales rep's @mention in a Front conversation into a
 
 Sock Club sales reps read incoming emails in Front, interpret the customer's intent, and determine when a quote is needed. In the current workflow, the account manager hands the task to a sales support rep, who navigates Portal+ to generate the quote, posts a comment in the Front conversation explaining what was created, attaches the PDF, and reassigns the conversation to the account manager.
 
-I wanted to preserve that handoff structure while giving an agent the job of preparing the quote and returning it to the conversation for the account manager to review.
+The main bottleneck is the time the quote request spends waiting in the sales support queue. Sales support reps handle many competing tasks, so a quote can sit before anyone starts preparing it. That wait can delay delivery to the customer or prospect beyond the time needed to create and review the quote.
+
+I wanted to reduce that queue time by preserving the handoff structure while giving an agent the job of preparing the quote and returning it to the conversation for the account manager to review.
 
 A rep @mentions the agent in a Front comment. The agent gathers customer and product facts through Sock Club's MCP server tools, asks follow-up questions when essentials are missing, and returns a structured quote configuration. Code calculates prices and builds the layout, PDF.co renders the PDF, and the workflow posts a link in the same Front conversation.
 
