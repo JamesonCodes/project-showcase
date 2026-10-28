@@ -34,7 +34,7 @@ The rep supplies or confirms those essentials by @mentioning the agent again. No
 
 - **Personal responsibilities:** {{Describe which parts I designed, built, and tested}}.
 - **Collaborators:** {{Identify collaborators and their contributions}}.
-- **AI assistance during development:** {{Describe whether and how AI assisted the original build}}. I also had Claude review the workflow for technical issues; those findings are listed under Limitations.
+- **AI assistance during development:** I used AI to help brainstorm the initial architecture.
 - **Runtime AI:** Claude runs the quote agent, and DeepSeek repairs malformed structured output.
 - **Validation:** {{Provide testing and validation work beyond the reported Claude review}}.
 
