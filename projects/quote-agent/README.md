@@ -26,7 +26,7 @@ A rep @mentions the agent in a Front comment, providing context about the reques
 
 The planned next step is to create a draft email reply with the quote attached, so the sales rep can review, edit, and approve it before sending. Draft email creation and quote attachment are not yet implemented.
 
-Quotes must use the pricing rules that apply to the customer's account. The agent must confirm the customer, products, quantities, account classification, and account manager rather than guess, and retrieve prices through Sock Club's MCP server tools.
+Quotes must use the pricing rules that apply to the customer's account. The agent must confirm the customer, products, quantities, applicable pricing rules, and account manager rather than guess, and retrieve prices through Sock Club's MCP server tools.
 
 The rep supplies or confirms those essentials by @mentioning the agent again. Notes identify sources and assumptions for review, such as an assumed header card variant or a customer not found in the customer records. The PDF reminds the rep to confirm sock size because prices are per size. The workflow does not send the quote to the customer; the rep reviews it first.
 
@@ -45,8 +45,8 @@ No screenshots, recordings, or hosted demo are available yet. {{Provide a sharea
 **Synthetic example:** This illustrates the designed behavior. It is not a recorded run.
 
 1. **Input:** A rep posts: “@QuoteAgent 250 and 500 pairs of a crew sock with header cards for this customer, with the upsell.”
-2. **Lookup:** The agent looks up the contact and calls `get_user` for customer type and account manager. It finds the sock and header card products and loads their price breaks.
-3. **Clarification:** If account classification is absent from both the request and customer records, it returns `needs_info` with a question such as “Which pricing rules apply to this account?” The workflow posts the question in Front. The customer reference must also be resolved before proceeding.
+2. **Lookup:** The agent looks up the contact and calls `get_user` to identify the pricing rules that apply to the customer's account and the account manager. It finds the sock and header card products and loads their price breaks.
+3. **Clarification:** If the applicable pricing rules cannot be determined from the request or customer records, it returns `needs_info` with a question such as “Which pricing rules apply to this account?” The workflow posts the question in Front. The customer reference must also be resolved before proceeding.
 4. **Quote:** Once essentials are available, the agent returns two quote configurations, one per quantity. Code prices both quotes and builds the next-break comparison, then the PDF is rendered.
 5. **Outcome:** A comment in the same conversation reads “Quote ready: View quote PDF,” linking to the PDF.
 
@@ -91,11 +91,11 @@ flowchart TD
 | PDF.co | Renders a letter-size portrait PDF with a page-number footer |
 | Front MCP server | Posts the reply as a comment in the original conversation |
 
-Each ready PDF has one section per quote, showing product lines, quantities, unit prices, line totals, tax, shipping, and a total. Net-priced quotes are marked **NET**. When requested, a green upsell box shows the next price break and added cost.
+Each ready PDF has one section per quote, showing product lines, quantities, unit prices, line totals, tax, shipping, and a total using the pricing rules that apply to the customer's account. When requested, a green upsell box shows the next price break and added cost.
 
 ### Decision logic
 
-- **Pricing rules:** Use the request first, then the account classification on the user record returned by `get_user`, then the company record. Ask if the applicable pricing rules remain unclear.
+- **Pricing rules:** Determine which rules apply to the customer's account using the request first, then the user record returned by `get_user`, then the company record. Ask if the applicable pricing rules remain unclear.
 - **Account manager:** Use the request, otherwise the user record returned by `get_user`, with a name lookup to confirm. Ask if neither provides one.
 - **Customer:** Must come from the request text, never the requester's own name or email. A conflicting test override is described below.
 - **Products:** Select the named variant. A plain “header card” defaults to Domestic, with the assumption noted. Ask if ambiguity remains.
