@@ -16,7 +16,9 @@ An n8n workflow that turns a sales rep's @mention in a Front conversation into a
 
 ## Problem and solution
 
-Sock Club sales reps work in Front and request quotes for customers. A correct quote depends on the customer type, account manager, product minimums, and quantity price breaks available through Sock Club's MCP server tools. The previous quoting workflow and baseline are {{to be provided}}.
+Sock Club sales reps read incoming emails in Front, interpret the customer's intent, and determine when a quote is needed. In the current workflow, the account manager hands the task to a sales support rep, who navigates Portal+ to generate the quote, posts a comment in the Front conversation explaining what was created, attaches the PDF, and reassigns the conversation to the account manager.
+
+I wanted to preserve that handoff structure while giving an agent the job of preparing the quote and returning it to the conversation for the account manager to review.
 
 A rep @mentions the agent in a Front comment. The agent gathers customer and product facts through Sock Club's MCP server tools, asks follow-up questions when essentials are missing, and returns a structured quote configuration. Code calculates prices and builds the layout, PDF.co renders the PDF, and the workflow posts a link in the same Front conversation.
 
@@ -109,7 +111,7 @@ Human review happens through follow-up comments and notes for the rep. Monitorin
 
 The workflow is in testing and is not yet in production. Measured outcomes and an evaluation set have not been recorded.
 
-- **Baseline:** {{Provide the previous workflow and baseline measurements}}.
+- **Baseline:** {{Provide baseline measurements for the sales support quoting workflow}}.
 - **Measured results:** {{Provide observed outcomes, methodology, sample size, measurement period, and evidence source}}.
 - **Source material:** {{Provide a shareable source repository and review notes}}.
 
