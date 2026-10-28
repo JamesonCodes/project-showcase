@@ -7,7 +7,7 @@ An n8n workflow that turns a sales rep's @mention in a Front conversation into a
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | Testing phase |
+| Project status | In development; initial testing underway |
 | Production use | Not yet in production |
 | My role | Built the agent in n8n, from concept to working implementation |
 | Timeline | {{Provide development dates or duration}} |
