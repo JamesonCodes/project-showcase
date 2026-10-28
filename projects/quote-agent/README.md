@@ -113,10 +113,16 @@ Human review happens through follow-up comments and notes for the rep. Monitorin
 
 ## Results and evidence
 
-The workflow is in testing and is not yet in production. Measured outcomes and an evaluation set have not been recorded.
+The workflow is in testing and is not yet in production. Previous analysis put hands-on time for the sales support quoting workflow at approximately four minutes per quote. Initial agent testing puts hands-on time at approximately 15 seconds per quote. These are preliminary, approximate figures; a formal evaluation set has not yet been created or run.
 
-- **Baseline:** {{Provide baseline measurements for the sales support quoting workflow}}.
-- **Measured results:** {{Provide observed outcomes, methodology, sample size, measurement period, and evidence source}}.
+| Metric or observation | Previous workflow | Agent workflow | Evidence type | Measurement period | Source |
+| --- | --- | --- | --- | --- | --- |
+| Hands-on time per quote | Approximately 4 minutes | Approximately 15 seconds | Approximate baseline and initial test observation | {{Provide analysis and testing dates}} | Previous workflow analysis and initial agent testing; {{link supporting records}} |
+| Sales support queue time | Requests wait behind competing support tasks; duration not measured | No sales support queue wait because the task goes to the agent | Workflow observation | Initial testing; {{provide dates}} | Handoff design and initial testing |
+| Cost per run | Not recorded | On the order of cents per run; exact amount not recorded | Preliminary cost observation | Initial testing; {{provide dates}} | {{Provide run-cost records and included services}} |
+
+Hands-on time describes human effort, not total elapsed time to deliver a quote. Removing the sales support queue does not remove agent processing time or the rep's review step. Sample size, timing boundaries, methodology, and cost breakdown are {{to be provided}} before treating these observations as validated results.
+
 - **Source material:** {{Provide a shareable source repository and review notes}}.
 
 The synthetic demo above is an illustration of intended behavior, not evidence of successful execution.
