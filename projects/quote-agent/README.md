@@ -128,7 +128,8 @@ Hands-on time describes human effort, not total elapsed time to deliver a quote.
 The implementation separates fact gathering from price calculation: the agent selects price breaks, while code applies them and renders the quote. This leaves a transcription risk described below.
 
 - **Design rationale:** {{Provide alternatives considered and reasons for choices, including n8n and the two-model setup}}.
-- **Lessons learned:** {{Describe lessons from building, testing, or operating the workflow}}.
+- **Keep the agent's scope focused:** Use the agent for tasks that require interpretation or judgment, and move predictable work into code or deterministic workflow steps. This reduces what the model has to manage and makes runs more consistent.
+- **Additional lessons:** {{Add further lessons from building, testing, or operating the workflow}}.
 
 ## Production hardening
 
