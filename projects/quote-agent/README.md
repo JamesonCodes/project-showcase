@@ -22,7 +22,7 @@ The main bottleneck is the time the quote request spends waiting in the sales su
 
 I wanted to reduce that queue time by preserving the handoff structure while giving an agent the job of preparing the quote and returning it to the conversation for the account manager to review.
 
-A rep @mentions the agent in a Front comment. The agent gathers customer and product facts through Sock Club's MCP server tools, asks follow-up questions when essentials are missing, and returns a structured quote configuration. Code calculates prices and builds the layout, PDF.co renders the PDF, and the workflow posts a link in the same Front conversation.
+A rep @mentions the agent in a Front comment, providing context about the request and instructions for the quote they want prepared. The agent gathers customer and product facts through Sock Club's MCP server tools, asks follow-up questions when essentials are missing, and returns a structured quote configuration. Code calculates prices and builds the layout, PDF.co renders the PDF, and the workflow posts a link in the same Front conversation.
 
 The planned next step is to create a draft email reply with the quote attached, so the sales rep can review, edit, and approve it before sending. Draft email creation and quote attachment are not yet implemented.
 
