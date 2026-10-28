@@ -9,7 +9,7 @@ An n8n workflow that turns a sales rep's @mention in a Front conversation into a
 | Documentation status | Documentation draft |
 | Project status | Testing phase |
 | Production use | Not yet in production |
-| My role | {{Describe my ownership and responsibilities}} |
+| My role | Built the agent in n8n, from concept to working implementation |
 | Timeline | {{Provide development dates or duration}} |
 | Development mode | Part-time |
 | Tools | n8n Cloud; Front webhook, REST API, and MCP server; Sock Club MCP server tools; OpenRouter (Claude Sonnet 5.5 for the agent, DeepSeek for output-parser repair); Postgres chat memory; PDF.co HTML-to-PDF rendering |
@@ -18,25 +18,22 @@ An n8n workflow that turns a sales rep's @mention in a Front conversation into a
 
 Sock Club sales reps read incoming emails in Front, interpret the customer's intent, and determine when a quote is needed. In the current workflow, the account manager hands the task to a sales support rep, who navigates Portal+ to generate the quote, posts a comment in the Front conversation explaining what was created, attaches the PDF, and reassigns the conversation to the account manager.
 
-The main bottleneck is the time the quote request spends waiting in the sales support queue. Sales support reps handle many competing tasks, so a quote can sit before anyone starts preparing it. That wait can delay delivery to the customer or prospect beyond the time needed to create and review the quote.
+The bottleneck is queue time. Sales support reps handle competing tasks, so a quote request can wait before preparation begins, delaying delivery to the customer or prospect.
 
 I wanted to reduce that queue time by preserving the handoff structure while giving an agent the job of preparing the quote and returning it to the conversation for the account manager to review.
 
-A rep @mentions the agent in a Front comment, providing context about the request and instructions for the quote they want prepared. The agent gathers customer and product facts through Sock Club's MCP server tools, asks follow-up questions when essentials are missing, and returns a structured quote configuration. Code calculates prices and builds the layout, PDF.co renders the PDF, and the workflow posts a link in the same Front conversation.
+A rep @mentions the agent in a Front comment with context and instructions for the quote. The agent retrieves customer and product data through Sock Club's MCP tools, asks for missing essentials, and prepares the quote. The workflow calculates prices, generates a PDF, and posts a link in the same conversation.
 
-The planned next step is to create a draft email reply with the quote attached, so the sales rep can review, edit, and approve it before sending. Draft email creation and quote attachment are not yet implemented.
+The planned next step, not yet implemented, is a draft email reply with the quote attached for the sales rep to review, edit, and approve before sending.
 
-Quotes must use the pricing rules that apply to the customer's account. The agent must confirm the customer, products, quantities, applicable pricing rules, and account manager rather than guess, and retrieve prices through Sock Club's MCP server tools.
-
-The rep supplies or confirms those essentials by @mentioning the agent again. Notes identify sources and assumptions for review, such as an assumed header card variant or a customer not found in the customer records. The PDF reminds the rep to confirm sock size because prices are per size. The workflow does not send the quote to the customer; the rep reviews it first.
+Quotes must follow the pricing rules that apply to the customer's account. The rep answers follow-up questions by @mentioning the agent again and reviews the quote, sources, and assumptions before sending it to the customer. The workflow does not send customer emails.
 
 ## My contribution
 
 - **Personal responsibilities:** I took the agent from concept to a working implementation, choosing n8n as the runtime and building the workflow, integrations, and decision logic.
 - **Collaborators:** Ryu Watanabe developed the MCP server tools. Joshua Varghese developed the initial skills that informed the agent's system prompt.
 - **AI assistance during development:** I used AI to help brainstorm the initial architecture.
-- **Runtime AI:** Claude runs the quote agent, and DeepSeek repairs malformed structured output.
-- **Validation:** Evaluations are planned but have not yet been created or run. Creating and running them is required before the workflow goes into production.
+- **Validation:** Evaluations must be created and run before production; this work is planned.
 
 ## Demo
 
@@ -54,7 +51,7 @@ No screenshots, recordings, or hosted demo are available yet. {{Provide a sharea
 
 The Front @mention webhook carries event, conversation, and comment IDs. The workflow fetches the comment text from the Front API, keeps only mention events with a comment ID, and stops if no text remains after removing @tags. It prepares the request text, requester name, email and ID, conversation ID, and posted time in Central time.
 
-The agent combines the request with earlier turns from the same Front conversation and looks up customer, account manager, product, and price-break data. Its structured output is either `needs_info` with short questions or `ready` with a quote configuration. The request-preparation conflict described under Limitations affects customer selection during testing.
+The agent uses the conversation history and returns either `needs_info` with questions or `ready` with a structured quote configuration. The diagram shows how each response is handled.
 
 ```mermaid
 flowchart TD
@@ -85,19 +82,20 @@ flowchart TD
 | Quote Agent | n8n AI agent using Claude Sonnet 5.5 at temperature 0.1, with up to 20 iterations and a structured output parser |
 | Sock Club MCP client | Nine read-only tools: list and get contacts, get user, get and list companies, list internal users, list product types, and get and list price sets |
 | Postgres chat memory | Uses the Front conversation ID as its key and retains the last 10 turns for follow-ups |
-| Output parser | Enforces the JSON schema and uses a second, cheaper model for an auto-fix pass |
+| Output parser | Enforces the JSON schema and uses DeepSeek to repair malformed output |
 | Calculate Pricing Code node | Selects price breaks, rounds to cents, validates minimums, builds the upsell, and collects errors and warnings |
 | Build Quote HTML Code node | Builds the layout, using a text wordmark when no logo URL is set |
 | PDF.co | Renders a letter-size portrait PDF with a page-number footer |
 | Front MCP server | Posts the reply as a comment in the original conversation |
 
-Each ready PDF has one section per quote, showing product lines, quantities, unit prices, line totals, tax, shipping, and a total using the pricing rules that apply to the customer's account. When requested, a green upsell box shows the next price break and added cost.
+Each PDF has one section per quote with product lines, quantities, unit prices, line totals, tax, shipping, and a total. An optional green upsell box shows the next price break and added cost. A reminder asks the rep to confirm sock size because prices are per size.
 
 ### Decision logic
 
+- **Essentials:** Confirm the customer, products, quantities, applicable pricing rules, and account manager. Ask rather than guess, and retrieve prices through Sock Club's MCP tools instead of model memory.
 - **Pricing rules:** Determine which rules apply to the customer's account using the request first, then the user record returned by `get_user`, then the company record. Ask if the applicable pricing rules remain unclear.
 - **Account manager:** Use the request, otherwise the user record returned by `get_user`, with a name lookup to confirm. Ask if neither provides one.
-- **Customer:** Must come from the request text, never the requester's own name or email. A conflicting test override is described below.
+- **Customer:** Must come from the request text, never the requester's own name or email. See Limitations for a conflicting test override.
 - **Products:** Select the named variant. A plain “header card” defaults to Domestic, with the assumption noted. Ask if ambiguity remains.
 - **Price math:** The agent selects price breaks; code applies the highest break at or below each line's quantity.
 - **Upsell:** Off unless requested. When enabled, use the next break of the sock line and reprice every line at that quantity. When off, notes tell the rep the quote was built without it.
@@ -107,13 +105,13 @@ Each ready PDF has one section per quote, showing product lines, quantities, uni
 
 Missing essentials return `needs_info`; the workflow posts the questions to Front. Quantities below a product's minimum stop PDF generation and produce a “Below minimum” message requesting a new quantity.
 
-The pricing step attaches warnings for totals over $4,000, where a 3.5% card fee applies, missing shipping, and sock size to confirm. The card-fee warning has a delivery gap described below. Sock Club MCP tool calls have a 60-second timeout, the agent loop is capped at 20 iterations, and the output parser retries malformed output through its auto-fix model.
+The pricing step attaches warnings for missing shipping, sock size, and card fees (see Limitations). Sock Club MCP tool calls have a 60-second timeout, and the agent loop is capped at 20 iterations.
 
-Human review happens through follow-up comments and notes for the rep. Monitoring and alerting are not implemented.
+Monitoring and alerting are not implemented.
 
 ## Results and evidence
 
-The workflow is in testing and is not yet in production. Previous analysis put hands-on time for the sales support quoting workflow at approximately four minutes per quote. Initial agent testing puts hands-on time at approximately 15 seconds per quote. These are preliminary, approximate figures; a formal evaluation set has not yet been created or run.
+These preliminary observations come from previous workflow analysis and initial agent testing. They have not been validated through formal evaluations.
 
 | Metric or observation | Previous workflow | Agent workflow | Evidence type | Measurement period | Source |
 | --- | --- | --- | --- | --- | --- |
@@ -125,17 +123,11 @@ Hands-on time describes human effort, not total elapsed time to deliver a quote.
 
 - **Source material:** {{Provide a shareable source repository and review notes}}.
 
-The synthetic demo above is an illustration of intended behavior, not evidence of successful execution.
-
 ## Decisions and lessons
 
-The workflow uses the following design choices. Alternatives considered and most reasons are {{to be provided}}.
+The implementation separates fact gathering from price calculation: the agent selects price breaks, while code applies them and renders the quote. This leaves a transcription risk described below.
 
-- **LLM gathers data; code calculates and renders:** The prompt limits the agent to gathering facts and selecting price breaks. Downstream code handles totals and layout.
-- **Memory per Front conversation:** Follow-up @mentions can combine with earlier answers in the same thread.
-- **Ask instead of guessing essentials:** The prompt requires clarification for the five essential fields and prohibits prices from memory.
-- **Optional upsell:** The comparison is included only when requested.
-- **Two models:** A stronger model runs the agent and a cheaper model repairs malformed output. The reason for this split is {{to be provided}}.
+- **Design rationale:** {{Provide alternatives considered and reasons for choices, including n8n and the two-model setup}}.
 - **Lessons learned:** {{Describe lessons from building, testing, or operating the workflow}}.
 
 ## Limitations
@@ -149,6 +141,6 @@ Claude identified the following potential issues during a workflow review. Verif
 - **Silent drops:** Mentions that fail the filters receive no reply. Comment fetching has no retry or error handling.
 - **Transcribed price breaks:** The agent copies price breaks from Sock Club's MCP tools into the configuration and the code trusts them. A transcription error could reach the PDF.
 - **Price lookup edge case:** If a quantity passes the minimum check but falls below the lowest price break, lookup returns `null` and the line would price at zero.
-- **Tax and fee gaps:** Tax is fixed at zero. The card fee over $4,000 appears only as a warning that is not posted to Front.
+- **Tax and fee gaps:** Tax is fixed at zero. A 3.5% card fee applies to totals over $4,000, but appears only as a warning that is not posted to Front.
 
 {{Record verification and remediation status as these findings are reviewed}}.
