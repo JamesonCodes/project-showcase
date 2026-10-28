@@ -127,7 +127,8 @@ Hands-on time describes human effort, not total elapsed time to deliver a quote.
 
 The implementation separates fact gathering from price calculation: the agent selects price breaks, while code applies them and renders the quote. This leaves a transcription risk described below.
 
-- **Design rationale:** {{Provide alternatives considered and reasons for choices, including n8n and the two-model setup}}.
+- **Why n8n:** I prefer n8n's visual canvas for this type of agent development. Seeing the steps and connections helps me understand the flow, trace data through the workflow, and debug issues more easily than working entirely in code with an agent SDK.
+- **Other design rationale:** {{Provide reasons for other choices, including the two-model setup}}.
 - **Keep the agent's scope focused:** Use the agent for tasks that require interpretation or judgment, and move predictable work into code or deterministic workflow steps. This reduces what the model has to manage and makes runs more consistent.
 - **Additional lessons:** {{Add further lessons from building, testing, or operating the workflow}}.
 
