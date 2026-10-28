@@ -16,7 +16,7 @@ An n8n workflow that turns a sales rep's @mention in a Front conversation into a
 
 ## Problem and solution
 
-Sock Club sales reps read incoming emails in Front, interpret the customer's intent, and determine when a quote is needed. In the current workflow, the account manager hands the task to a sales support rep, who navigates out of Front into Portal+ to generate the quote, posts a comment in the Front conversation explaining what was created, attaches the PDF, and reassigns the conversation to the account manager.
+Sock Club sales reps read incoming emails in Front, interpret the customer's intent, and determine when a quote is needed. In the current workflow, the account manager hands the task to a sales support rep. The support rep navigates out of Front into Portal+ to generate the quote, downloads the quote PDF, and returns to Front. They then post a comment in the conversation with context about what was created, attach the PDF, and reassign the conversation to the account manager.
 
 The bottleneck is queue time. Sales support reps handle competing tasks, so a quote request can wait before preparation begins, delaying delivery to the customer or prospect.
 
