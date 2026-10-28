@@ -129,7 +129,7 @@ The implementation separates fact gathering from price calculation: the agent se
 
 - **Why n8n:** I prefer n8n's visual canvas for this type of agent development. Seeing the steps and connections helps me understand the flow, trace data through the workflow, and debug issues more easily than working entirely in code with an agent SDK.
 - **Keep models interchangeable:** Model capabilities and costs change. Design the workflow so models can be tested and swapped as newer or cheaper options become available, without rebuilding the surrounding logic.
-- **Match the model to the task:** I chose DeepSeek for structured-output repair because speed and low cost matter for that narrow task. Using the more capable model that runs the agent would add cost without being necessary for this step.
+- **Match the model to the task:** I chose DeepSeek for structured-output repair because speed and low cost matter for that narrow task. Using the more capable model that runs the agent would add cost and latency without being necessary for this step.
 - **Keep the agent's scope focused:** Use the agent for tasks that require interpretation or judgment, and move predictable work into code or deterministic workflow steps. This reduces what the model has to manage and makes runs more consistent.
 - **Additional lessons:** {{Add further lessons from building, testing, or operating the workflow}}.
 
