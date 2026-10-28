@@ -95,7 +95,7 @@ Each PDF has one section per quote with product lines, quantities, unit prices, 
 - **Essentials:** Confirm the customer, products, quantities, applicable pricing rules, and account manager. Ask rather than guess, and retrieve prices through Sock Club's MCP tools instead of model memory.
 - **Pricing rules:** Determine which rules apply to the customer's account using the request first, then the user record returned by `get_user`, then the company record. Ask if the applicable pricing rules remain unclear.
 - **Account manager:** Use the request, otherwise the user record returned by `get_user`, with a name lookup to confirm. Ask if neither provides one.
-- **Customer:** Must come from the request text, never the requester's own name or email. See Limitations for a conflicting test override.
+- **Customer:** Must come from the request text, never the requester's own name or email.
 - **Products:** Select the named variant. A plain “header card” defaults to Domestic, with the assumption noted. Ask if ambiguity remains.
 - **Price math:** The agent selects price breaks; code applies the highest break at or below each line's quantity.
 - **Upsell:** Off unless requested. When enabled, use the next break of the sock line and reprice every line at that quantity. When off, notes tell the rep the quote was built without it.
@@ -105,7 +105,7 @@ Each PDF has one section per quote with product lines, quantities, unit prices, 
 
 Missing essentials return `needs_info`; the workflow posts the questions to Front. Quantities below a product's minimum stop PDF generation and produce a “Below minimum” message requesting a new quantity.
 
-The pricing step attaches warnings for missing shipping, sock size, and card fees (see Limitations). Sock Club MCP tool calls have a 60-second timeout, and the agent loop is capped at 20 iterations.
+The pricing step attaches warnings for missing shipping, sock size, and card fees (see Production hardening). Sock Club MCP tool calls have a 60-second timeout, and the agent loop is capped at 20 iterations.
 
 Monitoring and alerting are not implemented.
 
@@ -130,17 +130,14 @@ The implementation separates fact gathering from price calculation: the agent se
 - **Design rationale:** {{Provide alternatives considered and reasons for choices, including n8n and the two-model setup}}.
 - **Lessons learned:** {{Describe lessons from building, testing, or operating the workflow}}.
 
-## Limitations
+## Production hardening
 
-Claude identified the following potential issues during a workflow review. Verification and remediation are still to be documented.
+The following work is planned and has not yet been implemented for production:
 
-- **Hardcoded customer email:** Request preparation sets `customer_email` to a fixed test address, and the prompt tells the agent to use it as the customer. This conflicts with the rule that the customer must come from the request text.
-- **PDF link lifetime:** The PDF step sets an expiration value of `1440`, apparently in minutes. Links would then expire after 24 hours, while quotes are valid for seven days by default.
-- **No webhook verification:** Front sends a signature header, but the workflow does not validate it.
-- **No duplicate-event protection:** A retried event could run the agent twice, post duplicate comments, and add duplicate memory turns.
-- **Silent drops:** Mentions that fail the filters receive no reply. Comment fetching has no retry or error handling.
-- **Transcribed price breaks:** The agent copies price breaks from Sock Club's MCP tools into the configuration and the code trusts them. A transcription error could reach the PDF.
-- **Price lookup edge case:** If a quantity passes the minimum check but falls below the lowest price break, lookup returns `null` and the line would price at zero.
-- **Tax and fee gaps:** Tax is fixed at zero. A 3.5% card fee applies to totals over $4,000, but appears only as a warning that is not posted to Front.
-
-{{Record verification and remediation status as these findings are reviewed}}.
+- **PDF attachment:** Replace the temporary PDF link used in testing with an actual PDF attached to the planned email draft, so access to the quote does not depend on link expiration.
+- **Webhook verification:** Validate Front's signature header before processing events.
+- **Duplicate-event protection:** Prevent retried events from generating duplicate quotes, comments, or memory turns.
+- **Failure handling:** Add appropriate feedback for filtered mentions, plus retries and error handling for comment fetching.
+- **Price-break validation:** Validate price breaks passed from the agent to the pricing code to catch transcription errors before they reach the PDF.
+- **Price lookup edge case:** Stop quote generation if a quantity passes the product minimum but has no applicable price break, rather than allowing a zero-priced line.
+- **Tax and fees:** Replace the fixed zero-tax behavior with the required tax handling and surface the 3.5% card-fee warning for totals over $4,000 to the rep in Front.
