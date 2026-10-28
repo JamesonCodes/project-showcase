@@ -28,18 +28,6 @@ The planned next step, not yet implemented, is a draft email reply with the quot
 
 Quotes must follow the pricing rules that apply to the customer's account. The rep answers follow-up questions by @mentioning the agent again and reviews the quote, sources, and assumptions before sending it to the customer. The workflow does not send customer emails.
 
-## Role in the AI Native Email System
-
-Quote Agent is the quoting job within my broader [AI Native Email System](../ai-native-email-system/README.md) vision: identify the work an incoming email requires and route each job to an agent that can prepare or complete it.
-
-I am building toward that in stages:
-
-1. **Human-triggered assistance (Tier 1):** First, build confidence that the team can @mention Quote Agent with instructions and trust the resulting quote. This is the current testing stage. The same approach will apply to other job-specific agents as they are developed, with evaluations and production hardening required before rollout.
-2. **System-triggered assistance (Tier 2):** Once the quoting workflow is reliable, connect it to the email system's planned intent extraction and job routing. The system would identify quote requests and trigger Quote Agent, preparing the quote and email draft for the sales rep to review, edit, and approve. Other jobs would route to their respective agents.
-3. **Bounded autonomy (Tier 3):** Use an autonomy matrix to define which quotes may be sent automatically and which require human review. Those boundaries must be defined and validated before enabling automatic sending.
-
-Automatic job routing, email drafting, and sending are not yet implemented for Quote Agent. The goal is to establish reliable job execution before increasing autonomy.
-
 ## My contribution
 
 - **Personal responsibilities:** I took the agent from concept to a working implementation, choosing n8n as the runtime and building the workflow, integrations, and decision logic.
@@ -156,3 +144,15 @@ The following work is planned and has not yet been implemented for production:
 - **Price-break validation:** Validate price breaks passed from the agent to the pricing code to catch transcription errors before they reach the PDF.
 - **Price lookup edge case:** Stop quote generation if a quantity passes the product minimum but has no applicable price break, rather than allowing a zero-priced line.
 - **Tax and fees:** Replace the fixed zero-tax behavior with the required tax handling and surface the 3.5% card-fee warning for totals over $4,000 to the rep in Front.
+
+## Role in the AI Native Email System
+
+Quote Agent is the quoting job within my broader [AI Native Email System](../ai-native-email-system/README.md) vision: identify the work an incoming email requires and route each job to an agent that can prepare or complete it.
+
+I am building toward that in stages:
+
+1. **Human-triggered assistance (Tier 1):** First, build confidence that the team can @mention Quote Agent with instructions and trust the resulting quote. This is the current testing stage. The same approach will apply to other job-specific agents as they are developed, with evaluations and production hardening required before rollout.
+2. **System-triggered assistance (Tier 2):** Once the quoting workflow is reliable, connect it to the email system's planned intent extraction and job routing. The system would identify quote requests and trigger Quote Agent, preparing the quote and email draft for the sales rep to review, edit, and approve. Other jobs would route to their respective agents.
+3. **Bounded autonomy (Tier 3):** Use an autonomy matrix to define which quotes may be sent automatically and which require human review. Those boundaries must be defined and validated before enabling automatic sending.
+
+Automatic job routing, email drafting, and sending are not yet implemented for Quote Agent. The goal is to establish reliable job execution before increasing autonomy.
