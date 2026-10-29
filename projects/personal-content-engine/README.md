@@ -4,7 +4,7 @@ I read newsletters every morning before work: Applied AI, GTM Engineering, use c
 
 I also want to share more on LinkedIn and build a reputation around what I'm learning and building. My projects give me post ideas, but those take time to develop into something worth sharing. I've struggled to post consistently. I'm better at setting up systems.
 
-So I'm building a personal content engine with Codex to explore more sources and turn useful ideas into posts with my own perspective. I'll keep reading my core newsletters end to end; the workflow gives me a way to explore others programmatically without adding more reading time to my routine. The goal is to share things other builders can learn from or try themselves.
+So I'm building a personal content engine with Codex to explore more newsletters and turn useful ideas into posts with my own perspective. I'll keep reading my core newsletters end to end; the workflow gives me a way to explore additional newsletters programmatically without adding more reading time to my routine. The goal is to share things other builders can learn from or try themselves.
 
 | Detail | Where things stand |
 | --- | --- |
