@@ -1,6 +1,6 @@
 # Personal Content Engine
 
-I read newsletters every morning before work. Applied AI, GTM Engineering, use cases, technical breakdowns, tech news: there's always something I want to dig into. As I find more people putting out great work, my reading list keeps growing. The time I have to read it doesn't, and I end up wondering what I'm missing.
+I read newsletters every morning before work. Applied AI, GTM Engineering, use cases, technical breakdowns, tech news: there's always something I want to dig into. As I find more people putting out great work, my reading list keeps growing. The time I have to read it doesn't, and I end up wondering what I'm missing. It's easy to get that feeling in AI that everyone else has it figured out and you're already behind.
 
 I also want to share more on LinkedIn and build a reputation around the things I'm learning and building. A lot of my post ideas come from projects I'm working on, but those can take time to develop into something worth sharing. They don't give me something to post every day, and I've struggled to post consistently. I'm better at setting up systems.
 
