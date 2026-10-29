@@ -21,6 +21,8 @@ The result is a reading brief and up to three ranked post ideas. Each idea inclu
 
 Something can be worth reading without needing to become a post. That's a useful distinction to keep in the workflow.
 
+I'm still refining the research and briefing phases to better match my taste and preferences, while leaving room for creative angles and connections I might not have thought of myself.
+
 Once the workflow is in a better place, I plan to turn it into a recurring scheduled task in Codex. I may also break the repeatable steps out into reusable skills in the repository.
 
 ## A run so far
