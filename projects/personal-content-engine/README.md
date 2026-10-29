@@ -83,6 +83,8 @@ Recorded checks include source access, duplicate detection, local links, JSON re
 
 I don't have a measured baseline for research time or publishing consistency. Review time, attributable token usage, and incremental cost haven't been measured either. So far, this shows that the manual research and briefing steps work for the recorded run; time savings and publishing outcomes are still open questions.
 
+Once I start publishing posts through this workflow, I plan to share LinkedIn post analytics here to give the experiment context and track the results over time.
+
 ## What I'm trying next
 
 Next is to review the existing brief and choose an angle, if one feels worth developing. That will let me try the drafting step with real perspective and feedback.
