@@ -75,15 +75,11 @@ Getting access to an article is also different from checking its claims. The res
 
 The October 26 prototype was incomplete, with gaps in intake tracking and original-source checks. The October 27 run added clearer processing state and handoffs. Keeping those earlier artifacts as historical prototypes makes it easier to see what actually changed.
 
-## What's been checked
+## Results
 
-The local October 27 run log, research notes, brief, and processing ledgers record the nine-message intake, three original-source reads, and three post ideas described above. After the RSS follow-up, the ledger showed five messages processed, three screened, and one requiring follow-up. These records are local evidence, not public attachments.
+TBD. I'm still refining the workflow and haven't started publishing posts through it yet.
 
-Recorded checks include source access, duplicate detection, local links, JSON references, and focused RSS checks for exact matches, missing items, and HTML extraction.
-
-I don't have a measured baseline for research time or publishing consistency. Review time, attributable token usage, and incremental cost haven't been measured either. So far, this shows that the manual research and briefing steps work for the recorded run; time savings and publishing outcomes are still open questions.
-
-Once I start publishing posts through this workflow, I plan to share LinkedIn post analytics here to give the experiment context and track the results over time.
+Once I do, I plan to share LinkedIn post analytics here alongside the posts and what I was trying with each one. I'll track how consistently I'm posting and which topics and angles get a response, using that feedback to refine the workflow over time.
 
 ## What I'm trying next
 
