@@ -63,16 +63,16 @@ Raw emails, article text, and intake metadata stay out of this showcase. The sou
 
 ```text
 personal-content-engine/
-├── README.md                 # Project overview and status
-├── AGENTS.md                 # Assistant task map and working rules
+├── README.md                  # Project overview and status
+├── AGENTS.md                  # Assistant task map and working rules
 ├── content-engine-notes.md    # Setup, decisions, and next steps
-├── context/                  # Audience, sources, and editorial guidance
-├── workflow/                 # Research, brief, draft, and review contracts
-├── state/                    # Processing status and story deduplication
-├── runs/                     # Dated research, briefs, and execution logs
+├── context/                   # Audience, sources, and editorial guidance
+├── workflow/                  # Research, brief, draft, and review contracts
+├── state/                     # Processing status and story deduplication
+├── runs/                      # Dated research, briefs, and execution logs
 │   ├── 2026-10-26/            # Historical prototype
 │   └── 2026-10-27/            # Manual research and briefing run
-└── scripts/                  # RSS extraction and usage-reporting helpers
+└── scripts/                   # RSS extraction and usage-reporting helpers
 ```
 
 Reusable guidance and workflow rules stay separate from processing state and dated outputs. Research and briefing have been exercised manually; drafting and review remain defined stages awaiting actual editorial input and results.
