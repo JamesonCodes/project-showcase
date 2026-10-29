@@ -48,7 +48,7 @@ choose where to go deeper, and link to the original documentation.
 
 ## Project directory
 
-Context distinguishes work projects from personal projects. Documentation status describes the write-up; each project's actual development status is recorded separately in its metadata. Sock Scout, Portal+ Assist, and Sample Hub are published. The AI Native Email System, Sales Capacity Planner, Quote Agent, and Personal Content Engine case studies remain documentation drafts.
+Context distinguishes work projects from personal projects. Documentation status describes the write-up; each project's actual development status is recorded separately in its metadata.
 
 | Project | Context | Type | Focus | Documentation status | Case study |
 | --- | --- | --- | --- | --- | --- |
