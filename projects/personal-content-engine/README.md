@@ -59,6 +59,21 @@ This is a small workspace built with Codex's help. I set the goals, source prefe
 
 Raw emails, article text, and intake metadata stay out of this showcase. The source repository is also omitted.
 
+## Repository structure
+
+```mermaid
+flowchart TD
+    ROOT["Personal Content Engine"]
+
+    ROOT --> CONTEXT["Editorial context<br/>Audience, sources, and approved guidance"]
+    ROOT --> WORKFLOW["Workflow contracts<br/>Research → Brief → Draft → Review"]
+    ROOT --> STATE["Persistent state<br/>Processing, retries, and deduplication"]
+    ROOT --> RUNS["Dated run records<br/>Evidence, briefs, and execution logs"]
+    ROOT --> TOOLS["Local utilities<br/>RSS extraction and usage reporting"]
+```
+
+Reusable guidance and workflow rules stay separate from processing state and dated outputs. Research and briefing have been exercised manually; drafting and review remain defined stages awaiting actual editorial input and results.
+
 ## What I've learned so far
 
 Multiple newsletters covering the same story shouldn't turn into several separate findings or count as independent confirmation. Tracking the original story helps keep that straight.
