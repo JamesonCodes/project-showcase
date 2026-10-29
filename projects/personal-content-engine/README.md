@@ -6,6 +6,8 @@ I also want to share more on LinkedIn and build a reputation around the things I
 
 So I'm building a personal content engine with Codex: a workflow to help me keep up with what I'm reading, find useful connections, and turn some of them into better, more consistent LinkedIn posts. The goal is to share helpful information that other builders can learn from or try themselves, with my own perspective on what I've been learning, seeing, and reading.
 
+I’ll keep reading my core newsletters end to end each morning. This gives me a way to explore other sources I’m curious about programmatically, without adding more reading time to my routine. The LinkedIn side builds on that: finding useful ideas from a broader set of sources and adding my own perspective before sharing them.
+
 | Detail | Where things stand |
 | --- | --- |
 | Project status | Working manual research and briefing prototype. Drafting and learning steps are written down but haven't been tried yet. |
