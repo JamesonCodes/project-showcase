@@ -37,6 +37,8 @@ Some sources were inaccessible, so the workflow left them as follow-ups. Later, 
 
 ## How I've put it together
 
+This is a working use case of the [Repository-driven AI workflows setup](../../docs/repository-driven-ai-workflows.md) I've been exploring. The context, reusable instructions, processing state, helpers, and run records live together in a project folder, so Codex can pick up the work across runs. Research and briefing are working manually; the drafting, learning, and scheduling parts are still to be tested.
+
 This is a small workspace built with Codex's help. I set the goals, source preferences, and review boundaries, and configured subscriptions and Gmail forwarding. Codex helped organize the workspace, write the workflow instructions, retrieve and synthesize sources, generate briefs, and build the local Python helpers.
 
 | Part | What it does |

@@ -10,6 +10,10 @@
 
 Unnecessary infrastructure consumes time and maintenance effort. An existing coding assistant may already supply file access, tools, scripts, and multi-step execution. Custom agents remain useful when requirements exceed those capabilities.
 
+## A working use case
+
+I'm putting this setup into practice with my [Personal Content Engine](../projects/personal-content-engine/README.md): a personal workflow that turns newsletter research into reading briefs and possible LinkedIn post angles. It uses persistent context, staged instructions, processing ledgers, Python helpers, and dated run records. The research and briefing steps have been run manually; drafting, learning, and scheduling are still untested.
+
 ## How the workflow works
 
 The value is the working process, not the folders themselves. Start with a task, define acceptable output and review points, preserve inputs, and record corrections. Scripts handle repeatable transformations; APIs supply current information or execute approved actions.
