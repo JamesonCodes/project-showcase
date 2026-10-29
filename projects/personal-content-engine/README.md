@@ -4,13 +4,12 @@ I'm building a personal workflow with Codex that helps me work through newslette
 
 The idea is to make more of what I'm already reading about GTM Engineering and Applied AI. I want a useful reading brief, a few possible post angles, and room to add my own perspective before anything becomes a draft.
 
-**Project status:** Working manual research and briefing prototype. The drafting and learning steps are written down but haven't been tried yet.
-
-**Documentation status:** Documentation draft.
-
-**Started:** Setup and prototype work recorded October 26–27, 2026.
-
-**Built with:** Codex, AgentMail, Gmail forwarding, Markdown, JSON, Python, and Git.
+| Detail | Where things stand |
+| --- | --- |
+| Project status | Working manual research and briefing prototype. Drafting and learning steps are written down but haven't been tried yet. |
+| Documentation status | Documentation draft |
+| Setup and prototype work | October 26–27, 2026 |
+| Built with | Codex, AgentMail, Gmail forwarding, Markdown, JSON, Python, and Git |
 
 ## What it does
 
@@ -24,25 +23,29 @@ Something can be worth reading without needing to become a post. That's a useful
 
 **Sanitized example from October 27, 2026:** This summary leaves out raw emails, inbox identifiers, and personalized links while preserving the recorded counts.
 
-The manual run retrieved all nine available newsletter issues, identified overlapping coverage, and read three selected original sources. It produced a brief with three findings and three ranked post ideas, each with two possible hooks.
+| Step | October 27 manual run |
+| --- | --- |
+| Newsletter intake | All nine available issues retrieved and screened for overlapping coverage |
+| Original-source reading | Three selected originals read |
+| Reading brief | Three findings |
+| Post ideas | Three ranked ideas, each with two possible hooks |
+| Drafting and publication | No idea selected, draft generated, or post published |
 
 One idea explored how an agent integration should preserve the business checks already enforced by a normal application interface. The brief asked me for a real project example before taking that angle further.
 
 Some sources were inaccessible, so the workflow left them as follow-ups. Later, a public RSS feed provided an exact match for one blocked article. That follow-up was recorded separately, keeping the original morning brief intact.
 
-I haven't selected an idea, generated a draft, or published a post through this workflow yet.
-
 ## How I've put it together
 
 This is a small workspace built with Codex's help. I set the goals, source preferences, and review boundaries, and configured subscriptions and Gmail forwarding. Codex helped organize the workspace, write the workflow instructions, retrieve and synthesize sources, generate briefs, and build the local Python helpers.
 
-The workspace has a few parts:
-
-- **Context:** Guidance about my interests, audience, and writing preferences. An `AGENTS.md` task map points Codex to the relevant files.
-- **Workflow instructions:** Separate steps for research, briefing, drafting, and review. The last two are still untested.
-- **Processing state:** JSON ledgers track messages and findings, including retries and stories already surfaced. Processing doesn't depend on whether an email is marked unread.
-- **Run folders:** Dated research notes, briefs, failures, and instructions for picking up where a run left off.
-- **RSS fallback:** A Python helper looks for an exact article by slug or title in a public feed. It rejects missing or ambiguous matches and flags possible excerpts.
+| Part | What it does |
+| --- | --- |
+| Context | Holds guidance about my interests, audience, and writing preferences. An `AGENTS.md` task map points Codex to the relevant files. |
+| Workflow instructions | Defines research, briefing, drafting, and review steps. The last two are still untested. |
+| Processing state | JSON ledgers track messages, findings, retries, and stories already surfaced, independently of unread labels. |
+| Run folders | Keeps dated research notes, briefs, failures, and instructions for picking up where a run left off. |
+| RSS fallback | A Python helper finds an exact article by slug or title in a public feed, rejects missing or ambiguous matches, and flags possible excerpts. |
 
 Raw emails, article text, and intake metadata stay out of this showcase. The source repository is also omitted.
 
