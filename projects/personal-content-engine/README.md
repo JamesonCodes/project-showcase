@@ -1,163 +1,71 @@
 # Personal Content Engine
 
-An AI-assisted workflow that turns newsletter research into evidence-backed reading briefs and potential LinkedIn post angles, with human review before drafting and publication.
+I'm building a personal workflow with Codex that helps me work through newsletters, follow interesting sources, and find ideas I might want to write about on LinkedIn.
 
-| Field | Details |
-| --- | --- |
-| Documentation status | Documentation draft |
-| Project status | Working manual research and briefing prototype; drafting and learning workflows defined but not yet exercised |
-| My role | Project owner, workflow designer, and editorial decision-maker, working with Codex |
-| Timeline | Setup and prototype work recorded October 26–27, 2026; experiment start and end dates not set |
-| Tools | Codex, AgentMail plugin/MCP access, Gmail forwarding, Markdown, JSON, Python standard library, Git |
+The idea is to make more of what I'm already reading about GTM Engineering and Applied AI. I want a useful reading brief, a few possible post angles, and room to add my own perspective before anything becomes a draft.
 
-## At a glance
+**Project status:** Working manual research and briefing prototype. The drafting and learning steps are written down but haven't been tried yet.
 
-- **Problem:** I wanted a repeatable way to learn from GTM Engineering and Applied AI sources and turn useful findings into content without losing source context or inventing personal experience.
-- **Solution:** A staged workspace for research, briefing, drafting, and review, supported by persistent intake state and explicit human checkpoints.
-- **Outcome:** A manual run screened nine newsletter issues, read three selected original sources, and produced three ranked post ideas. A later RSS fallback recovered another blocked article. Scheduled delivery and publishing outcomes remain untested.
+**Documentation status:** Documentation draft.
 
-## The problem
+**Started:** Setup and prototype work recorded October 26–27, 2026.
 
-This is a personal workflow built around my own research and publishing decisions. The intended content audience includes GTM and RevOps hiring managers, collaborators, and other builders.
+**Built with:** Codex, AgentMail, Gmail forwarding, Markdown, JSON, Python, and Git.
 
-The challenge is more than summarizing newsletters. Several publications can cover the same story, an email can omit important evidence, and an interesting article does not automatically make a useful post. A proposed angle may also need personal experience that the system cannot supply.
+## What it does
 
-I wanted the workflow to preserve those distinctions while keeping editorial judgment with me.
+I ask Codex to run the workflow manually. It checks the newsletter inbox through AgentMail, compares messages with what it has already processed, and screens the contents for useful stories. For promising items, it follows links to the original sources.
 
-A measured baseline for research time, review effort, and publishing consistency was not recorded.
+The result is a reading brief and up to three ranked post ideas. Each idea includes possible hooks, the research behind it, and any personal input it needs from me. Then it stops so I can choose an angle and add my perspective.
 
-## My contribution
+Something can be worth reading without needing to become a post. That's a useful distinction to keep in the workflow.
 
-I set the project goals, audience, positioning, source preferences, and review boundaries. I chose a newsletter-first approach and approved the staged workspace structure.
+## A run so far
 
-I also configured newsletter subscriptions and Gmail forwarding for sources that I was having difficulty subscribing to through the AgentMail address. One forwarded publication was verified through retrieval; two other forwarding paths remained unverified.
+**Sanitized example from October 27, 2026:** This summary leaves out raw emails, inbox identifiers, and personalized links while preserving the recorded counts.
 
-Codex assisted with workspace organization, workflow documentation, source retrieval and synthesis, brief generation, processing ledgers, and local Python helpers. The implementation was developed with AI assistance. I do not present the generated artifacts or helper code as work completed without that assistance.
+The manual run retrieved all nine available newsletter issues, identified overlapping coverage, and read three selected original sources. It produced a brief with three findings and three ranked post ideas, each with two possible hooks.
 
-The recorded validation includes source-access checks, duplicate detection, local link and JSON/reference checks, and focused RSS extraction checks. No additional human collaborators are recorded.
+One idea explored how an agent integration should preserve the business checks already enforced by a normal application interface. The brief asked me for a real project example before taking that angle further.
 
-I retain responsibility for selecting an angle, supplying personal perspective, reviewing drafts, and publishing.
+Some sources were inaccessible, so the workflow left them as follow-ups. Later, a public RSS feed provided an exact match for one blocked article. That follow-up was recorded separately, keeping the original morning brief intact.
 
-## The solution
+I haven't selected an idea, generated a draft, or published a post through this workflow yet.
 
-The implemented workflow starts with a manual request in Codex.
+## How I've put it together
 
-1. Read the relevant guidance and current run log.
-2. List received newsletter messages and compare them with the processing ledger.
-3. Retrieve bodies, screen relevance, and identify duplicate stories.
-4. Read promising original sources and record access gaps.
-5. Produce a reading brief and up to three ranked post ideas.
-6. Stop for my selection and perspective before drafting.
+This is a small workspace built with Codex's help. I set the goals, source preferences, and review boundaries, and configured subscriptions and Gmail forwarding. Codex helped organize the workspace, write the workflow instructions, retrieve and synthesize sources, generate briefs, and build the local Python helpers.
 
-The output separates what is worth reading from what might be worth posting. Each proposed idea connects to research findings and identifies missing personal input.
+The workspace has a few parts:
 
-Drafting and editorial learning have documented handoffs, but neither had been exercised with an actual selected angle or published post in the recorded runs.
+- **Context:** Guidance about my interests, audience, and writing preferences. An `AGENTS.md` task map points Codex to the relevant files.
+- **Workflow instructions:** Separate steps for research, briefing, drafting, and review. The last two are still untested.
+- **Processing state:** JSON ledgers track messages and findings, including retries and stories already surfaced. Processing doesn't depend on whether an email is marked unread.
+- **Run folders:** Dated research notes, briefs, failures, and instructions for picking up where a run left off.
+- **RSS fallback:** A Python helper looks for an exact article by slug or title in a public feed. It rejects missing or ambiguous matches and flags possible excerpts.
 
-## Demo
+Raw emails, article text, and intake metadata stay out of this showcase. The source repository is also omitted.
 
-**Sanitized example, summarized from the October 27 manual run.** Raw emails, inbox identifiers, and personalized links are omitted. The summary preserves the recorded workflow and output counts.
+## What I've learned so far
 
-**Input →** Nine available newsletter issues, existing brand guidance, and a prior prototype brief.
+Multiple newsletters covering the same story shouldn't turn into several separate findings or count as independent confirmation. Tracking the original story helps keep that straight.
 
-**System behavior →** The workflow retrieved all nine bodies, screened them, identified overlapping coverage, and read three selected originals. It recorded inaccessible sources as follow-ups instead of treating their claims as verified.
+Getting access to an article is also different from checking its claims. The research notes distinguish newsletter summaries, original articles read, and primary evidence checked. RSS can help with access, but it doesn't guarantee a complete article or corroborate what it says.
 
-**Output →** A reading brief with three findings and three ranked post ideas, each with two proposed hooks and a request for relevant personal perspective.
+The October 26 prototype was incomplete, with gaps in intake tracking and original-source checks. The October 27 run added clearer processing state and handoffs. Keeping those earlier artifacts as historical prototypes makes it easier to see what actually changed.
 
-One idea asked how an agent integration should preserve the business checks already enforced by a normal application interface. The brief asked me for a real project example before developing that angle.
+## What's been checked
 
-**Outcome →** A reviewable research and ideation artifact. No selection, draft, or publication was recorded.
+The local October 27 run log, research notes, brief, and processing ledgers record the nine-message intake, three original-source reads, and three post ideas described above. After the RSS follow-up, the ledger showed five messages processed, three screened, and one requiring follow-up. These records are local evidence, not public attachments.
 
-During a later follow-up, an exact article match in a public RSS feed resolved one source-access blocker. The original morning brief was preserved rather than silently rewritten.
+Recorded checks include source access, duplicate detection, local links, JSON references, and focused RSS checks for exact matches, missing items, and HTML extraction.
 
-No screenshots or hosted demo are included.
+I don't have a measured baseline for research time or publishing consistency. Review time, attributable token usage, and incremental cost haven't been measured either. So far, this shows that the manual research and briefing steps work for the recorded run; time savings and publishing outcomes are still open questions.
 
-## How it works
+## What I'm trying next
 
-### Context and stage contracts
+Next is to review the existing brief and choose an angle, if one feels worth developing. That will let me try the drafting step with real perspective and feedback.
 
-Reusable guidance lives in `context/`. Separate workflow files define research, briefing, drafting, and review requirements.
+I also need to resolve the remaining source follow-up and verify two Gmail forwarding paths. One forwarded publication has been retrieved successfully.
 
-An `AGENTS.md` task map directs the assistant to relevant files. Approved guidance stays separate from historical drafts and untested hypotheses. This is a context-management design choice, not a measured performance improvement.
-
-### Read-only newsletter intake
-
-AgentMail provides message listing and full-body retrieval through its plugin. Gmail forwarding supports some subscriptions.
-
-Processing state is independent of unread labels. For the small inbox, the workflow lists all available messages and compares IDs against the ledger, helping catch forwarded or backfilled issues with older original dates.
-
-### Persistent state
-
-Two JSON files serve different purposes:
-
-- `state/messages.json` records processing status, retry reasons, and next actions.
-- `state/findings.json` tracks canonical stories, evidence references, and prior surfacing.
-
-Message states distinguish new, screened, follow-up needed, processed, and failed items. Story-level deduplication prevents repeated newsletter coverage from becoming multiple independent findings.
-
-### Evidence and access failures
-
-Research records distinguish newsletter-level evidence, original articles read, and primary evidence checked.
-
-Blocked sources remain explicit gaps. A Python helper can extract an exact article from a public RSS feed using its slug or title. It rejects missing or ambiguous matches, retains source metadata, and flags possible excerpt markers. RSS extraction does not guarantee completeness or provide independent corroboration.
-
-### Human review and operational records
-
-Dated run folders contain research, briefs, QA, failures, and resume instructions.
-
-The workflow stops before drafting until I select an angle and provide needed perspective. Publication remains manual.
-
-Raw emails, extracted article text, credentials, and personal analytics belong in ignored local storage. No unattended schedule or automatic publishing is configured.
-
-## Results and evidence
-
-The sources below are local workspace records, not public attachments. The counts and checks are summarized from those records; raw intake metadata, article text, and processing ledgers are not included in this showcase.
-
-| Metric or observation | Before | After | Evidence type | Measurement period | Source |
-| --- | --- | --- | --- | --- | --- |
-| Newsletter coverage in the manual run | Not recorded | Nine available issues listed and all nine bodies retrieved | Recorded execution count | October 27, 2026, intake snapshot at 06:05:40 -05:00 | October 27 run log |
-| Original-source reading | Not recorded | Three selected originals read during the morning run | Recorded execution count | October 27 morning run | Research artifact and run log |
-| Editorial output | Not recorded | Three ranked ideas, each with two proposed hooks | Artifact inspection | October 27 morning run | Brief |
-| Processing state after the RSS follow-up | No trustworthy prior ledger | Five processed, three screened, one requiring follow-up | Recorded state summary | October 27, after source recovery | Run log and processing ledgers |
-| Blocked-source recovery | Exact GitHub marketing article inaccessible through the attempted article route | Matching RSS article extracted and read; 1,431 words reported | Retrieval record and qualitative completeness review | October 27, 2026, 11:37:02 UTC | RSS follow-up entry |
-| RSS helper checks | Not recorded | Exact-match, missing-item, and HTML extraction checks recorded as passed | Focused functional checks | October 27, 2026 | Run log |
-
-These results demonstrate manual execution and artifact production. They do not establish reliable unattended operation, editorial quality, time savings, or audience growth.
-
-Review time, attributable token usage, and actual incremental cost were not measured. The setup and manual run shared execution context, so I excluded them from a briefing-only token baseline.
-
-The proposed 30–60 day experiment and goal of having 100 people associate my name with GTM Engineering / Applied AI are intentions, not achieved results. No experiment launch date or recognition measurement is recorded.
-
-## Decisions and tradeoffs
-
-| Decision | Reason and tradeoff |
-| --- | --- |
-| Start with existing Codex access and AgentMail | Test workflow usefulness before adding custom infrastructure. Unattended access still needs validation. |
-| Use newsletters as the initial intake channel | Keep research bounded while allowing selected original-source checks. Independent social-feed and YouTube monitoring are deferred. |
-| Separate reading interest from posting interest | A useful finding can remain research without becoming a forced content idea. |
-| Track processing independently of unread labels | Preserve retry and reuse decisions without changing the inbox. This adds local state to maintain. |
-| Deduplicate by original story identity | Repeated coverage should not inflate finding counts or appear to corroborate a claim independently. |
-| Require selection before drafting | Preserve my judgment and prevent invented personal experience. This creates an intentional manual handoff. |
-| Use public RSS as an access fallback | Recover available original text without treating access success as proof of completeness. |
-| Defer token measurement until runs are isolated | Avoid assigning mixed setup work to recurring operating costs. This leaves current costs unmeasured. |
-
-## Limitations and lessons
-
-The strongest current evidence is for manual research and briefing. The project has not completed the full path from intake to selected draft, publication, and performance review.
-
-The October 26 prototype was incomplete: it lacked comprehensive intake state and original-source verification. It remains labeled as a historical prototype rather than a completed run or accepted writing example.
-
-The October 27 work made the handoffs more explicit. Source access, research completion, editorial selection, and publication approval are separate states.
-
-A successful retrieval also does not establish the underlying claim. Likewise, duplicate coverage is not independent corroboration.
-
-These are implementation lessons and safeguards. No performance-derived editorial lessons have been accepted yet, and the context structure has not been compared against an alternative in a controlled evaluation.
-
-## Current state and next steps
-
-The next useful step is to review the existing brief and select an angle, if any. That would allow the drafting handoff to be tested with real perspective and feedback.
-
-Other open work includes resolving the remaining source follow-up, verifying two forwarding paths, and validating the complete manual workflow before scheduling.
-
-The target briefing time is 8 a.m. America/Chicago. Publishing cadence, review-time budget, and spending limit remain undecided.
-
-The source repository is not included in this showcase.
+Eventually I'd like an 8 a.m. America/Chicago briefing. For now, runs are manual, and there's no unattended schedule or automatic publishing.
