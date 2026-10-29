@@ -21,6 +21,8 @@ The result is a reading brief and up to three ranked post ideas. Each idea inclu
 
 Something can be worth reading without needing to become a post. That's a useful distinction to keep in the workflow.
 
+Once the workflow is in a better place, I plan to turn it into a recurring scheduled task in Codex. I may also break the repeatable steps out into reusable skills in the repository.
+
 ## A run so far
 
 **Sanitized example from October 27, 2026:** This summary leaves out raw emails, inbox identifiers, and personalized links while preserving the recorded counts.
