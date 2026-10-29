@@ -1,12 +1,10 @@
 # Personal Content Engine
 
-I read newsletters every morning before work. Applied AI, GTM Engineering, use cases, technical breakdowns, tech news: there's always something I want to dig into. As I find more people putting out great work, my reading list keeps growing. The time I have to read it doesn't, and I end up wondering what I'm missing. It's easy to get that feeling in AI that everyone else has it figured out and you're already behind.
+I read newsletters every morning before work: Applied AI, GTM Engineering, use cases, technical breakdowns, and tech news. My reading list keeps growing, but the time I have to read it doesn't. It's easy to get that feeling in AI that everyone else has it figured out and you're already behind.
 
-I also want to share more on LinkedIn and build a reputation around the things I'm learning and building. A lot of my post ideas come from projects I'm working on, but those can take time to develop into something worth sharing. They don't give me something to post every day, and I've struggled to post consistently. I'm better at setting up systems.
+I also want to share more on LinkedIn and build a reputation around what I'm learning and building. My projects give me post ideas, but those take time to develop into something worth sharing. I've struggled to post consistently. I'm better at setting up systems.
 
-So I'm building a personal content engine with Codex: a workflow to help me keep up with what I'm reading, find useful connections, and turn some of them into better, more consistent LinkedIn posts. The goal is to share helpful information that other builders can learn from or try themselves, with my own perspective on what I've been learning, seeing, and reading.
-
-I’ll keep reading my core newsletters end to end each morning. This gives me a way to explore other sources I’m curious about programmatically, without adding more reading time to my routine. The LinkedIn side builds on that: finding useful ideas from a broader set of sources and adding my own perspective before sharing them.
+So I'm building a personal content engine with Codex to explore more sources and turn useful ideas into posts with my own perspective. I'll keep reading my core newsletters end to end; the workflow gives me a way to explore others programmatically without adding more reading time to my routine. The goal is to share things other builders can learn from or try themselves.
 
 | Detail | Where things stand |
 | --- | --- |
@@ -17,17 +15,20 @@ I’ll keep reading my core newsletters end to end each morning. This gives me a
 
 ## What it does
 
-I ask Codex to run the workflow manually. It checks the newsletter inbox through AgentMail, compares messages with what it has already processed, and screens the contents for useful stories. For promising items, it follows links to the original sources.
+I start a run manually in Codex. The workflow:
 
-The result is a reading brief and up to three ranked post ideas. Each idea includes possible hooks, the research behind it, and any personal input it needs from me. Then it stops so I can choose an angle and add my perspective.
+1. Checks the newsletter inbox through AgentMail and compares messages with what's already been processed.
+2. Screens for useful stories and overlapping coverage, then follows promising links to original sources.
+3. Produces a reading brief and up to three ranked post ideas, with possible hooks, supporting research, and any personal input needed from me.
+4. Stops so I can choose an angle and add my perspective before drafting. Publishing is manual.
 
-Something can be worth reading without needing to become a post. That's a useful distinction to keep in the workflow.
+Something can be worth reading without needing to become a post.
 
 I'm still refining the research and briefing phases to better match my taste and preferences, while leaving room for creative angles and connections I might not have thought of myself.
 
-Once the workflow is in a better place, I plan to turn it into a recurring scheduled task in Codex. I may also break the repeatable steps out into reusable skills in the repository.
+Once the workflow is in a better place, I plan to turn it into a recurring scheduled task in Codex, aiming for an 8 a.m. America/Chicago briefing. I may also break the repeatable steps out into reusable skills in the repository.
 
-## A run so far
+## An example run
 
 **Sanitized example from October 27, 2026:** This summary leaves out raw emails, inbox identifiers, and personalized links while preserving the recorded counts.
 
@@ -47,7 +48,7 @@ Some sources were inaccessible, so the workflow left them as follow-ups. Later, 
 
 This is a working use case of the [Repository-driven AI workflows setup](../../docs/repository-driven-ai-workflows.md) I've been exploring. The context, reusable instructions, processing state, helpers, and run records live together in a project folder, so Codex can pick up the work across runs.
 
-This is a small workspace built with Codex's help. I set the goals, source preferences, and review boundaries, and configured subscriptions and Gmail forwarding. Codex helped organize the workspace, write the workflow instructions, retrieve and synthesize sources, generate briefs, and build the local Python helpers.
+I set the goals, source preferences, and review boundaries, and configured subscriptions and Gmail forwarding. Codex helped organize the workspace, write the workflow instructions, retrieve and synthesize sources, generate briefs, and build the local Python helpers.
 
 The working repository is organized like this:
 
@@ -65,15 +66,13 @@ personal-content-engine/
 └── scripts/                   # RSS extraction and usage-reporting helpers
 ```
 
-Reusable guidance and workflow rules stay separate from processing state and dated outputs. Research and briefing have been exercised manually; drafting and review remain defined stages awaiting actual editorial input and results. Raw emails, article text, intake metadata, and the source repository stay out of this showcase.
+Reusable guidance and workflow rules stay separate from processing state and dated outputs. Raw emails, article text, intake metadata, and the source repository stay out of this showcase.
 
 ## What I've learned so far
 
-Multiple newsletters covering the same story shouldn't turn into several separate findings or count as independent confirmation. Tracking the original story helps keep that straight.
-
-Getting access to an article is also different from checking its claims. The research notes distinguish newsletter summaries, original articles read, and primary evidence checked. RSS can help with access, but it doesn't guarantee a complete article or corroborate what it says.
-
-The October 26 prototype was incomplete, with gaps in intake tracking and original-source checks. The October 27 run added clearer processing state and handoffs. Keeping those earlier artifacts as historical prototypes makes it easier to see what actually changed.
+- **Repeated coverage isn't confirmation.** Multiple newsletters covering the same story shouldn't become separate findings or count as independent evidence. Tracking the original story helps keep that straight.
+- **Access isn't verification.** The research notes distinguish newsletter summaries, original articles read, and primary evidence checked. RSS helps with access, but doesn't guarantee a complete article or corroborate its claims.
+- **Keep the history.** The October 26 prototype had gaps in intake tracking and original-source checks. Keeping it alongside the October 27 run makes the changes in processing state and handoffs easier to follow.
 
 ## Results
 
@@ -88,5 +87,3 @@ Those analytics will also feed into the workflow's review step, helping guide fu
 Next is to review the existing brief and choose an angle, if one feels worth developing. That will let me try the drafting step with real perspective and feedback.
 
 I also need to resolve the remaining source follow-up and verify two Gmail forwarding paths. One forwarded publication has been retrieved successfully.
-
-Eventually I'd like an 8 a.m. America/Chicago briefing. For now, runs are manual, and there's no unattended schedule or automatic publishing.
