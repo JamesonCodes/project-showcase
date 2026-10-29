@@ -79,7 +79,9 @@ The October 26 prototype was incomplete, with gaps in intake tracking and origin
 
 TBD. I'm still refining the workflow and haven't started publishing posts through it yet.
 
-Once I do, I plan to share LinkedIn post analytics here alongside the posts and what I was trying with each one. I'll track how consistently I'm posting and which topics and angles get a response, using that feedback to refine the workflow over time.
+Once I do, I plan to share LinkedIn post analytics here alongside the posts and what I was trying with each one. I'll track how consistently I'm posting and which topics and angles get a response.
+
+Those analytics will also feed into the workflow's review step, helping guide future topics, hooks, and formats based on what resonates. I'll use those patterns alongside my own judgment to shape new posts and test whether the results repeat.
 
 ## What I'm trying next
 
