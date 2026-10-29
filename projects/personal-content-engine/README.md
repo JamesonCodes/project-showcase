@@ -45,21 +45,11 @@ Some sources were inaccessible, so the workflow left them as follow-ups. Later, 
 
 ## How I've put it together
 
-This is a working use case of the [Repository-driven AI workflows setup](../../docs/repository-driven-ai-workflows.md) I've been exploring. The context, reusable instructions, processing state, helpers, and run records live together in a project folder, so Codex can pick up the work across runs. Research and briefing are working manually; the drafting, learning, and scheduling parts are still to be tested.
+This is a working use case of the [Repository-driven AI workflows setup](../../docs/repository-driven-ai-workflows.md) I've been exploring. The context, reusable instructions, processing state, helpers, and run records live together in a project folder, so Codex can pick up the work across runs.
 
 This is a small workspace built with Codex's help. I set the goals, source preferences, and review boundaries, and configured subscriptions and Gmail forwarding. Codex helped organize the workspace, write the workflow instructions, retrieve and synthesize sources, generate briefs, and build the local Python helpers.
 
-| Part | What it does |
-| --- | --- |
-| Context | Holds guidance about my interests, audience, and writing preferences. An `AGENTS.md` task map points Codex to the relevant files. |
-| Workflow instructions | Defines research, briefing, drafting, and review steps. The last two are still untested. |
-| Processing state | JSON ledgers track messages, findings, retries, and stories already surfaced, independently of unread labels. |
-| Run folders | Keeps dated research notes, briefs, failures, and instructions for picking up where a run left off. |
-| RSS fallback | A Python helper finds an exact article by slug or title in a public feed, rejects missing or ambiguous matches, and flags possible excerpts. |
-
-Raw emails, article text, and intake metadata stay out of this showcase. The source repository is also omitted.
-
-## Repository structure
+The working repository is organized like this:
 
 ```text
 personal-content-engine/
@@ -75,7 +65,7 @@ personal-content-engine/
 └── scripts/                   # RSS extraction and usage-reporting helpers
 ```
 
-Reusable guidance and workflow rules stay separate from processing state and dated outputs. Research and briefing have been exercised manually; drafting and review remain defined stages awaiting actual editorial input and results.
+Reusable guidance and workflow rules stay separate from processing state and dated outputs. Research and briefing have been exercised manually; drafting and review remain defined stages awaiting actual editorial input and results. Raw emails, article text, intake metadata, and the source repository stay out of this showcase.
 
 ## What I've learned so far
 
