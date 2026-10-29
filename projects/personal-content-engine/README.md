@@ -1,8 +1,10 @@
 # Personal Content Engine
 
-I'm building a personal workflow with Codex that helps me work through newsletters, follow interesting sources, and find ideas I might want to write about on LinkedIn.
+I read newsletters every morning before work. Applied AI, GTM Engineering, use cases, technical breakdowns, tech news: there's always something I want to dig into. As I find more people putting out great work, my reading list keeps growing. The time I have to read it doesn't, and I end up wondering what I'm missing.
 
-The idea is to make more of what I'm already reading about GTM Engineering and Applied AI. I want a useful reading brief, a few possible post angles, and room to add my own perspective before anything becomes a draft.
+I also want to share more on LinkedIn and build a reputation around the things I'm learning and building. A lot of my post ideas come from projects I'm working on, but those can take time to develop into something worth sharing. They don't give me something to post every day, and I've struggled to post consistently. I'm better at setting up systems.
+
+So I'm building a personal content engine with Codex: a workflow to help me keep up with what I'm reading, find useful connections, and turn some of them into better, more consistent LinkedIn posts. The goal is to share helpful information that other builders can learn from or try themselves, with my own perspective on what I've been learning, seeing, and reading.
 
 | Detail | Where things stand |
 | --- | --- |
