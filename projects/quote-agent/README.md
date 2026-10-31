@@ -2,8 +2,6 @@
 
 An n8n workflow that turns a sales rep's @mention in a Front conversation into a priced, formatted PDF quote for custom socks and packaging, using Sock Club's MCP server tools to retrieve live product and customer data.
 
-https://github.com/user-attachments/assets/9a11ab80-df5b-4a99-9a3a-b023ef51d2dd
-
 ## Metadata
 
 | Field | Value |
@@ -39,7 +37,7 @@ Quotes must follow the pricing rules that apply to the customer's account. The r
 
 ## Demo
 
-No screenshots, recordings, or hosted demo are available yet. {{Provide a shareable demo when available}}.
+https://github.com/user-attachments/assets/9a11ab80-df5b-4a99-9a3a-b023ef51d2dd
 
 **Synthetic example:** This illustrates the designed behavior. It is not a recorded run.
 
