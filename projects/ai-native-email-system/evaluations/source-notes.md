@@ -5,22 +5,15 @@ This documentation draft was adapted on October 9, 2026 from the local portfolio
 ## Sources
 
 - [Build journal at the inspected revision](https://github.com/JamesonCodes/JamesonCodes.github.io/blob/0021813abcdf870b8e0b777f0e3b6166d38c62d7/articles/ai-native-email-system.html): architecture, live-versus-planned scope, human review, reported observations, projections, and next evaluation work.
-- [Project cards at the inspected revision](https://github.com/JamesonCodes/JamesonCodes.github.io/blob/0021813abcdf870b8e0b777f0e3b6166d38c62d7/index.html): system and plugin tools.
 - [Published build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html): reader-facing account; later changes may differ from this snapshot.
 
-## Evidence classification
+## Evidence scope
 
-| Claim | Source characterization | What is missing |
-| --- | --- | --- |
-| 500+ submissions | Observed volume since launch | Launch date, reporting end date, denominator, and export |
-| ~24-second median | Measured submission time in article | Timing start/end definitions, sample, and export |
-| Roughly 3–4 minutes manually | Approximate baseline | Measurement method and baseline period |
-| ~1 in 5 second full design cycles | Rework observation | Denominator, period, definition, and comparable baseline |
-| ~0.6–0.7 FTE Sales Support capacity | Annualized projection | Expected volume, working-hours assumption, and calculation |
-| 168 hours / ~1% design capacity | Annualized projection | Calculation, expected volume, and relationship to rework |
-| First 80% of useful routing taxonomy | Informal qualitative judgment | Not an accuracy score; use a labeled evaluation set instead |
+This case study covers shared context, category routing, job definition, and earned autonomy. Workflow-specific submission metrics and capacity projections are outside its scope.
 
-The rough baseline and reported median support the article's approximate time-reduction claim, but they do not establish an independently verified controlled before/after study. Capacity is conditional and does not imply staffing reductions. No claimed improvement in design rework can be inferred without its baseline.
+- **Source-reported process observation:** The shadow router logs real conversations for batch analysis and iterative refinement. No production export has been inspected here.
+- **Intended architecture:** Job identification, policy decisions, execution, and outcome evaluation describe the downstream system design, not verified end-to-end implementation.
+- **Unmeasured outcomes:** Router accuracy, end-to-end job completion, and system-wide time savings are not established by the available evidence. The journal's informal taxonomy-coverage assessment is not an accuracy score.
 
 ## Evaluation work described as in progress
 

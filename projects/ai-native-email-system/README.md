@@ -1,120 +1,94 @@
 # AI Native Email System
 
-A job-based system being built around Sock Club’s sales inbox, with a live human-reviewed design-request workflow and a universal router operating in shadow mode.
+I'm building a system around Sock Club’s sales inbox that extracts customer intent, identifies the jobs inside a conversation, and routes each job to the right workflow or teammate. The goal is to deliver work with earned, bounded autonomy: each job gains authority only when evidence supports it, with clear limits on what the system can do.
 
 ## Metadata
 
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | In progress as reported in the August 27, 2026 build journal; Portal+ Assist live at Tier 1, universal router in shadow mode |
+| Project status | In progress; shared context and category routing operating in shadow mode in the August 27, 2026 build journal. Downstream job identification and execution remain planned in that snapshot. |
 | My role | Building the context and routing pipeline, defining jobs and autonomy boundaries, and developing evaluations |
-| Timeline | Build journal entry published August 27, 2026; {{Add actual project start and launch dates}} |
-| Tools | Front, n8n, JavaScript, OpenRouter, Claude, Supabase, Portal+; Next.js, TypeScript, and Front Plugin SDK for Portal+ Assist |
+| Timeline | Build journal published August 27, 2026; project start date not documented here |
+| Tools | Front, n8n, JavaScript, OpenRouter, Claude, and Supabase |
 
-This draft follows the [published build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html), not the underlying application source. Its state descriptions reflect that entry; later progress has not been verified. See [source notes](evaluations/source-notes.md).
+This draft follows the [published build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html). Later implementation progress has not been verified against application source or production records. See [source notes](evaluations/source-notes.md).
 
 ## At a glance
 
 - **Problem:** Teammates repeatedly reconstruct context and decide how to advance work spread across inbox conversations and internal systems.
-- **Solution:** A shared context layer and category router support discovery; a separate, human-triggered Portal+ Assist workflow prepares New Design Requests for review and submission.
-- **Outcome:** The article reports 500+ Portal+ Assist submissions and a ~24-second median submission time. The broader router does not yet identify or execute individual jobs.
+- **Approach:** Extract shared context and intent, identify one or more jobs, then route the work according to policy, confidence, and the authority earned by that job.
+- **Implemented scope:** A shadow pipeline builds context, gates action versus no action, classifies categories, and logs decisions for analysis. It does not yet identify or execute individual jobs in the documented snapshot.
 
 ## The problem
 
-- **Users:** Sock Club sales and Sales Support teammates, plus designers receiving their briefs.
-- **Previous workflow:** Read a Front conversation, gather context from other systems, decide what work is needed, and re-enter customer context in Portal+ for design intake.
-- **Friction:** Repeated mental setup, switching systems, missed context, and design rework. A message may contain multiple distinct jobs.
-- **Baseline:** The journal gives a roughly 3–4 minute manual design-request submission time but no dated baseline study. {{Add the baseline sample and collection method}}
+Sales and Sales Support teammates work from Front conversations, but the work inside a message often depends on information elsewhere. They need to understand the request, gather context, decide who should handle it, and follow through.
+
+An email is only the container. A customer asking for updated artwork and pricing has raised two jobs with different outcomes and failure modes. Treating the message as one task hides those distinctions and makes it harder to measure whether the work was completed well.
 
 ## My contribution
 
-- **Personal responsibilities:** Defined jobs as the unit of work; built and refined the shared context/category routing pipeline; created a batch analysis loop; translated an ideal-design-request standard into the prompt used by Portal+ Assist.
-- **Collaborators:** The Director of Design Operations supplied the ideal request standard. Senior teammates are intended to label evaluation examples. {{Clarify collaborators' implementation responsibilities and evaluation work already completed}}
-- **AI assistance:** Claude analyzes batches of logged routing decisions to find taxonomy gaps and gate errors. OpenRouter and Claude are named in the system stack. {{Describe development assistance and confirm model/provider assignments by component}}
-- **What I validated:** The journal reports submission timing and rework observations. Formal, team-reviewed evaluation datasets for the gate and classifiers are being built; they are not presented as complete.
-
-## The solution
-
-Two workflows have different execution boundaries:
-
-- **Universal router:** Real Front conversation → unified context snapshot → action/no-action gate → high-level category classification → Supabase log. It runs in shadow mode and stops there, without customer messages or workflow changes.
-- **Portal+ Assist:** A teammate initiates a New Design Request inside Front → AI prepares a structured brief from email context and attachments → teammate reviews, edits, and submits to Portal+.
-- **Output:** Routing evidence for discovery, or a human-approved internal design request from the separate plugin workflow.
-- **Human judgment:** New Design Requests are live at Tier 1. Customer communication and creative approval remain human; Revision Requests and General Revision Requests remain manual in the same interface.
-
-## Demo
-
-**Synthetic walkthrough, based on the published behavior; not a captured production run.**
-
-1. **Input:** A customer email requesting a new sock design with artwork attached.
-2. **System behavior:** A teammate opens Portal+ Assist and initiates a New Design Request. The plugin prepares a structured draft using the conversation and attachments.
-3. **Outcome:** The teammate reviews and edits the brief, then submits it to Portal+. Nothing executes without approval.
-
-In the separate shadow router, a design-related message may be classified as Artwork / Design and logged. This does not mean the router has identified a specific job or automatically invoked Portal+ Assist.
-
-{{Add a sanitized plugin screenshot or hosted walkthrough showing the review and submission steps}}
+- **Personal responsibilities:** Defined jobs as the unit of work; built and refined the shared context and category-routing pipeline; created a batch analysis loop; defined the job repository and per-job autonomy framework.
+- **Collaborators:** Senior teammates are intended to label evaluation examples. Completed labeling work and implementation responsibilities beyond my own are not documented here.
+- **AI assistance:** Claude supports batch analysis of logged decisions to find taxonomy gaps and gate errors. Development assistance and model/provider assignments by component are not documented here.
+- **Validation:** Logged conversations support iterative review. Formal, team-reviewed evaluation datasets for the gate and classifiers are described as in progress, not complete.
 
 ## How it works
 
 ![Conceptual email-system pipeline from the portfolio](diagrams/system-pipeline.png)
 
-*Conceptual architecture illustration, not a screenshot of implemented end-to-end execution. The universal router currently stops at context, gating, category classification, and logging; downstream job identification and execution are future layers in this source snapshot.*
+*Conceptual architecture illustration. The documented implementation stops at context, gating, category classification, and logging; job identification, execution, and outcome evaluation are intended downstream stages.*
 
-- **Components:** Front conversations, an n8n pipeline, a Unified Context Layer, an action gate, separate action/no-action classifiers, Supabase logging, and a separate Portal+ Assist plugin.
-- **Integrations:** Shared context carries IDs connecting Front, HubSpot, and Portal+, alongside intent, urgency, state, quantities, and in-hands dates. The plugin submits reviewed design tasks to Portal+.
-- **Decision logic:** Binary action gate; five action categories and five no-action categories; secondary category when needed. Unknown preserves uncertain work for analysis.
-- **Error handling:** Gate mistakes, overlapping categories, unknowns, and incorrectly extracted context are inspected in batch analysis. {{Document technical retries, integration failures, and recovery behavior}}
-- **Human review:** Batches of 100–200 logged conversations are analyzed with Claude and reviewed to refine taxonomy and prompts. People review and submit assisted design requests; formal labels will come from senior teammates.
-- **Monitoring:** Decisions, extracted details, confidence scores, and unknowns are logged in Supabase. {{Add alerting and production ownership details}}
+The intended path is conversation → shared context → job identification → policy decision → human or system execution → outcome evaluation.
 
-See [diagram notes](diagrams/README.md) for the distinction between the intended pipeline and live scope.
+The implemented shadow pipeline:
+
+1. Reads real Front conversations through n8n and builds a shared context snapshot: intent, desired outcome, urgency, state, quantities, dates, and linked system identifiers.
+2. Decides whether the latest message calls for action.
+3. Routes it into one of five action categories or five no-action categories, recording a secondary category when needed.
+4. Logs decisions, extracted details, confidence scores, and unknowns in Supabase. It sends no customer messages and makes no workflow changes.
+5. Accumulates batches of 100–200 conversations for analysis with Claude. I inspect overlapping categories, gate errors, missed secondary categories, and context extracted from the wrong part of a thread, then refine the pipeline.
+
+A category identifies the area of work. The next layer must distinguish the specific jobs within it before deciding where and how to deliver the work. Unknown preserves uncertain cases for review and further discovery.
+
+See [diagram notes](diagrams/README.md) for the distinction between intended architecture and implemented scope.
+
+## Jobs and earned autonomy
+
+I'm building a job repository to track each job's trigger, desired outcome, measures, failure modes, frequency, impact, and priority. A separate autonomy matrix records its live tier, risk and reversibility, proposed next behavior, promotion evidence, and actions that must remain human.
+
+| Tier | Who starts and completes the work |
+| --- | --- |
+| 0: Manual | A person initiates, prepares, and completes the job |
+| 1: Human-triggered assistance | A person initiates; AI prepares; a person completes |
+| 2: System-triggered assistance | The system initiates and prepares; a person completes |
+| 3: Bounded autonomy | The system initiates and completes within defined policy |
+
+Promotion is a decision about a specific job. Frequency alone does not justify more authority. Risk, recovery, output quality, and explicit human boundaries determine what can advance. Shadow testing lets me inspect proposed behavior against real work before granting it more initiative or execution authority.
 
 ## Results and evidence
 
-The article separates observations from annualized projections. These values are reported in the source; raw workflow data, exact dates, and calculation sheets are not present here. See the [evidence register](evaluations/source-notes.md).
+The documented result is a working discovery loop: real conversations produce routing logs, batch analysis informs changes, and those changes feed the next run. This is a source-reported process observation, not a measured accuracy or business-outcome result.
 
-| Metric or observation | Before | After | Evidence type | Measurement period | Source |
-| --- | --- | --- | --- | --- | --- |
-| Design-request submission time | Roughly 3–4 minutes manually; method unspecified | Reported ~24-second median | Source-reported measured result; approximate baseline | Since launch, first 500+ submissions; exact dates unspecified | [Build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html) |
-| Portal+ Assist submissions | Not supplied | Reported 500+ requests | Source-reported observed volume | Since launch; exact dates unspecified | [Build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html) |
-| Second full design cycle | Baseline not supplied | Reported ~1 in 5 requests | Source-reported rework observation; denominator/window need confirmation | Not precisely specified | [Build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html) |
-| Sales Support capacity | Not supplied | Projected ~0.6–0.7 FTE equivalent | Annualized estimate, conditional on time savings and expected volume | Annualized projection; input window unspecified | [Build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html) |
-| Design capacity | Not supplied | Projected 168 hours / ~1% across approximately eight designers | Annualized estimate; calculation inputs not supplied | Annualized projection | [Build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html) |
+No router accuracy score, end-to-end job-completion rate, or system-wide time savings are available here. The journal's informal assessment of taxonomy coverage is not an evaluation score. See the [evidence register](evaluations/source-notes.md) for scope and gaps.
 
-Capacity equivalents are not staffing reductions. The reported rework rate is a reason to improve context before increasing autonomy, not evidence that rework improved. No router accuracy score is supplied; the article's informal first-80% characterization is not treated as a measured evaluation result.
+## Decisions and lessons
 
-{{Add dated anonymized exports, timing definitions, reviewed evaluation sets, and projection calculations}}
-
-## Decisions and tradeoffs
-
-- **Jobs rather than emails:** A message can contain several jobs, each with a distinct outcome and failure mode.
-- **Shared context before more automation:** More up-front work avoids repeating brittle extraction logic for every downstream job.
-- **Shadow mode for discovery:** Observe real work without letting the router act on customers or change workflows.
-- **Autonomy per job:** Manual (Tier 0), human-triggered assistance (Tier 1), system-triggered assistance with human completion (Tier 2), and bounded autonomy (Tier 3) require separate evidence and human boundaries.
-- **Quality alongside speed:** Faster intake is insufficient if missing context creates another design cycle.
-
-The published state keeps New Design Requests at Tier 1. Tier 2 for that job is not started; broader autonomy remains conditional.
-
-## Limitations and lessons
-
-- **Limitations:** Router categories do not yet identify or execute jobs. Revision paths remain manual. Evaluation datasets and agreed accuracy thresholds are still being developed. The journal does not supply raw datasets or exact measurement periods.
-- **Lessons:** Shared context helps isolate errors; Unknown is useful discovery evidence; a clear design-request standard makes missing context visible; speed and downstream quality must be evaluated together.
-
-{{Add specific evaluated failure cases and lessons from subsequent releases}}
+- **Shared context first:** A common case file avoids rebuilding extraction logic for every downstream job and helps locate the source of errors.
+- **Discover before executing:** Shadow routing reveals workload patterns and uncertain cases while preserving human control of live work.
+- **Evaluate each stage:** Separate tests for the gate and classifiers make model and prompt changes easier to assess.
+- **Measure the delivered outcome:** Completing a step quickly is insufficient if the next person receives incomplete work. Autonomy needs evidence about quality as well as speed.
 
 ## Current state and next steps
 
-- **Current state in the journal:** Universal category router in shadow mode; Portal+ Assist New Design Requests live at Tier 1; revision paths manual. Follow-ups are described as Tier 1 with Tier 2 shadow testing active, separately from the universal router.
-- **Project next steps described there:** Build three evaluation datasets for the action gate, action categories, and no-action categories; obtain senior-teammate labels; compare models/prompts and inspect errors. Improve design context and rework before increasing New Design Request autonomy.
-- **Documentation next steps:** {{Confirm developments since the journal entry and add shareable evidence with dates}}
+The verified documentation baseline remains the August 27 journal. The universal router is in shadow mode; downstream job identification and execution are not established by that source.
 
-## Supporting-material links
+The next work described there is to build three evaluation datasets for the action gate, action categories, and no-action categories; obtain senior-teammate labels; compare models and prompts; and inspect remaining errors. Job definitions and promotion criteria need to be established before expanding execution authority.
 
-- [Screenshots](screenshots/README.md)
+The next documentation update needs dated implementation evidence, reviewed evaluation results, and examples of how a job is routed and completed within its permitted authority.
+
+## Supporting materials
+
 - [Diagrams](diagrams/README.md)
 - [Evaluations and evidence register](evaluations/README.md)
-- [Videos and hosted demos](videos/README.md)
-- [Portal+ Assist case study draft](../portal-plus-assist/README.md)
 - [Original build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html)
-- **Source repository:** {{Add shareable application or workflow repository links; do not duplicate internal code here}}
