@@ -1,6 +1,6 @@
 # AI Native Email System
 
-I'm building a system around Sock Club’s sales inbox that extracts customer intent, identifies the jobs inside a conversation, and routes each job to a specialized agent or team of agents to deliver the work. Those agents operate within the authority earned for that job: preparing work for human review or completing it within defined limits when evidence supports bounded autonomy.
+I'm building a system around Sock Club’s sales inbox that extracts customer intent, identifies the jobs inside a conversation, and decides whether to hand each job to a teammate, a specialized agent, or a team of agents to deliver the work. Agents operate within the authority earned for that job: preparing work for human review or completing it within defined limits when evidence supports bounded autonomy.
 
 ## Metadata
 
@@ -17,7 +17,7 @@ This draft follows the [published build journal](https://jamesoncodes.github.io/
 ## At a glance
 
 - **Problem:** Teammates repeatedly reconstruct context and decide how to advance work spread across inbox conversations and internal systems.
-- **Approach:** Extract shared context and intent, identify one or more jobs, then hand each job to specialized agents that deliver the work according to policy, confidence, and the authority earned by that job.
+- **Approach:** Extract shared context and intent, identify one or more jobs, then route each job to a human or specialized agents according to policy, confidence, and the authority earned by that job.
 - **Implemented scope:** A shadow pipeline builds context, gates action versus no action, classifies categories, and logs decisions for analysis. It does not yet identify or execute individual jobs in the documented snapshot.
 
 ## The problem
@@ -37,11 +37,11 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 ![Conceptual email-system pipeline from the portfolio](diagrams/system-pipeline.png)
 
-*Conceptual architecture illustration. The documented implementation stops at context, gating, category classification, and logging; job identification, handoff to specialized agents, execution, and outcome evaluation are intended downstream stages.*
+*Conceptual architecture illustration. The documented implementation stops at context, gating, category classification, and logging; job identification, handoff to humans or specialized agents, execution, and outcome evaluation are intended downstream stages.*
 
-The intended path is conversation → shared context → job identification → routing and policy decision → specialized agent or agents → human-reviewed or autonomous completion → outcome evaluation.
+The intended path is conversation → shared context → job identification → routing and policy decision → human or specialized agents → completion within the job’s authority → outcome evaluation.
 
-The router determines what work is needed and hands it off with the shared context. Specialized agents carry out the job within its permitted scope. Depending on the job’s autonomy tier, they prepare an output for a person to complete or deliver the work themselves within defined policy. Routing a job does not by itself grant permission to execute it.
+The router determines what work is needed and whether to hand it to a teammate or specialized agents, passing along the shared context. A human handoff can be the intended path for the job. When agents handle the work, they stay within its permitted scope. Depending on the job’s autonomy tier, they prepare an output for a person to complete or deliver the work themselves within defined policy. Routing a job does not by itself grant permission to execute it.
 
 The implemented shadow pipeline:
 
@@ -51,7 +51,7 @@ The implemented shadow pipeline:
 4. Logs decisions, extracted details, confidence scores, and unknowns in Supabase. It sends no customer messages and makes no workflow changes.
 5. Accumulates batches of 100–200 conversations for analysis with Claude. I inspect overlapping categories, gate errors, missed secondary categories, and context extracted from the wrong part of a thread, then refine the pipeline.
 
-A category identifies the area of work. The next layer must distinguish the specific jobs within it before handing each one to the appropriate specialized agents. Unknown preserves uncertain cases for review and further discovery.
+A category identifies the area of work. The next layer must distinguish the specific jobs within it before handing each one to the appropriate teammate or specialized agents. Unknown preserves uncertain cases for review and further discovery.
 
 See [diagram notes](diagrams/README.md) for the distinction between intended architecture and implemented scope.
 
