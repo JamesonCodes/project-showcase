@@ -2,21 +2,11 @@
 
 I'm building a system around Sock Club’s sales inbox that extracts customer intent, identifies the jobs inside a conversation, and decides whether to hand each job to a teammate, a specialized agent, or a team of agents to deliver the work. Agents operate within the authority earned for that job: preparing work for human review or completing it within defined limits when evidence supports bounded autonomy.
 
-## Metadata
-
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
 | Project status | Active development resumed; refining the system around job routing, evals, and AI skills development. |
-| My role | Building the context and routing pipeline, defining jobs and autonomy boundaries, and developing evaluations |
 | Tools | Front, n8n, JavaScript, OpenRouter, Claude, OpenAI’s Decisions API, and Supabase |
-
-This draft describes the system I’m building. Current implementation coverage and evaluation results still need to be documented. See [evidence notes](evaluations/source-notes.md).
-
-## At a glance
-
-- **Problem:** Teammates repeatedly reconstruct context and decide how to advance work spread across inbox conversations and internal systems.
-- **Approach:** Extract shared context and intent, identify one or more jobs, then route each job to a human or specialized agents according to policy, confidence, and the authority earned by that job.
 
 ## The problem
 
@@ -27,8 +17,7 @@ An email is only the container. A customer asking for updated artwork and pricin
 ## My contribution
 
 - **Personal responsibilities:** Defined jobs as the unit of work; built and refined the shared context and category-routing pipeline; created a batch analysis loop; defined the job repository and per-job autonomy framework.
-- **AI assistance:** I have used Claude to analyze logged routing decisions for taxonomy gaps and gate errors. Current model assignments and development assistance are not documented here.
-- **Validation:** Earlier work included batch review of logged conversations. Current evaluation coverage and results are not documented here.
+- **AI assistance:** I have used Claude to analyze logged routing decisions for taxonomy gaps and gate errors.
 
 ## How it works
 
@@ -36,11 +25,9 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 *Conceptual architecture illustration of the intended system, not a record of current implementation coverage.*
 
-The intended path is conversation → shared context → job identification → routing and policy decision → human or specialized agents → completion within the job’s authority → outcome evaluation.
+The router hands each identified job to a teammate or specialized agents with the shared context. A human handoff can be the intended path for the job. Routing does not by itself grant an agent permission to execute; the job’s autonomy tier determines whether human completion is required.
 
-The router determines what work is needed and whether to hand it to a teammate or specialized agents, passing along the shared context. A human handoff can be the intended path for the job. When agents handle the work, they stay within its permitted scope. Depending on the job’s autonomy tier, they prepare an output for a person to complete or deliver the work themselves within defined policy. Routing a job does not by itself grant permission to execute it.
-
-Shared context carries the customer’s intent, desired outcome, urgency, current state, and relevant details and system identifiers. Each downstream job starts with that context rather than reconstructing the conversation.
+Shared context carries the customer’s intent, desired outcome, urgency, current state, and relevant details and system identifiers. Each downstream job starts with that context rather than reconstructing the conversation. This avoids rebuilding extraction logic for every job and helps locate the source of errors.
 
 Category routing identifies the area of work; job identification determines the specific outcomes needed within it. Uncertain cases need a review path. Outcome evaluation then informs changes to context extraction, routing, and job rules.
 
@@ -57,26 +44,19 @@ I'm building a job repository to track each job's trigger, desired outcome, meas
 | 2: System-triggered assistance | The system initiates and prepares; a person completes |
 | 3: Bounded autonomy | The system initiates and completes within defined policy |
 
-The job’s tier governs the authority of the agents handling it, including when human completion is required. Promotion is a decision about a specific job. Frequency alone does not justify more authority. Risk, recovery, output quality, and explicit human boundaries determine what can advance. Shadow testing lets me inspect proposed behavior against real work before granting it more initiative or execution authority.
-
-## Results and evidence
-
-Earlier development established a context and category-routing pipeline and a batch analysis loop. Those are prior development milestones, not a current production-status report.
-
-Current router accuracy, end-to-end job completion, and system-wide time savings are not documented here. The next evidence update needs dated examples and evaluation results showing what is implemented and how well it works. See the [evidence notes](evaluations/source-notes.md).
+Promotion is a decision about a specific job. Frequency alone does not justify more authority. Risk, recovery, output quality, and explicit human boundaries determine what can advance. Shadow testing lets me inspect proposed behavior against real work before granting it more initiative or execution authority.
 
 ## Decisions and lessons
 
-- **Shared context first:** A common case file avoids rebuilding extraction logic for every downstream job and helps locate the source of errors.
 - **Discover before executing:** Shadow routing reveals workload patterns and uncertain cases while preserving human control of live work.
 - **Evaluate each stage:** Separate tests for the gate and classifiers make model and prompt changes easier to assess.
 - **Measure the delivered outcome:** Completing a step quickly is insufficient if the next person receives incomplete work. Autonomy needs evidence about quality as well as speed.
 
-## Current state and next steps
+## Progress and evidence
 
-I've resumed development on the project. The focus is a system that recognizes the work inside a conversation, hands it to the right human or agents, and delivers it within explicit authority limits.
+Earlier development established a context and category-routing pipeline and a batch analysis loop for reviewing logged conversations. These are prior development milestones; current implementation coverage and evaluation results still need to be documented.
 
-The next showcase update needs to capture the current implementation, active job paths, human handoff points, and evaluation coverage. Dated examples should show how a job moves from intent through routing to completion, including where human review is required.
+The next showcase update needs dated examples of active job paths, human handoffs, and agent execution boundaries, alongside evaluation results. Current router accuracy, end-to-end job completion, and system-wide time savings are not documented here. See the [evidence notes](evaluations/source-notes.md).
 
 ## Supporting materials
 
