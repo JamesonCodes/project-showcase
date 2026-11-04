@@ -23,6 +23,8 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 ## How it works
 
+**Email intake and enrichment:** Inbound and outbound emails pass through an n8n ETL pipeline that cleans the content and stores it in Supabase with message and conversation identifiers, timestamps, direction, ownership, and processing metadata. A recurring job then generates embeddings and classifies the work, adding task, category, work-area, and rationale fields alongside the classification version and timestamp.
+
 ![Conceptual email-system pipeline from the portfolio](diagrams/system-pipeline.png)
 
 *Conceptual architecture illustration of the intended system, not a record of current implementation coverage.*
