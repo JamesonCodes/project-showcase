@@ -7,18 +7,16 @@ I'm building a system around Sock Club’s sales inbox that extracts customer in
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | In progress; shared context and category routing operating in shadow mode in the August 27, 2026 build journal. Downstream job identification and execution remain planned in that snapshot. |
+| Project status | Active development resumed; refining the system around job routing, human handoffs, and bounded agent execution. |
 | My role | Building the context and routing pipeline, defining jobs and autonomy boundaries, and developing evaluations |
-| Timeline | Build journal published August 27, 2026; project start date not documented here |
 | Tools | Front, n8n, JavaScript, OpenRouter, Claude, and Supabase |
 
-This draft follows the [published build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html). Later implementation progress has not been verified against application source or production records. See [source notes](evaluations/source-notes.md).
+This draft describes the system I’m building. Current implementation coverage and evaluation results still need to be documented. See [evidence notes](evaluations/source-notes.md).
 
 ## At a glance
 
 - **Problem:** Teammates repeatedly reconstruct context and decide how to advance work spread across inbox conversations and internal systems.
 - **Approach:** Extract shared context and intent, identify one or more jobs, then route each job to a human or specialized agents according to policy, confidence, and the authority earned by that job.
-- **Implemented scope:** A shadow pipeline builds context, gates action versus no action, classifies categories, and logs decisions for analysis. It does not yet identify or execute individual jobs in the documented snapshot.
 
 ## The problem
 
@@ -29,31 +27,24 @@ An email is only the container. A customer asking for updated artwork and pricin
 ## My contribution
 
 - **Personal responsibilities:** Defined jobs as the unit of work; built and refined the shared context and category-routing pipeline; created a batch analysis loop; defined the job repository and per-job autonomy framework.
-- **Collaborators:** Senior teammates are intended to label evaluation examples. Completed labeling work and implementation responsibilities beyond my own are not documented here.
-- **AI assistance:** Claude supports batch analysis of logged decisions to find taxonomy gaps and gate errors. Development assistance and model/provider assignments by component are not documented here.
-- **Validation:** Logged conversations support iterative review. Formal, team-reviewed evaluation datasets for the gate and classifiers are described as in progress, not complete.
+- **AI assistance:** I have used Claude to analyze logged routing decisions for taxonomy gaps and gate errors. Current model assignments and development assistance are not documented here.
+- **Validation:** Earlier work included batch review of logged conversations. Current evaluation coverage and results are not documented here.
 
 ## How it works
 
 ![Conceptual email-system pipeline from the portfolio](diagrams/system-pipeline.png)
 
-*Conceptual architecture illustration. The documented implementation stops at context, gating, category classification, and logging; job identification, handoff to humans or specialized agents, execution, and outcome evaluation are intended downstream stages.*
+*Conceptual architecture illustration of the intended system, not a record of current implementation coverage.*
 
 The intended path is conversation → shared context → job identification → routing and policy decision → human or specialized agents → completion within the job’s authority → outcome evaluation.
 
 The router determines what work is needed and whether to hand it to a teammate or specialized agents, passing along the shared context. A human handoff can be the intended path for the job. When agents handle the work, they stay within its permitted scope. Depending on the job’s autonomy tier, they prepare an output for a person to complete or deliver the work themselves within defined policy. Routing a job does not by itself grant permission to execute it.
 
-The implemented shadow pipeline:
+Shared context carries the customer’s intent, desired outcome, urgency, current state, and relevant details and system identifiers. Each downstream job starts with that context rather than reconstructing the conversation.
 
-1. Reads real Front conversations through n8n and builds a shared context snapshot: intent, desired outcome, urgency, state, quantities, dates, and linked system identifiers.
-2. Decides whether the latest message calls for action.
-3. Routes it into one of five action categories or five no-action categories, recording a secondary category when needed.
-4. Logs decisions, extracted details, confidence scores, and unknowns in Supabase. It sends no customer messages and makes no workflow changes.
-5. Accumulates batches of 100–200 conversations for analysis with Claude. I inspect overlapping categories, gate errors, missed secondary categories, and context extracted from the wrong part of a thread, then refine the pipeline.
+Category routing identifies the area of work; job identification determines the specific outcomes needed within it. Uncertain cases need a review path. Outcome evaluation then informs changes to context extraction, routing, and job rules.
 
-A category identifies the area of work. The next layer must distinguish the specific jobs within it before handing each one to the appropriate teammate or specialized agents. Unknown preserves uncertain cases for review and further discovery.
-
-See [diagram notes](diagrams/README.md) for the distinction between intended architecture and implemented scope.
+See [diagram notes](diagrams/README.md) for the illustration’s scope.
 
 ## Jobs and earned autonomy
 
@@ -70,9 +61,9 @@ The job’s tier governs the authority of the agents handling it, including when
 
 ## Results and evidence
 
-The documented result is a working discovery loop: real conversations produce routing logs, batch analysis informs changes, and those changes feed the next run. This is a source-reported process observation, not a measured accuracy or business-outcome result.
+Earlier development established a context and category-routing pipeline and a batch analysis loop. Those are prior development milestones, not a current production-status report.
 
-No router accuracy score, end-to-end job-completion rate, or system-wide time savings are available here. The journal's informal assessment of taxonomy coverage is not an evaluation score. See the [evidence register](evaluations/source-notes.md) for scope and gaps.
+Current router accuracy, end-to-end job completion, and system-wide time savings are not documented here. The next evidence update needs dated examples and evaluation results showing what is implemented and how well it works. See the [evidence notes](evaluations/source-notes.md).
 
 ## Decisions and lessons
 
@@ -83,14 +74,12 @@ No router accuracy score, end-to-end job-completion rate, or system-wide time sa
 
 ## Current state and next steps
 
-The verified documentation baseline remains the August 27 journal. The universal router is in shadow mode; downstream job identification and execution are not established by that source.
+I've resumed development on the project. The focus is a system that recognizes the work inside a conversation, hands it to the right human or agents, and delivers it within explicit authority limits.
 
-The next work described there is to build three evaluation datasets for the action gate, action categories, and no-action categories; obtain senior-teammate labels; compare models and prompts; and inspect remaining errors. Job definitions and promotion criteria need to be established before expanding execution authority.
-
-The next documentation update needs dated implementation evidence, reviewed evaluation results, and examples of how a job is routed and completed within its permitted authority.
+The next showcase update needs to capture the current implementation, active job paths, human handoff points, and evaluation coverage. Dated examples should show how a job moves from intent through routing to completion, including where human review is required.
 
 ## Supporting materials
 
 - [Diagrams](diagrams/README.md)
 - [Evaluations and evidence register](evaluations/README.md)
-- [Original build journal](https://jamesoncodes.github.io/articles/ai-native-email-system.html)
+- [Earlier build journal (historical background)](https://jamesoncodes.github.io/articles/ai-native-email-system.html)
