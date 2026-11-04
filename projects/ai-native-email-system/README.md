@@ -7,7 +7,7 @@ I'm building a system around Sock Club’s sales inbox that extracts customer in
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | Active development resumed; refining the system around job routing, human handoffs, and bounded agent execution. |
+| Project status | Active development resumed; refining the system around job routing, evals, and AI skills development. |
 | My role | Building the context and routing pipeline, defining jobs and autonomy boundaries, and developing evaluations |
 | Tools | Front, n8n, JavaScript, OpenRouter, Claude, and Supabase |
 
