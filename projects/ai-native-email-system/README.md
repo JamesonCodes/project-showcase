@@ -18,7 +18,7 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 ## My contribution
 
-- **Personal responsibilities.** I started this project and am building the system. I designed the architecture, chose the technologies for each stage, and defined jobs as the unit of work. I built the shared context and routing pipeline, developed the clustering approach for discovering email intents, and laid out how the system could move from shadow routing to specialist agents with earned autonomy.
+- **Personal responsibilities.** I’ve taken the project from the initial idea through architecture, technology selection, and implementation. I organized the system around jobs, built the shared context and routing pipeline, and used clustering to discover email intents. I’m now working out how specialist agents can take on jobs as they earn more autonomy.
 - **AI assistance:** I have used Claude to analyze logged routing decisions for taxonomy gaps and gate errors.
 
 ## How it works
