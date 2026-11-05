@@ -6,7 +6,7 @@ I'm building a system around Sock Club’s sales inbox that extracts customer in
 | --- | --- |
 | Documentation status | Documentation draft |
 | Project status | Active development. Email intake and enrichment are live, the inbox router runs in shadow mode, and the Quote Agent is in development. |
-| Tools | Front, HubSpot, n8n, JavaScript, OpenRouter, Claude, [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions), and Supabase |
+| Tools | Front, HubSpot, n8n, JavaScript, OpenRouter, Claude, OpenAI’s Decisions API, and Supabase |
 
 ## The problem
 
@@ -31,7 +31,7 @@ A Front webhook captures inbound and outbound messages. The n8n pipeline looks u
 
 ### Classify inbound email in shadow mode
 
-The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to OpenAI’s Decisions API to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. The router records recommendations in shadow mode and leaves Front untouched.
+The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. The router records recommendations in shadow mode and leaves Front untouched.
 
 ### Hand off and complete the work
 
