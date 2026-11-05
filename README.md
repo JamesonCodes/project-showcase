@@ -60,12 +60,6 @@ Context distinguishes work projects from personal projects. Documentation status
 | Quote Agent | Work project | n8n workflow | Front quote requests, pricing through MCP tools, and PDF quote generation | Documentation draft | [README](projects/quote-agent/README.md) |
 | Personal Content Engine | Personal project | AI-assisted workflow | Newsletter research, evidence-backed briefs, and human-reviewed post ideation | Documentation draft | [README](projects/personal-content-engine/README.md) |
 
-## AI Native Email System architecture
-
-![Sales email architecture showing live intake, shadow routing, and planned job execution](projects/ai-native-email-system/diagrams/ai-native-sales-email-system.png)
-
-[Read the AI Native Email System case study](projects/ai-native-email-system/README.md)
-
 ## About this library
 
 Each project has its own case study and supporting material, such as screenshots, diagrams, or a hosted demo. The library uses plain Markdown and supporting assets. Existing source repositories are linked from the case studies rather than duplicated here.
