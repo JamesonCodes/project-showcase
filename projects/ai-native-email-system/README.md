@@ -31,6 +31,10 @@ A Front webhook captures inbound and outbound messages. The n8n pipeline looks u
 
 ### Classify inbound email in shadow mode
 
+I used the embeddings and work classifications from the scheduled enrichment job to study roughly 10,000 inbound messages identified as requiring action since the study began. I ran unsupervised clustering on those embeddings to find 16 groups of similar messages. For each cluster, I took a handful of messages nearest its center (the centroid) and used an LLM to propose an intent label based on those examples.
+
+That gave me a starting set of intents grounded in the work customers actually asked for, without having to guess at categories up front or label thousands of messages by hand. I’m still refining the categories. I built a playground to illustrate the method using examples that contain no proprietary data. [Email Vector Lab](https://email-vector-lab.jameson-on-the-rocks.chatgpt.site/)
+
 The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. The router records recommendations in shadow mode and leaves Front untouched.
 
 ### Hand off and complete the work
