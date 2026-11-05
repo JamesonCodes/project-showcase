@@ -10,7 +10,7 @@ I'm building a system around Sock Club’s sales inbox that extracts customer in
 
 ## The problem
 
-Sales and Sales Support teammates work from Front conversations, but the work inside a message often depends on information elsewhere. They need to understand the request, gather context, decide who should handle it, and follow through.
+Sales and Sales Support teammates work from Front conversations, but the work inside a message often requires information or actions elsewhere. They need to understand the request, gather context, decide who should handle it, and follow through.
 
 An email is only the container. A customer asking for updated artwork and pricing has raised two jobs with different outcomes and failure modes. Treating the message as one task hides those distinctions and makes it harder to measure whether the work was completed well.
 
