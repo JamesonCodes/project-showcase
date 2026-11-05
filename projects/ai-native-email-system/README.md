@@ -1,6 +1,6 @@
 # AI Native Email System
 
-I'm building a system around Sock Club’s sales inbox that extracts customer intent, identifies the jobs inside a conversation, and decides whether to hand each job to a teammate, a specialized agent, or a team of agents to deliver the work. Agents operate within the authority earned for that job: preparing work for human review or completing it within defined limits when evidence supports bounded autonomy.
+I'm building a system around Sock Club’s sales inbox that extracts customer intent, identifies the jobs inside a conversation, and decides whether to hand each job to a teammate, a specialized agent, or a team of agents to deliver the work.
 
 | Field | Value |
 | --- | --- |
@@ -18,14 +18,14 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 ## My contribution
 
-- **Personal responsibilities.** I’ve taken the project from the initial idea through architecture, technology selection, and implementation. I organized the system around jobs, built the shared context and routing pipeline, and used clustering to discover email intents. I’m now working out how specialist agents can take on jobs as they earn more autonomy.
+- **Personal responsibilities.** I’ve taken the project from the initial idea through architecture, technology selection, and implementation. I organized the system around jobs, built the shared context and routing pipeline, and used clustering to discover email intents.
 - **AI assistance:** I have used Claude to analyze logged routing decisions for taxonomy gaps and gate errors.
 
 ## What I mean by AI-native
 
-My test is to remove the AI and see what changes. In an AI-assisted inbox, a person still interprets the request and drives the work. A summary or draft helps them do it faster. In an AI-native workflow, AI performs a core step. Remove it from the system I’m building and the workflow loses its ability to identify jobs from a conversation and decide where they should go.
+My test is to remove the AI and see what changes. In an AI-assisted inbox, a person still interprets the request and drives the work. A summary or draft helps them do it faster. In an AI-native workflow, AI performs a core step. In this system’s design, recognizing and routing jobs are core steps that depend on AI.
 
-That’s the design I’m working toward. How much authority the system earns is a separate decision for each job. A costly or hard-to-reverse action may still call for human approval, while a job with a clear outcome and an easy recovery path may be a candidate for bounded autonomy.
+AI-native describes how the workflow works. Earned autonomy determines which actions it can take on its own.
 
 ## How it works
 
@@ -62,23 +62,22 @@ I'm building a job repository to track each job's trigger, desired outcome, meas
 | 2: System-triggered assistance | The system initiates and prepares; a person completes |
 | 3: Bounded autonomy | The system initiates and completes within defined policy |
 
-Promotion is a decision about a specific job. Frequency alone does not justify more authority. Risk, recovery, output quality, and explicit human boundaries determine what can advance. Shadow testing lets me inspect proposed behavior against real work before granting it more initiative or execution authority.
+Promotion is a decision about a specific job. Frequency alone does not justify more authority. Risk, recovery, output quality, and explicit human boundaries determine what can advance. Shadow testing lets me spot uncertain cases and review decisions against real work before granting the system more authority.
 
 I plan to use OpenAI’s Decisions API to help choose how to handle a job based on the context of each request. The decision can adapt as the details change, while the job’s autonomy tier sets which actions are permitted and when a person needs to step in.
 
 ## Decisions and lessons
 
-- **Discover before executing:** Shadow routing reveals workload patterns and uncertain cases while preserving human control of live work.
 - **Evaluate each stage:** Separate tests for the gate and classifiers make model and prompt changes easier to assess.
 - **Measure the delivered outcome:** Completing a step quickly is insufficient if the next person receives incomplete work. Autonomy needs evidence about quality as well as speed.
 
 ## Progress and evidence
 
-The architecture records the current implementation stages. Router accuracy, end-to-end job completion, and system-wide time savings remain undocumented.
+Router accuracy, end-to-end job completion, and system-wide time savings remain undocumented.
 
 The evaluation plan includes replaying about 6,000 historical emails to tune routing and comparing shadow decisions with what reps actually did. Those comparisons would help refine intents, thresholds, and prompts. See the [evidence notes](evaluations/source-notes.md).
 
-Because the email log and routing decisions are stored in Supabase, I can use those records to build conversation traces tailored to this workflow without buying a separate tracing tool. A trace could show the messages the router considered, the intent it identified, and who it recommended should handle the work. As dispatch and execution come online, the trace could include job handoffs and outcomes.
+I can use the stored email and decision records to build conversation traces tailored to this workflow without buying a separate tracing tool. A trace could show the messages the router considered, the intent it identified, and who it recommended should handle the work. As dispatch and execution come online, the trace could include job handoffs and outcomes.
 
 ## Supporting materials
 
