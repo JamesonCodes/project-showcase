@@ -60,14 +60,11 @@ Context distinguishes work projects from personal projects. Documentation status
 | Quote Agent | Work project | n8n workflow | Front quote requests, pricing through MCP tools, and PDF quote generation | Documentation draft | [README](projects/quote-agent/README.md) |
 | Personal Content Engine | Personal project | AI-assisted workflow | Newsletter research, evidence-backed briefs, and human-reviewed post ideation | Documentation draft | [README](projects/personal-content-engine/README.md) |
 
-<details>
-<summary>AI Native Email System architecture</summary>
+## AI Native Email System architecture
 
-![Sales email architecture showing live intake, shadow routing, and planned job execution](projects/ai-native-email-system/diagrams/system-pipeline.png)
+![Sales email architecture showing live intake, shadow routing, and planned job execution](projects/ai-native-email-system/diagrams/ai-native-sales-email-system.png)
 
 [Read the AI Native Email System case study](projects/ai-native-email-system/README.md)
-
-</details>
 
 ## About this library
 

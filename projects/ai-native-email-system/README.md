@@ -23,7 +23,7 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 ## How it works
 
-![Sales email architecture showing live intake, shadow routing, and planned job execution](diagrams/system-pipeline.png)
+![Sales email architecture showing live intake, shadow routing, and planned job execution](diagrams/ai-native-sales-email-system.png)
 
 ### Capture and enrich emails
 
