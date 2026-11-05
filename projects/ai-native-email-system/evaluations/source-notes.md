@@ -1,10 +1,10 @@
 # AI Native Email System evidence notes
 
-The project has resumed development. The case study describes the intended system and distinguishes earlier development milestones from current implementation evidence.
+The case study uses the updated architecture diagram to distinguish live intake and enrichment, shadow routing, and downstream work in development or planned.
 
 ## Current evidence gaps
 
-Current implementation coverage, active job paths, model assignments, evaluation datasets, and production results have not been documented in this showcase. No current application source, Front messages, Supabase rows, or production dataset was inspected for this update.
+The diagram shows a planned or partly built backtest using about 6,000 historical emails and a future comparison of router decisions with rep actions. Completed runs, accuracy results, and production outcomes remain undocumented.
 
 Future evidence should include dated, sanitized examples of intent extraction, job identification, routing, human handoffs, agent execution boundaries, and completed outcomes. Evaluation results need dataset sizes, reviewed labels, model and prompt versions, measurement periods, and failure cases. Do not infer accuracy, time savings, or autonomy readiness from architecture alone.
 

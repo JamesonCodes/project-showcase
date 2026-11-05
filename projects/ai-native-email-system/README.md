@@ -5,8 +5,8 @@ I'm building a system around Sock Club’s sales inbox that extracts customer in
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | Active development resumed; refining the system around job routing, evals, and AI skills development. |
-| Tools | Front, n8n, JavaScript, OpenRouter, Claude, OpenAI’s Decisions API, and Supabase |
+| Project status | Active development. Email intake and enrichment are live, the inbox router runs in shadow mode, and the Quote Agent is in development. |
+| Tools | Front, HubSpot, n8n, JavaScript, OpenRouter, Claude, OpenAI’s Decisions API, and Supabase |
 
 ## The problem
 
@@ -23,21 +23,21 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 ## How it works
 
-**Email intake and enrichment:** Inbound and outbound emails pass through an n8n ETL pipeline that cleans the content and stores it in Supabase with message and conversation identifiers, timestamps, direction, ownership, and processing metadata. A recurring job then generates embeddings and classifies the work, adding task, category, work-area, and rationale fields alongside the classification version and timestamp.
+![Sales email architecture showing live intake, shadow routing, and planned job execution](diagrams/system-pipeline.png)
 
-<img width="2840" height="1940" alt="ai-native-sales-email-system" src="https://github.com/user-attachments/assets/67e889bc-a8ba-4155-9fc8-1a6450f5dbaa" />
+### Capture and enrich emails
 
-![Conceptual email-system pipeline from the portfolio](diagrams/system-pipeline.png)
+A Front webhook captures inbound and outbound messages. The n8n pipeline looks up the contact and account using Front and HubSpot, cleans and summarizes the message, then saves it with thread identifiers and message metadata in Supabase. A separate scheduled job generates embeddings and adds work classifications, including the task, category, work area, rationale, and classification version.
 
-*Conceptual architecture illustration of the intended system, not a record of current implementation coverage.*
+### Classify inbound email in shadow mode
 
-The router hands each identified job to a teammate or specialized agents with the shared context. A human handoff can be the intended path for the job. Routing does not by itself grant an agent permission to execute; the job’s autonomy tier determines whether human completion is required.
+The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to OpenAI’s Decisions API to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. The router records recommendations in shadow mode and leaves Front untouched.
 
-Shared context carries the customer’s intent, desired outcome, urgency, current state, and relevant details and system identifiers. Each downstream job starts with that context rather than reconstructing the conversation. This avoids rebuilding extraction logic for every job and helps locate the source of errors.
+### Hand off and complete the work
 
-Category routing identifies the area of work; job identification determines the specific outcomes needed within it. Uncertain cases need a review path. Outcome evaluation then informs changes to context extraction, routing, and job rules.
+The planned routing paths are to tag messages that need no action, hand work directly to a sales rep, or pass it to a dispatcher. The dispatcher splits requests into jobs and sends them to the appropriate specialist agents. Their outputs come together in one reply draft, flagged for review when needed. The job’s autonomy tier determines what the system can do in Front, such as draft a reply, add an internal comment, or send an approved type of reply.
 
-See [diagram notes](diagrams/README.md) for the illustration’s scope.
+The [Quote Agent](../quote-agent/README.md) is in development as a rep-started workflow. Automatic handoff from the inbox router is planned.
 
 ## Jobs and earned autonomy
 
@@ -60,9 +60,9 @@ Promotion is a decision about a specific job. Frequency alone does not justify m
 
 ## Progress and evidence
 
-Earlier development established a context and category-routing pipeline and a batch analysis loop for reviewing logged conversations. These are prior development milestones; current implementation coverage and evaluation results still need to be documented.
+The architecture records the current implementation stages. Router accuracy, end-to-end job completion, and system-wide time savings remain undocumented.
 
-The next showcase update needs dated examples of active job paths, human handoffs, and agent execution boundaries, alongside evaluation results. Current router accuracy, end-to-end job completion, and system-wide time savings are not documented here. See the [evidence notes](evaluations/source-notes.md).
+The evaluation plan includes replaying about 6,000 historical emails to tune routing and comparing shadow decisions with what reps actually did. Those comparisons would help refine intents, thresholds, and prompts. See the [evidence notes](evaluations/source-notes.md).
 
 ## Supporting materials
 
