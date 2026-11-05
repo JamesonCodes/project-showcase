@@ -23,7 +23,7 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 ## What I mean by AI-native
 
-My test is to remove the AI and see what changes. In an AI-assisted inbox, a person still interprets the request and drives the work. A summary or draft helps them do it faster. In an AI-native workflow, AI performs a core step. In this system’s design, recognizing and routing jobs are core steps that depend on AI.
+The litmus test is to remove the AI and see what changes. In an AI-assisted inbox, a person still interprets the request and drives the work. A summary or draft helps them do it faster. In an AI-native workflow, AI performs a core step. In this system’s design, recognizing and routing jobs are core steps that depend on AI.
 
 AI-native describes how the workflow works. Earned autonomy determines which actions it can take on its own.
 
