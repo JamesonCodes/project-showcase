@@ -69,8 +69,6 @@ I plan to use OpenAI’s Decisions API to help choose how to handle a job based 
 ## Decisions and lessons
 
 - **Expect to rebuild parts of the system.** There’s no fixed blueprint for this work. New tools become available, and building the workflow can reveal a simpler way to solve the same problem. I initially used a general-purpose LLM for routing and classification. Moving those decisions to OpenAI’s Decisions API with System 1 models made the router’s outputs more predictable and let me remove some of the custom logic around the model. That made the routing pipeline simpler and more reliable in practice.
-- **Evaluate each stage:** Separate tests for the gate and classifiers make model and prompt changes easier to assess.
-- **Measure the delivered outcome:** Completing a step quickly is insufficient if the next person receives incomplete work. Autonomy needs evidence about quality as well as speed.
 
 ## Progress and evidence
 
