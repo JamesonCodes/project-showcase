@@ -21,6 +21,12 @@ An email is only the container. A customer asking for updated artwork and pricin
 - **Personal responsibilities.** I’ve taken the project from the initial idea through architecture, technology selection, and implementation. I organized the system around jobs, built the shared context and routing pipeline, and used clustering to discover email intents. I’m now working out how specialist agents can take on jobs as they earn more autonomy.
 - **AI assistance:** I have used Claude to analyze logged routing decisions for taxonomy gaps and gate errors.
 
+## What I mean by AI-native
+
+My test is to remove the AI and see what changes. In an AI-assisted inbox, a person still interprets the request and drives the work. A summary or draft helps them do it faster. In an AI-native workflow, AI performs a core step. Remove it from the system I’m building and the workflow loses its ability to identify jobs from a conversation and decide where they should go.
+
+That’s the design I’m working toward. How much authority the system earns is a separate decision for each job. A costly or hard-to-reverse action may still call for human approval, while a job with a clear outcome and an easy recovery path may be a candidate for bounded autonomy.
+
 ## How it works
 
 ![Sales email architecture showing live intake, shadow routing, and planned job execution](diagrams/ai-native-sales-email-system.png)
