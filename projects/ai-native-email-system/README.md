@@ -6,7 +6,7 @@ I'm building a system around Sock Club’s sales inbox that extracts customer in
 | --- | --- |
 | Documentation status | Documentation draft |
 | Project status | Active development. Email intake and enrichment are live, the inbox router runs in shadow mode, and the Quote Agent is in development. |
-| Tools | Front, HubSpot, n8n, JavaScript, OpenRouter, Claude, OpenAI’s Decisions API, and Supabase |
+| Tools | Front, HubSpot, n8n, JavaScript, OpenRouter, Claude, [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions), and Supabase |
 
 ## The problem
 
