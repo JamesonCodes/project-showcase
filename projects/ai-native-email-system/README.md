@@ -18,7 +18,7 @@ An email is only the container. A customer asking for updated artwork and pricin
 
 ## My contribution
 
-- **Personal responsibilities:** Defined jobs as the unit of work; built and refined the shared context and category-routing pipeline; created a batch analysis loop; defined the job repository and per-job autonomy framework.
+- **Personal responsibilities.** I designed the system architecture, defined jobs as the unit of work, and built the shared context and routing pipeline. I developed the clustering approach for discovering email intents and laid out how the system could move from shadow routing to specialist agents operating within each job’s earned autonomy.
 - **AI assistance:** I have used Claude to analyze logged routing decisions for taxonomy gaps and gate errors.
 
 ## How it works
