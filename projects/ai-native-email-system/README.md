@@ -58,6 +58,8 @@ I'm building a job repository to track each job's trigger, desired outcome, meas
 
 Promotion is a decision about a specific job. Frequency alone does not justify more authority. Risk, recovery, output quality, and explicit human boundaries determine what can advance. Shadow testing lets me inspect proposed behavior against real work before granting it more initiative or execution authority.
 
+I plan to use OpenAI’s Decisions API to help choose how to handle a job based on the context of each request. The decision can adapt as the details change, while the job’s autonomy tier sets which actions are permitted and when a person needs to step in.
+
 ## Decisions and lessons
 
 - **Discover before executing:** Shadow routing reveals workload patterns and uncertain cases while preserving human control of live work.
