@@ -68,6 +68,8 @@ The architecture records the current implementation stages. Router accuracy, end
 
 The evaluation plan includes replaying about 6,000 historical emails to tune routing and comparing shadow decisions with what reps actually did. Those comparisons would help refine intents, thresholds, and prompts. See the [evidence notes](evaluations/source-notes.md).
 
+Because the email log and routing decisions are stored in Supabase, I can use those records to build conversation traces tailored to this workflow without buying a separate tracing tool. A trace could show the messages the router considered, the intent it identified, and who it recommended should handle the work. As dispatch and execution come online, the trace could include job handoffs and outcomes.
+
 ## Supporting materials
 
 - [Diagrams](diagrams/README.md)
