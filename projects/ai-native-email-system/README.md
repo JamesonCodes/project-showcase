@@ -39,6 +39,8 @@ The Sales Inbox Router reads each new inbound message and up to three preceding 
 
 ### Hand off and complete the work
 
+Handoff and execution are the least developed part of the system. Email intake, enrichment, and shadow routing lay the groundwork for the earned autonomy described below. I can refine routing, prepare evaluations, and develop specialist agents that can start work on their own in parallel while the development team exposes the MCP tools those workflows need to work with our internal Portal+ system.
+
 The planned routing paths are to tag messages that need no action, hand work directly to a sales rep, or pass it to a dispatcher. The dispatcher splits requests into jobs and sends them to the appropriate specialist agents. Their outputs come together in one reply draft, flagged for review when needed. The job’s autonomy tier determines what the system can do in Front, such as draft a reply, add an internal comment, or send an approved type of reply.
 
 The [Quote Agent](../quote-agent/README.md) is in development as a rep-started workflow. Automatic handoff from the inbox router is planned.
