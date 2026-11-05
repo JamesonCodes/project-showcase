@@ -12,14 +12,14 @@ I'm building a system around Sock Club’s sales inbox that extracts customer in
 
 Sales and Sales Support teammates work from Front conversations, but the work inside a message often requires information or actions elsewhere. They need to understand the request, gather context, decide who should handle it, and follow through.
 
-An email is only the container. A customer asking for updated artwork and pricing has raised two jobs with different outcomes and failure modes. Treating the message as one task hides those distinctions and makes it harder to measure whether the work was completed well.
+One email can contain several jobs. A customer asking for updated artwork and pricing has asked for two things, each with a different outcome and different ways it can go wrong.
 
 *This direction also builds on findings from my [Sales Capacity Planner](../sales-capacity-planner/README.md): email jobs accounted for the largest share of estimated capacity demand. Offloading some of that work could free team capacity, improve the economics of serving accounts, and create more room for growth activity. These outcomes have not yet been measured.*
 
 ## My contribution
 
 - **Personal responsibilities.** I’ve taken the project from the initial idea through architecture, technology selection, and implementation. I organized the system around jobs, built the shared context and routing pipeline, and used clustering to discover email intents.
-- **AI assistance:** I have used Claude to analyze logged routing decisions for taxonomy gaps and gate errors.
+- **AI assistance.** I used Claude to review logged decisions for missing categories and mistakes in deciding which emails needed action.
 
 ## What I mean by AI-native
 
@@ -35,11 +35,13 @@ AI-native describes how the workflow works. Earned autonomy determines which act
 
 A Front webhook captures inbound and outbound messages. The n8n pipeline looks up the contact and account using Front and HubSpot, cleans and summarizes the message, then saves it with thread identifiers and message metadata in Supabase. A separate scheduled job generates embeddings and adds work classifications, including the task, category, work area, rationale, and classification version.
 
-### Classify inbound email in shadow mode
+### Discover the 16 intents
 
-I used the embeddings and work classifications from the scheduled enrichment job to study roughly 6,000 inbound messages identified as requiring action since the study began. I used a modified version of HDBSCAN, an unsupervised clustering algorithm, to find 16 groups of similar messages in those embeddings. For each cluster, I took a handful of messages nearest its center (the centroid) and used an LLM to propose an intent label based on those examples.
+I pulled roughly 6,000 inbound emails flagged as requiring action since the study began. I grouped their embeddings into 16 clusters using a modified version of HDBSCAN, an unsupervised clustering algorithm. For each cluster, I took a handful of messages nearest its center (the centroid) and used an LLM to propose an intent label based on those examples.
 
 That gave me a starting set of intents grounded in the work customers actually asked for, without having to guess at categories up front or label thousands of messages by hand. The patterns in those clusters also helped me decide what questions the router should ask and which items to define in the Decisions API. I’m still refining the categories. I built a playground to illustrate the method using examples that contain no proprietary data. [Email Vector Lab](https://email-vector-lab.jameson-on-the-rocks.chatgpt.site/)
+
+### Classify inbound email in shadow mode
 
 The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. The router records recommendations in shadow mode and leaves Front untouched.
 
@@ -47,7 +49,13 @@ The Sales Inbox Router reads each new inbound message and up to three preceding 
 
 Handoff and execution are the least developed part of the system. Email intake, enrichment, and shadow routing lay the groundwork for the earned autonomy described below. I can refine routing, prepare evaluations, and develop specialist agents that can start work on their own in parallel while the development team exposes the MCP tools those workflows need to work with our internal Portal+ system.
 
-The planned routing paths are to tag messages that need no action, hand work directly to a sales rep, or pass it to a dispatcher. The dispatcher splits requests into jobs and sends them to the appropriate specialist agents. Their outputs come together in one reply draft, flagged for review when needed. The job’s autonomy tier determines what the system can do in Front, such as draft a reply, add an internal comment, or send an approved type of reply.
+I’m planning three paths for an inbound message:
+
+- **Tag it** when the message needs no action.
+- **Hand it to a sales rep** when a person should handle the request.
+- **Send it to a dispatcher** to split the request into jobs and assign them to specialist agents. Their outputs come together in one reply draft, flagged for review when needed.
+
+The job’s autonomy tier determines what the system can do in Front, such as draft a reply, add an internal comment, or send an approved type of reply.
 
 The [Quote Agent](../quote-agent/README.md) is in development as a rep-started workflow. Automatic handoff from the inbox router is planned.
 
