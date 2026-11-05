@@ -73,6 +73,8 @@ I plan to use OpenAI’s Decisions API to help choose how to handle a job based 
 
 ## Progress and evidence
 
+Right now I’m refining the router’s decision logic in OpenAI’s Decisions API and building an evaluation set to check how it handles inbound messages as that logic changes.
+
 Router accuracy, end-to-end job completion, and system-wide time savings remain undocumented.
 
 The evaluation plan includes replaying about 6,000 historical emails to tune routing and comparing shadow decisions with what reps actually did. Those comparisons would help refine intents, thresholds, and prompts. See the [evidence notes](evaluations/source-notes.md).
