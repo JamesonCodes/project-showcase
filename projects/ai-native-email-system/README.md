@@ -21,7 +21,7 @@ One email can contain several jobs. A customer asking for updated artwork and pr
 ## My contribution
 
 - **Personal responsibilities.** I’ve taken the project from the initial idea through architecture, technology selection, and implementation. I organized the system around jobs, built the shared context and routing pipeline, and used clustering to discover email intents.
-- **AI assistance.** I used Claude to review logged decisions for missing categories and mistakes in deciding which emails needed action.
+- **AI assistance.** I used Claude to speed up implementation and review logged decisions for missing categories and mistakes in deciding which emails needed action.
 
 ## What I mean by AI-native
 
