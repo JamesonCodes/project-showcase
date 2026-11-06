@@ -146,9 +146,9 @@ The following work is planned and has not yet been implemented for production:
 - **Price lookup edge case:** Stop quote generation if a quantity passes the product minimum but has no applicable price break, rather than allowing a zero-priced line.
 - **Tax and fees:** Replace the fixed zero-tax behavior with the required tax handling and surface the 3.5% card-fee warning for totals over $4,000 to the rep in Front.
 
-## Role in the AI Native Email System
+## Role in the AI-Native Sales Email System
 
-Quote Agent is the quoting job within my broader [AI Native Email System](../ai-native-email-system/README.md) vision: identify the work an incoming email requires and route each job to an agent that can prepare or complete it.
+Quote Agent is the quoting job within my broader [AI-Native Sales Email System](../ai-native-email-system/README.md) vision: identify the work an incoming email requires and route each job to an agent that can prepare or complete it.
 
 I am building toward that in stages:
 

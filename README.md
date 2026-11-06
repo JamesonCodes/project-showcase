@@ -53,7 +53,7 @@ Context distinguishes work projects from personal projects. Documentation status
 | Project | Context | Type | Focus | Documentation status | Case study |
 | --- | --- | --- | --- | --- | --- |
 | Sock Scout | Work project | Web app | Semantic visual search for creative assets | Published | [README](projects/sock-scout/README.md) |
-| AI Native Email System | Work project | Workflow system | Job-based inbox workflows, human review, and earned autonomy | Documentation draft | [README](projects/ai-native-email-system/README.md) |
+| AI-Native Sales Email System | Work project | Workflow system | Job-based inbox workflows, human review, and earned autonomy | Documentation draft | [README](projects/ai-native-email-system/README.md) |
 | Portal+ Assist | Work project | Front plugin | Portal+ project lookup and design requests with AI-drafted briefs | Published | [README](projects/portal-plus-assist/README.md) |
 | Sample Hub | Work project | Front plugin | Sample requests with HubSpot integration and optional AI Smart-fill | Published | [README](projects/sample-hub/README.md) |
 | Sales Capacity Planner | Work project | Reporting tool | Account workload and estimated team capacity for sales planning | Documentation draft | [README](projects/sales-capacity-planner/README.md) |

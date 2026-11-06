@@ -1,4 +1,4 @@
-# AI Native Email System
+# AI-Native Sales Email System
 
 I'm building a system around Sock Club’s sales inbox that extracts customer intent, identifies the jobs inside a conversation, and decides whether to hand each job to a teammate, a specialized agent, or a team of agents to deliver the work.
 

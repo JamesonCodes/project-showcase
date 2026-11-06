@@ -99,4 +99,4 @@ I’d like to extend the plugin to support additional Portal+ workflows. These c
 ## Supporting materials
 
 - [Videos and hosted demos](videos/README.md)
-- **Related case study:** [AI Native Email System](../ai-native-email-system/README.md)
+- **Related case study:** [AI-Native Sales Email System](../ai-native-email-system/README.md)

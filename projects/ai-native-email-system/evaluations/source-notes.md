@@ -1,4 +1,4 @@
-# AI Native Email System evidence notes
+# AI-Native Sales Email System evidence notes
 
 The case study uses the updated architecture diagram to distinguish live intake and enrichment, shadow routing, and downstream work in development or planned.
 
