@@ -2,6 +2,8 @@
 
 I'm building a system around Sock Club’s sales inbox that extracts customer intent, identifies the jobs inside a conversation, and decides whether to hand each job to a teammate, a specialized agent, or a team of agents to deliver the work.
 
+Sock Club is a high-volume, transactional business. At this stage of growth, I’m designing the system around the repeatable jobs that come through the sales inbox and the decisions that still need a person. A business with a different sales model would likely need to organize the work and draw those boundaries differently.
+
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
