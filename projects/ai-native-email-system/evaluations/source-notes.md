@@ -4,6 +4,8 @@ The tagging gate measures how often a “can wait” prediction misses work. The
 
 ## Review workflow
 
+I’m still learning how to design good evaluations. These first reviews gave me a way to inspect decisions, document misses, and see where the method itself needs work.
+
 I built a Claude artifact to guide reviewers through email examples and routing decisions. It made the review easier to work through and gave me something I could share internally to guide teammates through the same process.
 
 ## Gate 1 — Advisory “can wait” tagging

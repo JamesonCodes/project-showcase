@@ -101,6 +101,8 @@ I plan to use OpenAI’s Decisions API to help choose how to handle a job based 
 - **Architecture takes judgment.** The same lesson applies to software development and GTM engineering. It’s easier to get something working now, which makes it more valuable to know how to break the work into parts and choose the right tool for each one. That takes curiosity about what’s available and enough hands-on experience to know when a tool fits the job.
 - **Expect to rebuild parts of the system.** There’s no fixed blueprint for this work. New tools become available, and building the workflow can reveal a simpler way to solve the same problem. I initially used a general-purpose LLM for routing and classification. Moving those decisions to OpenAI’s Decisions API with System 1 models made routing faster, cheaper to run, and much more predictable than my earlier setup. With more consistent outputs, I could remove some of the custom logic and simplify the pipeline.
 
+- **Start evaluating early.** Evals are my least favorite part of building these systems, and they’re foundational to deciding what the system can do. Start with a review small enough to run, write down what it can tell you, and improve the method as you learn.
+
 ## Progress and evidence
 
 I’m refining the router’s decision logic in OpenAI’s Decisions API and building out the evaluation set.
