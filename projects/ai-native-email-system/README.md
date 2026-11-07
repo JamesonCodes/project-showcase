@@ -45,11 +45,11 @@ That gave me a starting set of intents grounded in the work customers actually a
 
 ### Classify inbound email
 
-The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. Shadow runs log recommendations without acting in Front. The active configuration enables advisory tagging, which has been tested on one conversation. Production traffic has yet to be connected.
+The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. Shadow runs log recommendations without acting in Front.
 
 ### Hand off and complete the work
 
-Handoff and execution are the least developed part of the system. Email intake, enrichment, and shadow routing lay the groundwork for the earned autonomy described below. I can refine routing, prepare evaluations, and develop specialist agents that can start work on their own in parallel while the development team exposes the MCP tools those workflows need to work with our internal Portal+ system.
+Handoff and execution are the least developed stages. While the development team exposes the Portal+ MCP tools those workflows need, I can refine routing, prepare evaluations, and build specialist agents.
 
 I’ve designed three paths for an inbound message:
 
@@ -79,7 +79,7 @@ In the original conversation, the rep replied about 75 minutes later. They ackno
 
 I changed the rule so a problem score above 0.5 paired with a needs-action score below 0.3 sends the message to a person for review. Three later versions routed this same message to a person. Since the example informed the fix and other settings changed between replays, I still need to test whether the rule catches similar complaints in fresh mail.
 
-I also set up a path to flag reports like this automatically for our product and development team. Once it’s active, the rep can focus on helping the customer while the team gets the feedback without a separate ticket from the rep.
+I also set up a path to flag similar complaints for our product and development team. Once active, it will send them the feedback without requiring the rep to file a ticket.
 
 ## Jobs and earned autonomy
 
@@ -107,12 +107,12 @@ I’m refining the router’s decision logic in OpenAI’s Decisions API and bui
 
 | Evaluation | Result | What it supports |
 | --- | --- | --- |
-| Advisory “can wait” tagging | **Passed.** 1 of 121 predicted no-action emails needed action (0.8%). The gate allows up to 2%. | Advisory tagging only. The 95% interval reaches about 4.5%, so I plan to recheck the miss rate on live traffic. |
+| Advisory “can wait” tagging | **Passed.** In a 300-email sample, 1 of the 121 emails marked no action needed action (0.8%, against a 2% bar). | Advisory tagging only. The 95% interval reaches about 4.5%, so I plan to recheck the miss rate on live traffic. |
 | Intent and routing review | **No formal gate decision.** Of 50 decisions, 39 were right, 5 wrong, and 6 uncertain. The error rate among definite judgments was 11.4% (5 of 44). | The review exposed errors across intents. The working bar of about 5% applies per job, and this sample is too small to establish per-job readiness. |
 
-For the tagging gate, I ran v1.5 on 300 fresh emails. One reviewer checked all 121 emails it marked no action. They found one miss, a short reply that mentioned an attached logo and needed a design request. The active configuration enables the advisory tag and applied it in one end-to-end test. The system sends no customer replies.
+Advisory tagging is enabled in the active configuration and applied a tag in one end-to-end test. The router has yet to receive production traffic.
 
-The separate v1.2 intent review exposed confusion among date, shipping, status, and sample requests. The complaint in the replay above was marked uncertain, so it falls outside the 11.4% figure. Later versions were tuned on these examples. The next step is a fresh labeled intent review. End-to-end job completion and time savings remain undocumented. [Evaluation methods and limitations](evaluations/source-notes.md)
+The intent review exposed confusion among date, shipping, status, and sample requests. The complaint above was marked uncertain and excluded from the error rate. Later versions were tuned on these cases, so the next step is a fresh labeled intent review. End-to-end job completion and time savings remain undocumented. [Evaluation methods and limitations](evaluations/source-notes.md)
 
 I can use the stored email and decision records to build conversation traces tailored to this workflow without buying a separate tracing tool. A trace could show the messages the router considered, the intent it identified, and who it recommended should handle the work. As dispatch and execution come online, the trace could include job handoffs and outcomes.
 

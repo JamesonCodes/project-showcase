@@ -1,6 +1,6 @@
 # AI-Native Sales Email System evidence notes
 
-The case study uses the updated architecture diagram to distinguish live intake and enrichment, shadow routing, and downstream work in development or planned.
+The tagging gate measures how often a “can wait” prediction misses work. The intent review examines the router’s broader decisions about what the customer needs and who should handle it.
 
 ## Gate 1 — Advisory “can wait” tagging
 
@@ -32,7 +32,7 @@ Skipped messages cannot receive the tag. The run reported empty bodies for those
 | Route decisions with intent confidence under 0.65 | 40 of 121 (33%) |
 | Route decisions with an action intent | 12 of 121 (about 10%) |
 
-Both rules remain proposals. The comparison shows the extra review each would have added in this sample.
+Both rules remain proposals.
 
 **Rollout status.** The active configuration enables advisory tagging and applied it in one end-to-end test. The records describe its classification as unchanged from the gated version. Reproduction of the gated outputs under the active configuration remains unverified. The router has yet to receive production traffic, and the rule that clears the tag when a new message arrives is built and remains disabled. The next check is to review predicted no-action emails on live traffic after enabling the router and tag removal.
 
