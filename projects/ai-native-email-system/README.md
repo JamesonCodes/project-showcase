@@ -18,16 +18,6 @@ One email can contain several jobs. A customer asking for updated artwork and pr
 
 *This direction also builds on findings from my [Sales Capacity Planner](../sales-capacity-planner/README.md): email jobs accounted for the largest share of estimated capacity demand. Offloading some of that work could free team capacity, improve the economics of serving accounts, and create more room for growth activity. These outcomes have not yet been measured.*
 
-## A routing decision from a historical replay
-
-**The router saw a complaint and recommended no action.** A customer on a rush project replied to a quote to say the design tool kept changing their logo color, even after two attempts to fix it. They expected to approve the design in a few days and made no explicit request.
-
-In a replay of the message and three earlier emails from the thread, the router gave the problem a score of **0.94**. The rule that checked whether the message needed action ran first. Its low score ended the decision before the router could act on the problem signal.
-
-In the original conversation, the rep replied about 75 minutes later. They acknowledged the complaint, offered to submit the revisions, and asked which logo color to use. The retrospective replay only wrote to a test table.
-
-I changed the rule so a problem score above 0.5 paired with a needs-action score below 0.3 sends the message to a person for review. Three later versions routed this same message to a person. Since the example informed the fix and other settings changed between replays, I still need to test whether the rule catches similar complaints in fresh mail.
-
 ## My contribution
 
 - **Personal responsibilities.** I’ve taken the project from the initial idea through architecture, technology selection, and implementation. I organized the system around jobs, built the shared context and routing pipeline, and used clustering to discover email intents.
@@ -56,6 +46,16 @@ That gave me a starting set of intents grounded in the work customers actually a
 ### Classify inbound email in shadow mode
 
 The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. The router records recommendations in shadow mode and leaves Front untouched.
+
+### A routing decision from a historical replay
+
+**The router saw a complaint and recommended no action.** A customer on a rush project replied to a quote to say the design tool kept changing their logo color, even after two attempts to fix it. They expected to approve the design in a few days and made no explicit request.
+
+In a replay of the message and three earlier emails from the thread, the router gave the problem a score of **0.94**. The rule that checked whether the message needed action ran first. Its low score ended the decision before the router could act on the problem signal.
+
+In the original conversation, the rep replied about 75 minutes later. They acknowledged the complaint, offered to submit the revisions, and asked which logo color to use. The retrospective replay only wrote to a test table.
+
+I changed the rule so a problem score above 0.5 paired with a needs-action score below 0.3 sends the message to a person for review. Three later versions routed this same message to a person. Since the example informed the fix and other settings changed between replays, I still need to test whether the rule catches similar complaints in fresh mail.
 
 ### Hand off and complete the work
 
