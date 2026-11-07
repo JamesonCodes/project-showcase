@@ -51,7 +51,15 @@ The Sales Inbox Router reads each new inbound message and up to three preceding 
 
 **The router saw a complaint and recommended no action.** A customer on a rush project replied to a quote to say the design tool kept changing their logo color, even after two attempts to fix it. They expected to approve the design in a few days and made no explicit request.
 
-In a replay of the message and three earlier emails from the thread, the router gave the problem a score of **0.94**. The rule that checked whether the message needed action ran first. Its low score ended the decision before the router could act on the problem signal.
+The v1.2 replay used the customer’s message and three earlier emails from the thread.
+
+| Recorded decision | v1.2 replay |
+| --- | --- |
+| Needs-action score | Low |
+| Problem score | 0.94 |
+| Routing outcome | No action |
+
+The rule checked the needs-action score first. That low score took precedence over the problem signal.
 
 In the original conversation, the rep replied about 75 minutes later. They acknowledged the complaint, offered to submit the revisions, and asked which logo color to use. The retrospective replay only wrote to a test table.
 
