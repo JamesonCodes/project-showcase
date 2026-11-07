@@ -79,6 +79,8 @@ In the original conversation, the rep replied about 75 minutes later. They ackno
 
 I changed the rule so a problem score above 0.5 paired with a needs-action score below 0.3 sends the message to a person for review. Three later versions routed this same message to a person. Since the example informed the fix and other settings changed between replays, I still need to test whether the rule catches similar complaints in fresh mail.
 
+I also set up a path to flag reports like this automatically for our product and development team. Once it’s active, the rep can focus on helping the customer while the team gets the feedback without a separate ticket from the rep.
+
 ## Jobs and earned autonomy
 
 I'm building a job repository to track each job's trigger, desired outcome, measures, failure modes, frequency, impact, and priority. A separate autonomy matrix records its live tier, risk and reversibility, proposed next behavior, promotion evidence, and actions that must remain human.
