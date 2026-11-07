@@ -1,7 +1,5 @@
-# Evaluations
+# Router evaluations
 
-Store evaluation methods, test scenarios, baseline comparisons, and evidence supporting claims in the project README. Record measurement periods, sources, sample sizes, methodology, and limitations. Distinguish measured results, estimates, and qualitative feedback; label sanitized or synthetic data. Keep credentials and private data out of committed evidence.
-
-## Available material
-
-- [Source notes and evidence gaps](source-notes.md): pinned portfolio sources, classification of reported results, and evidence still needed. No raw measurement dataset has been imported.
+- [Advisory “can wait” tagging gate](source-notes.md#gate-1--advisory-can-wait-tagging) covers the 300-email sample, miss rate, and rollout status.
+- [Exploratory intent and routing review](source-notes.md#exploratory-intent-and-routing-review) covers the 50-message review, relabeling, and what changed across versions.
+- [Routing decision walkthrough](../README.md#a-routing-decision-from-a-historical-replay) follows a reported product issue through the original decision and later replays.

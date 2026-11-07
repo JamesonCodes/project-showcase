@@ -2,20 +2,62 @@
 
 The case study uses the updated architecture diagram to distinguish live intake and enrichment, shadow routing, and downstream work in development or planned.
 
-## Gate 1 — Advisory no-action tagging
+## Gate 1 — Advisory “can wait” tagging
 
-- **Scope.** v1.5 could pass the gate if at most 2% of emails it marked no action actually needed action. The gate record containing the threshold was created after labeling. Whether the threshold was set beforehand is unverified.
-- **Sample.** 300 random inbound emails over roughly seven weeks, one per conversation. The sample excluded automated sequences, bodies outside 2 to 3,000 characters, and messages or conversations used in prior runs or logged decisions. It retained auto-replies and short replies. Overlap with the intent discovery corpus is unknown.
-- **Review.** The router scored 275 and skipped 25 without errors. The reported empty-body explanation conflicts with nonblank cleaned text in the logs. Skipped messages cannot receive the tag. A single reviewer saw the router output and the same thread context, with rep replies hidden. They labeled only the 121 predicted no-action messages.
-- **Result.** One of 121 needed action (0.8%, approximate 95% interval of 0.1% to 4.5%). The point estimate passed. The other 154 scored messages were unlabeled, so the gate leaves action recall, intent quality, and handoff quality unmeasured.
-- **Deployment.** The active configuration enables tagging and one end-to-end test applied the tag. Reproduction of the gated decisions under the active configuration is unverified. No production traffic calls the router yet. The tag-removal rule is built and remains disabled.
+**Decision.** Can the router apply an advisory “can wait” tag to emails it predicts need no action? The gate allows up to 2% of those predictions to be misses. The denominator is the set of emails predicted to need no action. The stored gate record was created after labeling, and whether the threshold was set beforehand is unverified.
+
+**Sample and review.** I randomly selected 300 inbound emails over roughly seven weeks, one per conversation. I excluded outbound email, automated sequences, bodies outside 2 to 3,000 characters, and messages or conversations used in earlier runs or logged decisions. Auto-replies and short replies stayed in the sample. There was no overlap with the 50-message intent review at either the message or conversation level. Overlap with the intent discovery corpus is unknown.
+
+The router ran v1.5. A single reviewer saw the newest message, the same earlier thread messages the router saw, and the router output. The rep’s actual reply was hidden. The reviewer answered “could this wait?” for each predicted no-action email.
+
+| Measure | Count or result |
+| --- | --- |
+| Emails sampled | 300 |
+| Emails scored | 275 |
+| Emails skipped | 25 |
+| Run errors | 0 |
+| Predicted no action and reviewed | 121 |
+| Scored but unlabeled | 154 |
+| Reviewed emails that needed action | 1 |
+| Miss rate among predicted no-action emails | **0.8% (1 of 121)** |
+| Approximate 95% interval | 0.1% to 4.5% |
+| Gate outcome | **Passed** on the point estimate against the 2% bar |
+
+Skipped messages cannot receive the tag. The run reported empty bodies for those 25 skips, but the message log shows nonblank cleaned text. The reason is unverified. The 154 other scored emails were deliberately left unlabeled, so action recall, intent quality, and handoff quality remain unmeasured by this gate.
+
+**The miss.** A short reply said a logo was attached. With no earlier thread messages available, the router scored needs-action at 0.07 and identified a possible new project with 0.40 confidence. It chose no action. The email needed a new project and design request. Two candidate rules would have caught the miss in this sample:
+
+| Candidate rule for predicted no-action emails | Would route to a person |
+| --- | --- |
+| Route decisions with intent confidence under 0.65 | 40 of 121 (33%) |
+| Route decisions with an action intent | 12 of 121 (about 10%) |
+
+Both rules remain proposals. The comparison shows the extra review each would have added in this sample.
+
+**Rollout status.** The active configuration enables advisory tagging and applied it in one end-to-end test. The records describe its classification as unchanged from the gated version. Reproduction of the gated outputs under the active configuration remains unverified. The router has yet to receive production traffic, and the rule that clears the tag when a new message arrives is built and remains disabled. The next check is to review predicted no-action emails on live traffic after enabling the router and tag removal.
 
 ## Exploratory intent and routing review
 
-- **Sample.** 50 recent inbound emails, one per conversation, with 40 to 1,500 characters per message. Selection spanned ten work-area buckets from an earlier capacity study. Those labels served as a sampling proxy. The sampling method within each bucket and overlap with intent discovery are unknown. One conversation overlapped an earlier tuning set. The 50 messages were held out of v1.1 and v1.2 tuning and informed v1.3 through v1.5. The 300-email gate sample has no message or conversation overlap with this review.
-- **Review.** One reviewer saw the router output and up to three prior thread messages, with rep replies hidden. They gave one overall judgment covering needs-action, primary and secondary intents, job, and route. Secondary-intent criteria were written after labeling and applied inconsistently. No field-level scores are available.
-- **Result.** The initial review recorded 3 wrong out of 39 definite judgments (7.7%). After teammate input resolved five uncertain cases, the totals were 39 right, 5 wrong, and 6 uncertain. The resulting error rate was 11.4% (5 of 44 definite judgments). The dropped complaint remained uncertain and is excluded. The working bar of about 5% wrong with no high-stakes misses applies per job. The pooled review had no formal pass or fail.
-- **Iteration.** Three of the five wrong decisions confused date, shipping, status, or sample requests. v1.5 reduced the count to 3 wrong out of 44 on the same cases used to tune it. A new labeled sample is needed to measure intent quality on fresh mail, ideally with a second reviewer on a subset.
+**Decision.** This review examined whether v1.2 could identify the work in an email and recommend an appropriate handoff. The working promotion bar was about 5% wrong with no high-stakes misses, applied per job. The review pooled decisions across 14 intents, with too few examples for per-job rates. No formal gate outcome was recorded.
+
+**Sample and review.** I selected 50 recent inbound messages from a two-week window, one per conversation. I excluded automated sequences, bodies outside 40 to 1,500 characters, previously routed or replayed messages, and obvious auto-replies. One out-of-office reply slipped through and was kept. The sample spans ten work-area buckets from an earlier capacity study. The AI-assigned bucket labels helped spread the sample and were never scored. The selection method within each bucket and overlap with the intent discovery corpus are unknown.
+
+The messages were held out of v1.1 and v1.2 tuning. One conversation overlapped an earlier tuning set, and these 50 cases later informed v1.3 through v1.5. One reviewer saw the newest email, up to three earlier messages, and the router output. The rep’s reply was hidden. The reviewer gave one verdict covering needs-action, primary and secondary intents, job, and route. Secondary-intent criteria were written after labeling and applied inconsistently. The record supports overall verdicts only.
+
+| Review stage | Right | Wrong | Uncertain | Error rate among definite judgments |
+| --- | ---: | ---: | ---: | ---: |
+| Initial v1.2 review | 36 | 3 | 11 | 7.7% (3 of 39) |
+| v1.2 after teammate input on five uncertain cases | 39 | 5 | 6 | **11.4% (5 of 44)** |
+
+Three of the five wrong decisions confused date, shipping, status, or sample requests. Two went to an agent route. The [dropped product complaint](../README.md#a-routing-decision-from-a-historical-replay) remained uncertain and falls outside the error rate.
+
+| Version | What the replay showed |
+| --- | --- |
+| v1.3 | Clarifying the date, shipping, status, and sample categories fixed those primary intents and broke three secondary intents. |
+| v1.4 | A broader secondary-intent rule fixed two rows and introduced other errors. The needs-action score also shifted sharply across versions on one short reply. |
+| v1.5 | Narrower notes gave the best result on these same cases, with 3 of 44 definite judgments wrong (6.8%). The cases informed the tuning, so this is an in-sample result. |
+
+**Next test.** Run a fresh intent review and have a second person label a subset. The 300-email tagging sample had no intent labels, so fresh intent accuracy remains unmeasured. The revised complaint rule needs examples that did not inform the fix.
 
 ## Historical background
 
