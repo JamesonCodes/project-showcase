@@ -20,11 +20,13 @@ One email can contain several jobs. A customer asking for updated artwork and pr
 
 ## A routing decision from a historical replay
 
-A customer replied to a quote for a time-sensitive project. They reported that the design tool kept changing their logo color after they tried to correct it and said they would approve the design in a few days. They made no explicit request. The router received that message and three earlier messages from the thread.
+**The router saw a complaint and recommended no action.** A customer on a rush project replied to a quote to say the design tool kept changing their logo color, even after two attempts to fix it. They expected to approve the design in a few days and made no explicit request.
 
-- **Router decision.** In the v1.2 replay, the router chose no action despite a problem score of 0.94. It checked for an explicit request before checking for a reported problem, so the low needs-action score took precedence.
-- **What happened.** The replay wrote to a test table and took no action in Front. In the original conversation, the rep acknowledged the complaint, offered to submit the revisions, and asked which logo color the customer wanted.
-- **What I changed.** The routing code now sends messages with a strong problem signal and a low needs-action score to a person for review. Three later configuration versions routed this message to a person. The case informed the fix, so the next test is whether the rule catches the same pattern in unseen mail.
+In a replay of the message and three earlier emails from the thread, the router gave the problem a score of **0.94**. The rule that checked whether the message needed action ran first. Its low score ended the decision before the router could act on the problem signal.
+
+In the original conversation, the rep replied about 75 minutes later. They acknowledged the complaint, offered to submit the revisions, and asked which logo color to use. The retrospective replay only wrote to a test table.
+
+I changed the rule so a problem score above 0.5 paired with a needs-action score below 0.3 sends the message to a person for review. Three later versions routed this same message to a person. Since the example informed the fix and other settings changed between replays, I still need to test whether the rule catches similar complaints in fresh mail.
 
 ## My contribution
 
@@ -93,7 +95,9 @@ I plan to use OpenAI’s Decisions API to help choose how to handle a job based 
 
 I’m refining the router’s decision logic in OpenAI’s Decisions API and building out the evaluation set.
 
-In a manual review of 50 recent inbound messages, 39 routing decisions were judged right, 5 wrong, and 6 uncertain. That puts the error rate at 11.4% among the 44 decisions with a definite judgment, above the 5% threshold for granting a job more autonomy. The 50-message review is a different measure from the roughly 6,000 emails used for intent discovery. Overlap between the two sets is unverified. End-to-end job completion and time savings remain undocumented.
+**First routing review.** A reviewer checked whether action was needed and assessed the primary and secondary intents across 50 previously unrouted inbound messages. They judged 39 decisions correct, 5 wrong, and 6 uncertain. The error rate among definite judgments was **11.4% (5 of 44)**, above the 5% threshold for granting a job more autonomy. The roughly 6,000 emails used to discover intents are a separate figure. Overlap with the review sample is unverified. [Sampling and replay details](evaluations/source-notes.md)
+
+End-to-end job completion and time savings remain undocumented.
 
 The evaluation plan includes replaying about 6,000 historical emails to tune routing and comparing shadow decisions with what reps actually did. Those comparisons would help refine intents, thresholds, and prompts. See the [evidence notes](evaluations/source-notes.md).
 
