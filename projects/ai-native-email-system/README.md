@@ -47,7 +47,21 @@ That gave me a starting set of intents grounded in the work customers actually a
 
 The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. The router records recommendations in shadow mode and leaves Front untouched.
 
-### A routing decision from a historical replay
+### Hand off and complete the work
+
+Handoff and execution are the least developed part of the system. Email intake, enrichment, and shadow routing lay the groundwork for the earned autonomy described below. I can refine routing, prepare evaluations, and develop specialist agents that can start work on their own in parallel while the development team exposes the MCP tools those workflows need to work with our internal Portal+ system.
+
+I’m planning three paths for an inbound message:
+
+- **Tag it** when the message needs no action.
+- **Hand it to a sales rep** when a person should handle the request.
+- **Send it to a dispatcher** to split the request into jobs and assign them to specialist agents. Their outputs come together in one reply draft, flagged for review when needed.
+
+The job’s autonomy tier determines what the system can do in Front, such as draft a reply, add an internal comment, or send an approved type of reply.
+
+The [Quote Agent](../quote-agent/README.md) is in development as a rep-started workflow. Automatic handoff from the inbox router is planned.
+
+## A routing decision from a historical replay
 
 **The router saw a complaint and recommended no action.** A customer on a rush project replied to a quote to say the design tool kept changing their logo color, even after two attempts to fix it. They expected to approve the design in a few days and made no explicit request.
 
@@ -64,20 +78,6 @@ The rule checked the needs-action score first. That low score took precedence ov
 In the original conversation, the rep replied about 75 minutes later. They acknowledged the complaint, offered to submit the revisions, and asked which logo color to use. The retrospective replay only wrote to a test table.
 
 I changed the rule so a problem score above 0.5 paired with a needs-action score below 0.3 sends the message to a person for review. Three later versions routed this same message to a person. Since the example informed the fix and other settings changed between replays, I still need to test whether the rule catches similar complaints in fresh mail.
-
-### Hand off and complete the work
-
-Handoff and execution are the least developed part of the system. Email intake, enrichment, and shadow routing lay the groundwork for the earned autonomy described below. I can refine routing, prepare evaluations, and develop specialist agents that can start work on their own in parallel while the development team exposes the MCP tools those workflows need to work with our internal Portal+ system.
-
-I’m planning three paths for an inbound message:
-
-- **Tag it** when the message needs no action.
-- **Hand it to a sales rep** when a person should handle the request.
-- **Send it to a dispatcher** to split the request into jobs and assign them to specialist agents. Their outputs come together in one reply draft, flagged for review when needed.
-
-The job’s autonomy tier determines what the system can do in Front, such as draft a reply, add an internal comment, or send an approved type of reply.
-
-The [Quote Agent](../quote-agent/README.md) is in development as a rep-started workflow. Automatic handoff from the inbox router is planned.
 
 ## Jobs and earned autonomy
 
