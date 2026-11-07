@@ -31,7 +31,8 @@ AI-native describes how the workflow works. Earned autonomy determines which act
 
 ## How it works
 
-![Sales email architecture showing live intake, shadow routing, and planned job execution](diagrams/ai-native-sales-email-system.png)
+<img width="2840" height="1940" alt="ai-native-sales-email-system" src="https://github.com/user-attachments/assets/92155a82-de0c-4045-98b4-b8c0695c1026" />
+
 
 ### Capture and enrich emails
 
