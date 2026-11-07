@@ -38,15 +38,15 @@ AI-native describes how the workflow works. Earned autonomy determines which act
 
 A Front webhook captures inbound and outbound messages. The n8n pipeline looks up the contact and account using Front and HubSpot, cleans and summarizes the message, then saves it with thread identifiers and message metadata in Supabase. A separate scheduled job generates embeddings and adds work classifications, including the task, category, work area, rationale, and classification version.
 
-### Discover the 16 intents
+### Discover the 14 intents
 
-I pulled roughly 6,000 inbound emails flagged as requiring action since the study began. I grouped their embeddings into 16 clusters using a modified version of HDBSCAN, an unsupervised clustering algorithm. For each cluster, I took a handful of messages nearest its center (the centroid) and used an LLM to propose an intent label based on those examples.
+I pulled roughly 6,000 inbound emails flagged as requiring action since the study began. I grouped their embeddings into clusters using a modified version of HDBSCAN, an unsupervised clustering algorithm. For each cluster, I took a handful of messages nearest its center (the centroid) and used an LLM to propose an intent label based on those examples.
 
 That gave me a starting set of intents grounded in the work customers actually asked for, without having to guess at categories up front or label thousands of messages by hand. The patterns in those clusters also helped me decide what questions the router should ask and which items to define in the Decisions API. I’m still refining the categories. I built a playground to illustrate the method using examples that contain no proprietary data. [Email Vector Lab](https://email-vector-lab.jameson-on-the-rocks.chatgpt.site/)
 
 ### Classify inbound email
 
-The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 16 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. Shadow runs log recommendations without acting in Front.
+The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 14 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. Shadow runs log recommendations without acting in Front.
 
 ### Hand off and complete the work
 
