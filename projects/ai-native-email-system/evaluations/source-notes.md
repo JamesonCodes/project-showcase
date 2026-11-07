@@ -2,6 +2,10 @@
 
 The tagging gate measures how often a “can wait” prediction misses work. The intent review examines the router’s broader decisions about what the customer needs and who should handle it.
 
+## Review workflow
+
+I built a Claude artifact to guide reviewers through email examples and routing decisions. It made the review easier to work through and gave me something I could share internally to guide teammates through the same process.
+
 ## Gate 1 — Advisory “can wait” tagging
 
 **Decision.** Can the router apply an advisory “can wait” tag to emails it predicts need no action? The gate allows up to 2% of those predictions to be misses. The denominator is the set of emails predicted to need no action. The stored gate record was created after labeling, and whether the threshold was set beforehand is unverified.
