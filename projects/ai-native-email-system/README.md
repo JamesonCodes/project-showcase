@@ -7,7 +7,7 @@ Sock Club is a high-volume, transactional business. At this stage of growth, I�
 | Field | Value |
 | --- | --- |
 | Documentation status | Documentation draft |
-| Project status | Active development. Email intake and enrichment are live, the router has passed its first advisory tagging gate, and the Quote Agent is in development. The router has no live production traffic yet. |
+| Project status | Active development. Email intake, enrichment, routing classification, and advisory “can wait” tagging are live with production traffic. Handoff recommendations are logged in shadow mode. The Quote Agent is in development. |
 | Tools | Front, HubSpot, n8n, JavaScript, OpenRouter, Claude, OpenAI’s Decisions API, and Supabase |
 
 ## The problem
@@ -112,7 +112,7 @@ I’m refining the router’s decision logic in OpenAI’s Decisions API and bui
 | Advisory “can wait” tagging | **Passed.** In a 300-email sample, 1 of the 121 emails marked no action needed action (0.8%, against a 2% bar). | Advisory tagging only. The 95% interval reaches about 4.5%, so I plan to recheck the miss rate on live traffic. |
 | Intent and routing review | **No formal gate decision.** Of 50 decisions, 39 were right, 5 wrong, and 6 uncertain. The error rate among definite judgments was 11.4% (5 of 44). | The review exposed errors across intents. The working bar of about 5% applies per job, and this sample is too small to establish per-job readiness. |
 
-Advisory tagging is enabled in the active configuration and applied a tag in one end-to-end test. The router has yet to receive production traffic.
+The router is processing production emails, and advisory “can wait” tagging is live. Handoff recommendations are logged without automatically assigning or executing the work.
 
 The intent review exposed confusion among date, shipping, status, and sample requests. The complaint above was marked uncertain and excluded from the error rate. Later versions were tuned on these cases, so the next step is a fresh labeled intent review. End-to-end job completion and time savings remain undocumented. [Evaluation methods and limitations](evaluations/source-notes.md)
 
