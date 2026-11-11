@@ -55,7 +55,11 @@ The routing design has three paths for an inbound message. I’m still consideri
 
 - **Tag it** when the message needs no action.
 - **Hand it to a sales rep** when a person should handle the request.
-- **Send it to an orchestrator.** I’m considering an orchestrator that splits each request into jobs, coordinates sub-agents, and combines their outputs into one reply draft, flagged for review when needed.
+- **Send it for agent execution** to complete the jobs and prepare one reply draft, flagged for review when needed.
+
+I’m considering two architectures for agent execution: an orchestrator coordinating specialized sub-agents, or a single agent loop that loads the instructions and tools it needs as the work progresses. [Anthropic’s findings](https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop) suggest that keeping related work in one loop can reduce context loss and coordination overhead.
+
+n8n’s current functionality limits how I could implement the single-loop approach for this use case, so it remains an option for later. My priority is stable execution, clear failure handling, and reliable outcomes. I haven’t yet evaluated which architecture best meets those needs.
 
 The job’s autonomy tier determines what the system can do in Front, such as draft a reply, add an internal comment, or send an approved type of reply.
 
