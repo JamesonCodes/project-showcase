@@ -40,7 +40,7 @@ Skipped messages cannot receive the tag. The run reported empty bodies for those
 
 Both rules remain proposals.
 
-**Rollout status.** The active configuration enables advisory tagging and applied it in one end-to-end test. The records describe its classification as unchanged from the gated version. Reproduction of the gated outputs under the active configuration remains unverified. The router has yet to receive production traffic, and the rule that clears the tag when a new message arrives is built and remains disabled. The next check is to review predicted no-action emails on live traffic after enabling the router and tag removal.
+**Rollout history.** Advisory tagging went live with production traffic on November 10, 2026 using v1.7, whose classification was unchanged from v1.5. Production observations prompted a separate re-evaluation, revised label rules, and activation of v1.9 that evening. The original result above retains its November 6 labels. See the [November 10 re-evaluation](can-wait-reevaluation-2026-11-10.md) for the later results and live follow-up plan. An earlier record described tag removal on new messages as built but disabled; its current status is not established by the re-evaluation.
 
 ## Exploratory intent and routing review
 

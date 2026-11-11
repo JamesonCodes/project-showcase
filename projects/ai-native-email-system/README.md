@@ -115,10 +115,13 @@ I’m refining the router’s decision logic in OpenAI’s Decisions API and bui
 
 | Evaluation | Result | What it supports |
 | --- | --- | --- |
-| Advisory “can wait” tagging | **Passed.** In a 300-email sample, 1 of the 121 emails marked no action needed action (0.8%, against a 2% bar). | Advisory tagging only. The 95% interval reaches about 4.5%, so I plan to recheck the miss rate on live traffic. |
+| Original advisory tagging gate, November 6 | **Passed.** With router-v1.5, 1 of 121 tagged emails needed action (0.8%) in a 300-email sample. | Historical result under the original label rules. The 95% interval reaches about 4.5%, above the 2% bar. |
+| Advisory tagging re-evaluation, November 10 | **Passed.** With router-v1.9, 0 of 114 tagged emails needed action on gate1-v1, and all 19 regression cases routed correctly. | Backtest results under revised label rules. The cases informed tuning; the approximate 95% upper bound is 3.2%. This does not establish the live miss rate. |
 | Intent and routing review | **No formal gate decision.** Of 50 decisions, 39 were right, 5 wrong, and 6 uncertain. The error rate among definite judgments was 11.4% (5 of 44). | The review exposed errors across intents. The working bar of about 5% applies per job, and this sample is too small to establish per-job readiness. |
 
 The router is processing production emails, and advisory “can wait” tagging is live. Handoff recommendations are logged without automatically assigning or executing the work.
+
+First-day production observations prompted a configuration review and explicit rules for approvals and booked-call confirmations. I activated v1.9 on the evening of November 10 after the re-evaluation. Its results remain separate from the original gate because labels changed and the samples overlap. The next check is a spot review of live v1.9 tags. [Re-evaluation methods, decisions, and limitations](evaluations/can-wait-reevaluation-2026-11-10.md)
 
 The intent review exposed confusion among date, shipping, status, and sample requests. The complaint above was marked uncertain and excluded from the error rate. Later versions were tuned on these cases, so the next step is a fresh labeled intent review. End-to-end job completion and time savings remain undocumented. [Evaluation methods and limitations](evaluations/source-notes.md)
 
