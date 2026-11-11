@@ -107,7 +107,7 @@ I plan to use OpenAI’s Decisions API to help choose how to handle a job based 
 
 - **Start evaluating early.** Evals are my least favorite part of building these systems, and they’re foundational to deciding what the system can do. Start with a review small enough to run, write down what it can tell you, and improve the method as you learn.
 
-- **Keep project context in readable files.** I use a Claude Project as a working documentation repository, with Markdown files for decision logs, evaluations, and implementation notes. That gives Claude a history to reference and gives me documentation I can read, review, and update directly. Keeping that context together has helped me stay organized and revisit why earlier decisions were made.
+- **Organize project context like a repository.** I use a Claude Project as a working documentation repository, structured like the documentation I’d keep alongside a coding project on GitHub. Parent folders group the material, an overview folder contains a README, and numbered sections (01, 02, 03, and so on) organize topics such as routing configuration. Decision logs, evaluations, and implementation notes live in Markdown files. That gives Claude a history to reference and gives me documentation I can read, review, and update directly. Keeping that context organized has helped me navigate the system and revisit why earlier decisions were made.
 
 ## Progress and evidence
 
