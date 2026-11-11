@@ -49,13 +49,13 @@ The Sales Inbox Router reads each new inbound message and up to three preceding 
 
 ### Hand off and complete the work
 
-Handoff and execution are the least developed stages. While the development team exposes the Portal+ MCP tools those workflows need, I can refine routing, prepare evaluations, and build specialist agents.
+Handoff and execution are the least developed stages. While the development team exposes the Portal+ MCP tools those workflows need, I can refine routing, prepare evaluations, and build specialized sub-agents.
 
-I’ve designed three paths for an inbound message:
+The routing design has three paths for an inbound message. I’m still considering the architecture for the agent path:
 
 - **Tag it** when the message needs no action.
 - **Hand it to a sales rep** when a person should handle the request.
-- **Send it to a dispatcher** to split the request into jobs and assign them to specialist agents. Their outputs come together in one reply draft, flagged for review when needed.
+- **Send it to an orchestrator.** I’m considering an orchestrator that splits each request into jobs, coordinates sub-agents, and combines their outputs into one reply draft, flagged for review when needed.
 
 The job’s autonomy tier determines what the system can do in Front, such as draft a reply, add an internal comment, or send an approved type of reply.
 
