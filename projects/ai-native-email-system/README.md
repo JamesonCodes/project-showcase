@@ -31,8 +31,7 @@ AI-native describes how the workflow works. Earned autonomy determines which act
 
 ## How it works
 
-<img width="2840" height="1940" alt="ai-native-sales-email-system" src="https://github.com/user-attachments/assets/92155a82-de0c-4045-98b4-b8c0695c1026" />
-
+<img width="2840" height="1940" alt="ai_native_email_system" src="https://github.com/user-attachments/assets/d63382ec-9457-45a2-8174-8fd0ec6b559b" />
 
 ### Capture and enrich emails
 
