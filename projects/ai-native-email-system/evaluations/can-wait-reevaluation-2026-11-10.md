@@ -1,70 +1,50 @@
-# “Can wait” tagging re-evaluation: November 10, 2026
+# “Can wait” tagging follow-up: November 10, 2026
 
-**Measured result.** router-v1.9 passed the two evaluation sets under the revised label rules: none of the 114 emails routed to no action on gate1-v1 needed action, and all 19 regression cases routed correctly. I activated v1.9 that evening, replacing v1.7. This is backtest evidence, not a measured live v1.9 miss rate.
+**Result:** v1.9 passed the follow-up tests. None of the 114 tagged emails in the original test set needed action, and all 19 regression cases routed correctly. I activated v1.9 that evening, replacing v1.7. These are backtest results; live v1.9 performance had not yet been reviewed.
 
-**Source and scope.** This note summarizes my evaluation record from November 10, 2026, including n8n backtest results and my review labels. Customer examples are sanitized paraphrases; names, message identifiers, and verbatim email text are omitted. The reported counts are unchanged.
+This note summarizes my evaluation record and n8n backtests. Customer examples below are sanitized paraphrases, with names and message identifiers omitted.
 
-## Why I ran it
+## What prompted the review
 
-Advisory tagging went live with production traffic on November 10 using router-v1.7, whose classification was unchanged from v1.5. A customer’s confirmation of a call received a “Can wait” tag, prompting me to inspect the configuration. Its no-request intent included call setup, attachments sent for us to use, and follow-up nudges as examples needing no action.
+Tagging went live on November 10 with v1.7, which classified emails the same way as v1.5. A tagged call confirmation led me to inspect the configuration. It treated call setup, attachments, and follow-up nudges as examples needing no action.
 
-The triggering call example was initially treated as a miss. After reviewing the thread, I changed its label to “could wait”: the rep had already proposed a time and the customer was confirming it. It is not a confirmed miss under the final rules.
+After reading the thread, I decided that particular confirmation could wait: the rep had already booked the call. It was not a confirmed miss under the final review rules, but it exposed wording worth fixing.
 
-A keyword check of the first 243 live v1.7 no-action decisions found 5 mentioning calls, 4 mentioning attachments, and 8 resembling follow-ups. These are keyword matches, not confirmed misses or a measured error rate.
+A keyword check of the first 243 live no-action decisions found 5 mentioning calls, 4 mentioning attachments, and 8 resembling follow-ups. Those matches were leads for review, not confirmed errors.
 
-## Samples and method
+## What I changed and tested
 
-| Set | Contents | Purpose |
+v1.8 narrowed the no-action category to true sign-offs. Call requests, files sent for us to use, and follow-ups now counted as needing action. Testing then exposed short approvals being tagged, so v1.9 added an explicit rule: all approvals need action.
+
+I also clarified that a confirmation of an already booked call can wait. Under these rules, I relabeled five emails in the original set as needing action and the triggering call example as able to wait.
+
+| Test set | Contents | v1.9 result |
 | --- | --- | --- |
-| gate1-v1 | The 275 scored emails from the original 300-email gate sample | Recheck tagging against the original sample with revised labels |
-| noaction-regression-v1 | 19 emails drawn from reviewed live misses and sign-off controls | Check specific problem cases and emails that should still receive the tag |
+| Original set (`gate1-v1`) | 275 scored emails from the original 300-email sample | 0 of 114 tagged emails needed action |
+| Regression set (`noaction-regression-v1`) | 19 cases drawn from reviewed live misses and sign-offs | All 19 routed correctly |
 
-I was the sole reviewer, labeling whether each email needed action or could wait. A tagging miss is an email labeled “needed action” that the router sends to no_action, which applies the Front tag. The tagging gate uses a bar of about 2% misses among no-action predictions. For this re-evaluation, I required zero labeled misses on gate1-v1 and correct routing on every regression row.
+The sets overlap: the combined run covered 290 unique emails with no run errors. I was the only reviewer. To pass this follow-up, I required no tagging misses in the original set and correct routing on every regression case. The general tagging gate allows about 2% misses among tagged emails.
 
-I set two label rules during the review:
+The v1.8 run accidentally omitted the regression set because of a set-ID mistake. The v1.9 run covered both sets.
 
-- All approvals need action, including short acknowledgments of approval. Five gate1-v1 emails previously labeled “could wait” or “not sure” were relabeled “needed action.”
-- A confirmation of a call the rep already booked can wait. This changed the label of the triggering production example.
+v1.9 tagged fewer emails: 114 versus 121 in the original v1.5 run. The record describes the cases it stopped tagging as conservative handoffs to a person. This test does not measure overall routing accuracy.
 
-## Changes and results
+## What the result does and does not establish
 
-router-v1.8 narrowed no-request wording to true sign-offs and treated call requests, files sent for us to use, and follow-ups as needing action. Its gate1-v1 run exposed short approvals still being routed to no action. I added an explicit approvals rule in v1.9.
+- **The examples helped shape the fix.** Both sets were used during tuning, so a fresh review is still needed.
+- **The sample is small.** Zero misses out of 114 gives an approximate 95% upper bound of 3.2%, above the 2% gate bar.
+- **The labels changed.** I was the sole reviewer and applied the new approval and booked-call rules retroactively.
+- **Coverage is limited.** The regression cases came from one day of traffic and keyword-led review. Neither set tests a call request where no call is booked yet.
+- **The gate checks tagged emails.** It does not measure how many other emails could safely have received the tag, or the quality of agent handoffs.
 
-| Run | Coverage | Recorded outcome |
-| --- | --- | --- |
-| v1.8, November 10 | gate1-v1 only; a set-ID mistake omitted the regression set | Exposed approval errors; no full result count is included in the supplied record |
-| v1.9, November 10 | Both sets; 290 unique emails, no run errors | 0 of 114 tagged gate1-v1 emails needed action; all 19 regression cases routed correctly |
+## Next steps
 
-The sets overlap, so 275 plus 19 does not represent 294 unique test emails. Regression correctness and the gate1-v1 tagging miss rate use different denominators and are reported separately.
+Every future configuration must pass both sets. I’ll add confirmed live misses to the regression set, spot-check live v1.9 tags, and add a real unbooked call request when one is available. The recorded rollback option was v1.7.
 
-v1.9 tagged 114 gate1-v1 emails, compared with 121 in the original v1.5 run. The evaluation record describes the cases it stopped tagging as conservative decisions to send work to a person. This reduction in tagging is a tradeoff, not evidence of improved overall routing accuracy. Any comparison that rescores v1.5 under the new labels is a retrospective relabeling of the original run, not a new v1.5 run.
+## Keep the original result separate
 
-## Limitations
+The [November 6 gate](source-notes.md#gate-1--advisory-can-wait-tagging) used v1.5 and found 1 miss among 121 tagged emails (0.8%), with an approximate 95% interval of 0.1% to 4.5%. It passed under the review rules used at the time.
 
-- **Used in tuning.** gate1-v1 informed the approvals fix, and the live examples informed v1.8 wording. Neither set is a clean holdout for v1.9.
-- **Small samples.** Zero misses among 114 tagged emails does not establish a zero miss rate. The supplied evaluation reports an approximate 95% upper bound of 3.2%, still above the 2% gate bar.
-- **One reviewer and changing labels.** I set two rules during the evaluation and applied them retroactively.
-- **Narrow regression coverage.** The regression set came from one day of traffic and keyword-led review. Neither set contains a request for a call that has not already been booked.
-- **Only part of the workflow measured.** The gate checks whether tagged emails needed action. It does not establish how many eligible emails were left untagged or measure overall intent and handoff quality.
-- **No live v1.9 result yet.** At the time of the evaluation record, v1.9 had been activated but not yet observed on production traffic.
-
-## Decisions and next checks
-
-I activated v1.9 on the evening of November 10. The recorded rollback option was to reactivate v1.7, whose wording prompted this review.
-
-Every future configuration version must pass gate1-v1 and noaction-regression-v1. I will add confirmed live no-action misses to the regression set, spot-check live v1.9 tags, and add the first real unbooked call request when one is available. These sets check known cases; fresh production review is still needed.
-
-## Comparison with the original gate
-
-| | Original gate | Re-evaluation |
-| --- | --- | --- |
-| Date | November 6, 2026 | November 10, 2026 |
-| Purpose | Decide whether to enable advisory tagging | Investigate production observations and check revised configuration |
-| Configuration | router-v1.5 | router-v1.8 and router-v1.9 |
-| Sample | 300 sampled, 275 scored; 121 no-action predictions reviewed | The same 275 scored emails plus a 19-email regression set; 290 unique emails in the v1.9 run |
-| Labels | Rules used on November 6 | Revised approval and booked-call rules |
-| Result | 1 of 121 tagged emails needed action (0.8%); passed | v1.9: 0 of 114 on gate1-v1; all 19 regression cases correct; passed |
-
-The results are not combined because the label rules changed and the samples overlap. See the [original evaluation methods and limitations](source-notes.md#gate-1--advisory-can-wait-tagging).
+This follow-up reused that sample with revised labels and added regression cases. The results are not combined. Rescoring the old v1.5 output with new labels is a retrospective comparison, not a new run.
 
 [Back to evaluation index](README.md) · [Back to case study](../README.md)
