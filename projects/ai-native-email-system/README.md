@@ -45,7 +45,7 @@ That gave me a starting set of intents grounded in the work customers actually a
 
 ### Classify inbound email
 
-The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 14 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. I set decision thresholds based on the relative cost of false positives and false negatives. Shadow runs log recommendations without acting in Front.
+The Sales Inbox Router reads each new inbound message and up to three preceding messages in the thread. It makes two calls to [OpenAI’s Decisions API](https://developers.openai.com/api/docs/guides/decisions) to classify the request across 14 intents, assess urgency, and recommend who should handle it. Supabase holds the versioned intents and thresholds and records one decision per inbound email. The idea is to choose decision thresholds based on the relative cost of false positives and false negatives. Shadow runs log recommendations without acting in Front.
 
 ### Hand off and complete the work
 
