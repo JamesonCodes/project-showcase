@@ -1,6 +1,6 @@
 # AI-Native Sales Email System
 
-I'm building an inbox-driven sales operations system for Sock Club that identifies the work inside customer emails and progressively automates it. Classification and advisory tagging are live; I’m developing agent workflows to carry out jobs such as quoting, using customer context and business tools within defined autonomy limits.
+I'm building a system around Sock Club’s sales inbox that figures out what customers need and routes the work. Classification and advisory tagging are live. Next, I’m building agents that can complete jobs such as preparing quotes, with human review where needed.
 
 Sock Club is a high-volume, transactional business. At this stage of growth, I’m designing the system around the repeatable jobs that come through the sales inbox and the decisions that still need a person. A business with a different sales model would likely need to organize the work and draw those boundaries differently.
 
